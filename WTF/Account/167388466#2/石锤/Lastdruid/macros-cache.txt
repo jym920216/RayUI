@@ -1,0 +1,77 @@
+VER 3 010000000000000E "DB_Arcane" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Arcane
+END
+VER 3 0100000000000007 "DB_bear1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_bear1
+END
+VER 3 0100000000000008 "DB_bear2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_bear2
+END
+VER 3 0100000000000001 "DB_Boomer" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_Boomer
+END
+VER 3 0100000000000002 "DB_druid_bala_st" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_druid_bala_st
+END
+VER 3 010000000000000F "DB_Fire" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Fire
+END
+VER 3 0100000000000003 "DB_KTNDRUAOEHEALS" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_KTNDRUAOEHEALS
+END
+VER 3 0100000000000005 "DB_KTNDRUHEALS" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_KTNDRUHEALS
+END
+VER 3 0100000000000004 "DB_KTNRestoBoom" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_KTNRestoBoom
+END
+VER 3 0100000000000006 "DB_RestoBoomer" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_RestoBoomer
+END
+VER 3 010000000000000C "Moonkin_MT" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click Moonkin_MT
+END
+VER 3 010000000000000B "Moonkin_ST" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click Moonkin_ST
+END
+VER 3 010000000000000A "Restoration_Group" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click Restoration_Group
+END
+VER 3 0100000000000009 "Restoration_Tank" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click Restoration_Tank
+END
+VER 3 0100000000000010 "T3" "INV_Misc_QuestionMark"
+#showtooltip [talent:3/1]镜像;[talent:3/2]能量符文;
+/cast [talent:3/1]镜像
+/cast [talent:3/2]能量符文
+END
+VER 3 0100000000000011 "T4" "INV_Misc_QuestionMark"
+#showtooltip [talent:4/1]冲击波;[talent:4/2]烈焰飞舞;
+/cast [talent:4/1]冲击波
+/cast [talent:4/2]烈焰飞舞
+/use 屠夫之巫术暗影紫玉吊坠
+END
+VER 3 0100000000000012 "T5" "INV_Misc_QuestionMark"
+#showtooltip [talent:5/1]浮冰;[talent:5/2]冰霜之环
+/cast [talent:5/1]浮冰
+/cast [talent:5/2]冰霜之环
+END
+VER 3 0100000000000013 "铁宗" "1378702"
+#show 铁鬃
+/castsequence [nomod] reset=1 铁鬃,横扫
+/castsequence [mod] reset=1 铁鬃,横扫
+END

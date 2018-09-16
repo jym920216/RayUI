@@ -1,0 +1,83 @@
+VER 3 0100000000000106 "T3" "INV_Misc_QuestionMark"
+#showtooltip [talent:3/1]镜像;[talent:3/2]能量符文;
+/cast [talent:3/1]镜像
+/cast [talent:3/2]能量符文
+END
+VER 3 0100000000000107 "T4" "INV_Misc_QuestionMark"
+#showtooltip [talent:4/1]冲击波;[talent:4/2]烈焰飞舞;
+/cast [talent:4/1]冲击波
+/cast [talent:4/2]烈焰飞舞
+/use 屠夫之巫术暗影紫玉吊坠
+END
+VER 3 0100000000000108 "T5" "INV_Misc_QuestionMark"
+#showtooltip [talent:5/1]浮冰;[talent:5/2]冰霜之环
+/cast [talent:5/1]浮冰
+/cast [mod,@player] [@cursor][][talent:5/2]冰霜之环
+END
+VER 3 0100000000000109 "　" "INV_Misc_QuestionMark"
+#showtooltip 闪现术
+/cast 闪现术
+END
+VER 3 010000000000010A "冰" "INV_Misc_QuestionMark"
+#showtooltips 闪光术 
+/cast 闪光术
+/cast [nochanneling:冰霜射线] 能量符文
+END
+VER 3 010000000000010B "变形术" "INV_Misc_QuestionMark"
+#showtooltip 变形术(兔子)  
+/Cast [modifier:alt,target=focus,exists] 变形术(兔子);变形术(兔子)
+END
+VER 3 010000000000010C "奥冲" "INV_Misc_QuestionMark"
+#showtooltip 奥术冲击 
+/cast [nochanneling:奥术飞弹] 奥术冲击
+END
+VER 3 010000000000010D "奥强" "INV_Misc_QuestionMark"
+#showtooltip 奥术强化
+/cast 奥术强化
+/use 缺指指环
+/use 勇气号角
+END
+VER 3 010000000000010E "寒冰炸弹" "INV_Misc_QuestionMark"
+#showtooltip 寒冰炸弹
+/Cast [modifier:alt,target=focus,exists] 寒冰炸弹;寒冰炸弹
+END
+VER 3 010000000000010F "梦境" "132864"
+/click ExtraActionButton1
+END
+VER 3 0100000000000110 "水元素" "INV_Misc_QuestionMark"
+#showtooltip [nopet][@pet,dead]召唤水元素;冰冻术
+/cast [nopet][@pet,dead]召唤水元素;冰冻术
+/petattack
+END
+VER 3 0100000000000111 "水流" "INV_Misc_QuestionMark"
+#showtooltip 水流喷射
+/cast 水流喷射
+END
+VER 3 0100000000000112 "法术偷取" "INV_Misc_QuestionMark"
+#showtooltip 法术吸取 
+/stopcasting 
+/Cast [modifier:alt,target=focus,exists] 法术吸取;法术吸取
+END
+VER 3 0100000000000113 "活体炸弹" "INV_Misc_QuestionMark"
+#showtooltip 活动炸弹
+/Cast [modifier:alt,target=focus,exists] 活动炸弹;活动炸弹
+END
+VER 3 0100000000000114 "火冲" "INV_Misc_QuestionMark"
+#showtooltip 炼狱冲击
+/stopcasting 
+/Cast [modifier:alt,target=focus,exists] 炼狱冲击;炼狱冲击
+END
+VER 3 0100000000000115 "燃烧" "INV_Misc_QuestionMark"
+#showtooltip 燃烧 
+/cast 燃烧
+/use 缺指指环
+/use 生锈的哨兵奖章
+END
+VER 3 0100000000000116 "虚空风暴" "INV_Misc_QuestionMark"
+#showtooltip 虚空风暴
+/Cast [modifier:alt,target=focus,exists] 虚空风暴;虚空风暴
+END
+VER 3 0100000000000117 "飞弹" "INV_Misc_QuestionMark"
+#showtooltip 奥术飞弹
+/cast [nochanneling:奥术飞弹] 奥术飞弹
+END

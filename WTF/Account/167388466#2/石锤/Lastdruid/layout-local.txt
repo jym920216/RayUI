@@ -1,0 +1,15 @@
+Version: 1
+Frame: DBMMinimapButton
+FrameLevel: 2
+Anchor: TOPLEFT
+X: 21
+Y: -135
+W: 23
+H: 23
+Frame: RayUI_ContainerFrameMain
+FrameLevel: 2
+Anchor: BOTTOMRIGHT
+X: -55
+Y: 30
+W: 389
+H: 475

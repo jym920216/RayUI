@@ -1,0 +1,2 @@
+
+ColdUICharacterData = nil

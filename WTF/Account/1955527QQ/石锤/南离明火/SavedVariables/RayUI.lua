@@ -1,0 +1,7 @@
+
+RayUICharacterData = {
+	["ChatEditHistory"] = {
+	},
+	["ChatHistory"] = {
+	},
+}

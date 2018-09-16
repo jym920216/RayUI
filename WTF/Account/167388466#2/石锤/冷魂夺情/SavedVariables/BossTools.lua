@@ -1,0 +1,2 @@
+
+BOSSToolsDB = nil

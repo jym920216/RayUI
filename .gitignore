@@ -11,12 +11,12 @@
 !/README.textile
 !/README.md
 !/LICENSE.txt
+!/WTF
+!/Fonts
 
 /Interface/ICONS/
 /Interface/ICONS2/
 
-/Interface/AddOns*/*
-/Interface/AddOns/RayUI/core/test.lua
 !/Interface/AddOns/!BaudErrorFrame/
 !/Interface/AddOns/Foglight/
 !/Interface/AddOns/IntelliMount/
