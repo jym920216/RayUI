@@ -1,7 +1,0 @@
-
-RayUICharacterData = {
-	["ChatEditHistory"] = {
-	},
-	["ChatHistory"] = {
-	},
-}
