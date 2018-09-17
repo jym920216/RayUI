@@ -524,6 +524,8 @@ function R:GetScreenQuadrant(frame)
 	local screenWidth = GetScreenWidth()
 	local screenHeight = GetScreenHeight()
 	local point
+	x = x or 0
+	y = y or 0
 
 	if not frame:GetCenter() then
 		return "UNKNOWN", frame:GetName()
