@@ -22,7 +22,7 @@ local function LoadSkin()
 	EncounterJournalPortrait:Hide()
 	EncounterJournalInstanceSelectBG:Hide()
 	EncounterJournalNavBar:GetRegions():Hide()
-	EncounterJournalNavBarOverlay:Hide()
+	-- EncounterJournalNavBarOverlay:Hide()
 	EncounterJournalBg:Hide()
 	EncounterJournalTitleBg:Hide()
 	EncounterJournalInsetBg:Hide()
@@ -559,8 +559,8 @@ local function LoadSkin()
 	end)
 
 	-- [[ Loot tab ]]
-
-	S:Reskin(EncounterJournal.LootJournal.LegendariesFrame.ClassButton)
+	print (EncounterJournal.LootJournal)
+	--[[ S:Reskin(EncounterJournal.LootJournal.LegendariesFrame.ClassButton)
 	EncounterJournal.LootJournal.LegendariesFrame.ClassButton:GetFontString():SetTextColor(1, 1, 1)
 	select(5, EncounterJournal.LootJournal.LegendariesFrame.ClassButton:GetRegions()):Hide()
 	select(6, EncounterJournal.LootJournal.LegendariesFrame.ClassButton:GetRegions()):Hide()
@@ -607,7 +607,7 @@ local function LoadSkin()
 			bg:SetFrameLevel(item:GetFrameLevel() - 1)
 			S:CreateBD(bg, .25)
 		end
-	end
+	end  --]]
 
 	S:Reskin(EncounterJournal.LootJournal.ItemSetsFrame.ClassButton)
 	EncounterJournal.LootJournal.ItemSetsFrame.ClassButton:GetFontString():SetTextColor(1, 1, 1)

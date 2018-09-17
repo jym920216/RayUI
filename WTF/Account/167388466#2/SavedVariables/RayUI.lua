@@ -21,7 +21,7 @@ RayUIData = {
 					{
 						["GUID"] = "Player-1685-0237D8FA",
 						["Name"] = "冷魂夺情",
-						["Gold"] = 1605031733,
+						["Gold"] = 1614933735,
 						["Class"] = "MAGE",
 						["Server"] = "石锤",
 					}, -- [1]
@@ -50,7 +50,6 @@ RayUIData = {
 				["autorelease"] = false,
 			},
 			["NamePlates"] = {
-				["enable"] = false,
 				["showEnemyCombat"] = "TOGGLE_ON",
 				["fontsize"] = 15,
 				["showFriendlyCombat"] = "TOGGLE_ON",
