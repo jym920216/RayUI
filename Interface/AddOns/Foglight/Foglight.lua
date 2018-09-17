@@ -22,6 +22,7 @@ local menu = CreateFrame('frame', 'foglightmenu', WorldMapFrame.UIElementsFrame,
 menu:SetPoint('BOTTOMLEFT', -19, -6)
 --menu:SetFrameLevel(WORLDMAP_POI_FRAMELEVEL + 2)
 menu:SetAlpha(0.8)
+menu:SetFrameLevel(1000)
 
 local function setMode(mode)
 	if not moads[mode] then mode = 1 end
@@ -216,7 +217,7 @@ local function UpdateTextures(self, elapsed)
 					else
 						TextureCache[texturePath] = 0
 						texture:SetSize(textureWidth, textureHeight)
-						texture:SetTexture(0,.113,.16)
+						texture:SetColorTexture(0,.113,.16)
 						texture:Show()
 					end
 					tremove(TextureQueue, i)
@@ -240,7 +241,7 @@ local function SuperSetTexture(texture, texturePath, textureWidth, textureHeight
 		else
 			--texture:Hide()
 			texture:SetSize(textureWidth, textureHeight)
-			texture:SetTexture(0,.113,.16)
+			texture:SetColorTexture(0,.113,.16)
 			texture:Show()
 		end
 	else
@@ -249,6 +250,130 @@ local function SuperSetTexture(texture, texturePath, textureWidth, textureHeight
 		tinsert(TextureQueue, {texture, textureWidth, textureHeight})
 		if #TextureQueue == 1 then TextureUpdater:SetScript('OnUpdate', UpdateTextures) end
 		texture:SetTexture(texturePath)
+	end
+end
+
+local TestTexture
+do -- Extremely elaborate setup to attempt to identify missing textures and replace them
+	local ContinentColors = { -- colors to fall back on for missing textures
+		[0] = {0, 29 / 256, 41 / 256}, -- default
+		[1] = {0, 29 / 256, 41 / 256}, -- kalimdor
+		[2] = {0, 29 / 256, 41 / 256}, -- eastern kingdoms
+		[3] = {0, 0, 0}, -- outland
+		[4] = {30 / 256, 60 / 256, 93 / 256}, -- northrend
+		[5] = {0, 0, 0}, -- maelstrom
+		[6] = {5 / 256, 19 / 256, 24 / 256}, -- pandaria
+		[7] = {8 / 256, 26 / 256, 63 / 256}, -- draenor
+		[8] = {0, 29 / 256, 41 / 256}, -- broken isles
+		[9] = {0, 0, 0}, -- argus
+	}
+	
+	local f = CreateFrame('frame') f:Hide()
+	local TextureObjects = {} -- [texturePath] = { objects, }
+	local TextureCache = {} -- [texturePath] = exists,
+	local TemporaryTextures = {} -- [texturePath] = testTextureObject,
+	local TestTextures = {} -- [testTextureObject] = true
+
+	local oTexture = f:CreateTexture()
+	local oSetTexture = oTexture.SetTexture
+
+	local function NormalizePath(path)
+		return type(path) == 'string' and path:lower():gsub('[\\/]+', '/'):gsub('filedata id ', '') or path
+	end
+
+	local function ReplaceMissingTexture(tx)
+		--oSetTexture(tx, 'interface/icons/inv_mushroom_11') -- improve texture
+		local continent = GetCurrentMapContinent() or 0
+		if ContinentColors[continent] then
+			tx:SetColorTexture(unpack(ContinentColors[continent])) -- hide texture
+		else
+			tx:SetColorTexture(unpack(ContinentColors[0])) -- hide texture
+		end
+		if tx._width and tx._height then
+			tx:SetSize(tx._width, tx._height)
+		end
+	end
+
+	f:SetScript('OnUpdate', function(self, elapsed)
+		local numActive = 0
+		for i = 1, #TestTextures do
+			local tx = TestTextures[i]
+			if tx.active then
+				numActive = numActive + 1
+				local w, h = tx:GetSize()
+				if w ~= 0 then -- texture done testing
+					local texturePath = tx.texturePath
+					if w < 2 and h < 2 then -- texture does not exist
+						TextureCache[texturePath] = false
+						if TextureObjects[texturePath] then
+							for tx in pairs(TextureObjects[texturePath]) do
+								if NormalizePath( tx:GetTexture() ) == texturePath then
+									ReplaceMissingTexture(tx)
+								end
+							end
+						end
+						--print(texturePath, 'does not exist')
+					else -- texture does exist
+						TextureCache[texturePath] = true
+					end
+					
+					TextureObjects[texturePath] = nil
+					tx.active = nil
+				end
+			end
+		end
+		if numActive == 0 then -- No textures to test, disable
+			self:Hide()
+		end
+	end)
+
+	local function GetTestTexture()
+		for i = 1, #TestTextures do
+			if not TestTextures[i].active then
+				TestTextures[i].active = true
+				return TestTextures[i]
+			end
+		end
+		local tx = f:CreateTexture()
+		tx:SetNonBlocking(true)
+		--tx.SetTexture = oSetTexture
+		tx.active = true
+		tx.TestTexture = true
+		tinsert(TestTextures, tx)
+		return tx
+	end
+
+	-- "world/minimaps/argus 1/map_28_29"
+
+	-- filedata id 1121272
+	function TestTexture(textureObject, textureWidth, textureHeight)
+		--print('testing texture', textureObject:GetTexture())
+		textureObject._width, textureObject._height = textureWidth, textureHeight
+		textureObject:SetSize(textureWidth, textureHeight)
+		if textureObject.TestTexture then return end
+		local texturePath = NormalizePath(textureObject:GetTexture())
+		if not texturePath or (type(texturePath) == 'string' and (texturePath:match('^mask%d+$') or texturePath:match('^color%-'))) then return end
+		if TextureCache[texturePath] ~= nil then
+			-- skip testing for the texture and replace if it doesn't exist
+			if not TextureCache[texturePath] then -- texture doesn't exist
+				ReplaceMissingTexture(textureObject)
+			end
+			return
+		end
+		if TemporaryTextures[texturePath] and TextureObjects[texturePath] then
+			-- we're already testing for this texture, just record its object
+			TextureObjects[texturePath][textureObject] = true
+			return
+		end
+		local tx = GetTestTexture()
+		tx.texturePath = texturePath
+		oSetTexture(tx, texturePath)
+		tx:SetSize(0,0)
+		if not TextureObjects[texturePath] then
+			TextureObjects[texturePath] = {}
+		end
+		TextureObjects[texturePath][textureObject] = true
+		f:Show()
 	end
 end
 
@@ -434,7 +559,8 @@ local function update_overlays()
 					local paf = (areaID == 610 or areaID == 614 or areaID == 615) and UNDERWATER_PATH or TERRAIN_PATH
 					local texturePath = paf:format(TERRAIN_MAPS[terrainMapID], iTileX+(x-1), iTileY+(y-1))
 					texture:SetTexture(texturePath)
-					texture:SetSize(textureWidth, textureHeight)
+					TestTexture(texture, textureWidth, textureHeight)
+					--texture:SetSize(textureWidth, textureHeight)
 					texture:Show()
 					--SuperSetTexture(texture, texturePath, textureWidth, textureHeight)
 				end

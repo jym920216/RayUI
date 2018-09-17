@@ -1,7 +1,7 @@
-## Interface: 70100
+## Interface: 70300
 ## Title: Foglight
 ## Notes: Toggles visibility of unexplored areas on the world map.
 ## Author: Semlar
-## Version: 3.0.2
+## Version: 7.3.0.1
 ## SavedVariables: FoglightMode
 Foglight.lua

@@ -243,9 +243,9 @@ local function SkinDBM()
     -- mwahahahah, eat this ugly DBM.
     hooksecurefunc(DBT,"CreateBar",SkinBars)
     hooksecurefunc(DBT,"ApplyStyle",ApplyMyStyle)
-    hooksecurefunc(DBM.BossHealth,"Show",SkinBossTitle)
-    hooksecurefunc(DBM.BossHealth,"AddBoss",SkinBoss)
-    hooksecurefunc(DBM.BossHealth,"UpdateSettings",SkinBoss)
+    --TODO hooksecurefunc(DBM.BossHealth,"Show",SkinBossTitle)
+    --TODO hooksecurefunc(DBM.BossHealth,"AddBoss",SkinBoss)
+    --TODO hooksecurefunc(DBM.BossHealth,"UpdateSettings",SkinBoss)
 
     local function SkinRange(self, range, filter, forceshow, redCircleNumPlayers)
         if DBMRangeCheck and not self.styled then

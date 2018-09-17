@@ -528,7 +528,7 @@ function R:GetScreenQuadrant(frame)
 	if not frame:GetCenter() then
 		return "UNKNOWN", frame:GetName()
 	end
-
+	
 	if (x > (screenWidth / 4) and x < (screenWidth / 4)*3) and y > (screenHeight / 4)*3 then
 		point = "TOP"
 	elseif x < (screenWidth / 4) and y > (screenHeight / 4)*3 then

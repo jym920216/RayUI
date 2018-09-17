@@ -559,7 +559,6 @@ local function LoadSkin()
 	end)
 
 	-- [[ Loot tab ]]
-	print (EncounterJournal.LootJournal)
 	--[[ S:Reskin(EncounterJournal.LootJournal.LegendariesFrame.ClassButton)
 	EncounterJournal.LootJournal.LegendariesFrame.ClassButton:GetFontString():SetTextColor(1, 1, 1)
 	select(5, EncounterJournal.LootJournal.LegendariesFrame.ClassButton:GetRegions()):Hide()

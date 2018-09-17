@@ -18,7 +18,7 @@ AngryKeystones: enabled
 AuctionLite: enabled
 !BaudErrorFrame: enabled
 ExRT: enabled
-Foglight: enabled
+Foglight: disabled
 GarrisonMissionManager: enabled
 IntelliMount: enabled
 Molinari: disabled
