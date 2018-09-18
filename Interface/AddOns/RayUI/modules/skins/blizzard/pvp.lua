@@ -16,7 +16,7 @@ local function LoadSkin()
 
 	-- Category buttons
 
-	for i = 1, 4 do
+	for i = 1, 3 do
 		local bu = PVPQueueFrame["CategoryButton"..i]
 		local icon = bu.Icon
 		local cu = bu.CurrencyDisplay
@@ -56,7 +56,7 @@ local function LoadSkin()
 
 	hooksecurefunc("PVPQueueFrame_SelectButton", function(index)
 		local self = PVPQueueFrame
-		for i = 1, 4 do
+		for i = 1, 3 do
 			local bu = self["CategoryButton"..i]
 			if i == index then
 				bu.Background:Show()
@@ -69,7 +69,9 @@ local function LoadSkin()
 	PVPQueueFrame.CategoryButton1.Background:Show()
 
 	-- Honor frame
-
+	for k,v in pairs(HonorFrame.BonusFrame) do
+		print(k,v)
+	end
 	local Inset = HonorFrame.Inset
 	local BonusFrame = HonorFrame.BonusFrame
 
@@ -79,9 +81,9 @@ local function LoadSkin()
 	BonusFrame.WorldBattlesTexture:Hide()
 	BonusFrame.ShadowOverlay:Hide()
 
-	S:Reskin(BonusFrame.DiceButton)
+	S:Reskin(BonusFrame.BrawlButton)
 
-	for _, bonusButton in pairs({"RandomBGButton", "Arena1Button", "AshranButton", "BrawlButton"}) do
+	for _, bonusButton in pairs({"RandomBGButton", "Arena1Button", "RandomEpicBGButton", "BrawlButton"}) do
 		local bu = BonusFrame[bonusButton]
 		local reward = bu.Reward
 
@@ -98,7 +100,7 @@ local function LoadSkin()
 	end
 
 	hooksecurefunc("HonorFrameBonusFrame_Update", function()
-		local _, _, _, _, _, winHonorAmount, winConquestAmount = GetRandomBGInfo()
+		local _, _, _, _, _, winHonorAmount, winConquestAmount = C_PVP.GetRandomBGInfo()
 		local rewardIndex = 0
 		if winConquestAmount and winConquestAmount > 0 then
 			rewardIndex = rewardIndex + 1
@@ -112,7 +114,7 @@ local function LoadSkin()
 		end
 	end)
 
-	IncludedBattlegroundsDropDown:SetPoint("TOPRIGHT", BonusFrame.DiceButton, 40, 26)
+	-- TODO IncludedBattlegroundsDropDown:SetPoint("TOPRIGHT", BonusFrame.DiceButton, 40, 26)
 
 	-- Honor frame specific
 

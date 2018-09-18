@@ -150,7 +150,8 @@ function mod:UpdateElement_Cast(frame, event, ...)
             frame.CastBar:Hide();
             return;
         end
-
+        
+        endTime = endTime or 0 -- TODO
         frame.CastBar.Name:SetText(name)
         frame.CastBar.value = (endTime / 1000) - GetTime();
         frame.CastBar.maxValue = (endTime - startTime) / 1000;

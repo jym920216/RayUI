@@ -10,7 +10,7 @@ local function LoadSkin()
 	ChallengesFrameInset:DisableDrawLayer("BORDER")
 	ChallengesFrameInsetBg:Kill()
 
-	ChallengesFrame.WeeklyBest.Child.Star:Hide()
+	--[[TODO ChallengesFrame.WeeklyBest.Child.Star:Hide()
 	ChallengesFrame.WeeklyBest.Child.Glow:Hide()
 	ChallengesFrame.WeeklyBest.Child.Level:SetPoint("CENTER", ChallengesModeWeeklyBest.Child.Star, "CENTER", 0, 3)
     ChallengesFrame.WeeklyBest.Child.Label:ClearAllPoints()
@@ -21,7 +21,7 @@ local function LoadSkin()
 	S:CreateBD(ChallengesFrame.GuildBest, .3)
 
 	select(1, ChallengesFrame.GuildBest:GetRegions()):Hide()
-	select(3, ChallengesFrame.GuildBest:GetRegions()):Hide()
+	select(3, ChallengesFrame.GuildBest:GetRegions()):Hide()--]]
 
 	for i = 1, 2 do
 		select(i, ChallengesFrame:GetRegions()):Hide()

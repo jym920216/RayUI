@@ -1,21 +1,21 @@
 
 TinyRosterDB = {
-	["AchievementFrame.searchBox"] = {
-		["depands"] = "Blizzard_AchievementUI",
-		["list"] = {
-		},
-	},
-	["MountJournalSearchBox"] = {
-		["depands"] = "Blizzard_Collections",
-		["list"] = {
-		},
-	},
 	["TradeSkillFrame.SearchBox"] = {
 		["depands"] = "Blizzard_TradeSkillUI",
 		["list"] = {
 		},
 	},
 	["ToyBox.searchBox"] = {
+		["depands"] = "Blizzard_Collections",
+		["list"] = {
+		},
+	},
+	["AchievementFrame.searchBox"] = {
+		["depands"] = "Blizzard_AchievementUI",
+		["list"] = {
+		},
+	},
+	["MountJournalSearchBox"] = {
 		["depands"] = "Blizzard_Collections",
 		["list"] = {
 		},
