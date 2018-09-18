@@ -96,7 +96,7 @@ local function LoadSkin()
 	end
 
 	hooksecurefunc("HonorFrameBonusFrame_Update", function()
-		local _, _, _, _, _, winHonorAmount, winConquestAmount = C_PVP.GetRandomBGInfo()
+		local _, _, _, _, _, winHonorAmount, winConquestAmount = C_PvP.GetRandomBGInfo()
 		local rewardIndex = 0
 		if winConquestAmount and winConquestAmount > 0 then
 			rewardIndex = rewardIndex + 1
@@ -149,10 +149,10 @@ local function LoadSkin()
 	for i = 1, 9 do
 		select(i, Inset:GetRegions()):Hide()
 	end
-	ConquestFrame.ArenaTexture:Hide()
+	-- ConquestFrame.ArenaTexture:Hide()
 	ConquestFrame.RatedBGTexture:Hide()
-	ConquestFrame.ArenaHeader:Hide()
-	ConquestFrame.RatedBGHeader:Hide()
+	-- ConquestFrame.ArenaHeader:Hide()
+	-- ConquestFrame.RatedBGHeader:Hide()
 	ConquestFrame.ShadowOverlay:Hide()
 
 	S:CreateBD(ConquestTooltip)
@@ -279,40 +279,40 @@ local function LoadSkin()
 	-- S:ReskinScroll(WarGamesFrameScrollFrameScrollBar)
 	-- S:ReskinScroll(WarGamesFrameInfoScrollFrameScrollBar)
 
-	-- Role and XPbar
+	-- Role and ConquestBar
 	for _, Hfame in pairs({HonorFrame, ConquestFrame}) do
-		Hfame.RoleInset:StripTextures()
-		S:ReskinCheck(Hfame.RoleInset.TankIcon:GetChildren())
-		S:ReskinCheck(Hfame.RoleInset.HealerIcon:GetChildren())
-		S:ReskinCheck(Hfame.RoleInset.DPSIcon:GetChildren())
+		-- Hfame.RoleInset:StripTextures()
+		S:ReskinCheck(Hfame.TankIcon:GetChildren())
+		S:ReskinCheck(Hfame.HealerIcon:GetChildren())
+		S:ReskinCheck(Hfame.DPSIcon:GetChildren())
 
-		Hfame.XPBar.Frame:Hide()
-		Hfame.XPBar.Bar.OverlayFrame.Text:Point("CENTER" , Hfame.XPBar.Bar.OverlayFrame, "CENTER")
+		--[[Hfame.ConquestBar.Frame:Hide()
+		Hfame.ConquestBar.Bar.OverlayFrame.Text:Point("CENTER" , Hfame.ConquestBar.Bar.OverlayFrame, "CENTER")
 
-		local bg = CreateFrame("Frame", nil, Hfame.XPBar.Bar)
+		local bg = CreateFrame("Frame", nil, Hfame.ConquestBar.Bar)
 		bg:SetPoint("TOPLEFT", 0, 1)
 		bg:SetPoint("BOTTOMRIGHT", 0, -1)
-		bg:SetFrameLevel(Hfame.XPBar.Bar:GetFrameLevel()-1)
+		bg:SetFrameLevel(Hfame.ConquestBar.Bar:GetFrameLevel()-1)
 		S:CreateBD(bg, .3)
-		Hfame.XPBar.Bar.Background:Hide()
+		Hfame.ConquestBar.Bar.Background:Hide()
 
-		Hfame.XPBar.NextAvailable.Frame:Hide()
-		Hfame.XPBar.NextAvailable:ClearAllPoints()
-		Hfame.XPBar.NextAvailable:SetPoint("LEFT", Hfame.XPBar.Bar, "RIGHT")
-		Hfame.XPBar.NextAvailable:SetSize(25, 25)
-		Hfame.XPBar.NextAvailable.Icon:SetAllPoints()
-		Hfame.XPBar.NextAvailable.Icon:SetTexCoord(.08, .92, .08, .92)
-		Hfame.XPBar.NextAvailable.Icon.SetTexCoord = R.dummy
-		S:ReskinIcon(Hfame.XPBar.NextAvailable.Icon)
+		Hfame.ConquestBar.NextAvailable.Frame:Hide()
+		Hfame.ConquestBar.NextAvailable:ClearAllPoints()
+		Hfame.ConquestBar.NextAvailable:SetPoint("LEFT", Hfame.ConquestBar.Bar, "RIGHT")
+		Hfame.ConquestBar.NextAvailable:SetSize(25, 25)
+		Hfame.ConquestBar.NextAvailable.Icon:SetAllPoints()
+		Hfame.ConquestBar.NextAvailable.Icon:SetTexCoord(.08, .92, .08, .92)
+		Hfame.ConquestBar.NextAvailable.Icon.SetTexCoord = R.dummy
+		S:ReskinIcon(Hfame.ConquestBar.NextAvailable.Icon)
 
-		Hfame.XPBar.NextAvailable.Frame.Show = R.dummy
-		Hfame.XPBar.Levelbg = CreateFrame("Frame", nil, Hfame.XPBar)
-		Hfame.XPBar.Levelbg:SetPoint("RIGHT", Hfame.XPBar.Bar, "LEFT")
-		Hfame.XPBar.Levelbg:SetSize(25, 25)
-		Hfame.XPBar.Levelbg:SetFrameLevel(1)
-		Hfame.XPBar.Level:SetPoint("CENTER", Hfame.XPBar.Levelbg, "CENTER")
-		Hfame.XPBar.Level:SetJustifyH("CENTER")
-		S:CreateBD(Hfame.XPBar.Levelbg, .5)
+		Hfame.ConquestBar.NextAvailable.Frame.Show = R.dummy
+		Hfame.ConquestBar.Levelbg = CreateFrame("Frame", nil, Hfame.ConquestBar)
+		Hfame.ConquestBar.Levelbg:SetPoint("RIGHT", Hfame.ConquestBar.Bar, "LEFT")
+		Hfame.ConquestBar.Levelbg:SetSize(25, 25)
+		Hfame.ConquestBar.Levelbg:SetFrameLevel(1)
+		Hfame.ConquestBar.Level:SetPoint("CENTER", Hfame.ConquestBar.Levelbg, "CENTER")
+		Hfame.ConquestBar.Level:SetJustifyH("CENTER")
+		S:CreateBD(Hfame.ConquestBar.Levelbg, .5)--]]
 	end
 
 	for _, tooltip in pairs({ConquestTooltip, PVPRewardTooltip}) do

@@ -79,10 +79,11 @@ local function LoadSkin()
 
 		local index = 1
 		local bonuses
+		
 		if self.isPet then
 			bonuses = {GetSpecializationSpells(shownSpec, nil, self.isPet)}
 		else
-			bonuses = SPEC_SPELLS_DISPLAY[id]
+			bonuses = C_SpecializationInfo.GetSpellsDisplay(id)
 		end
 
 		for i = 1, #bonuses, 2 do
@@ -225,8 +226,13 @@ local function LoadSkin()
 	S:Reskin(PlayerTalentFramePetSpecializationLearnButton)
 
 	-- PvP Talents
-
-	PlayerTalentFramePVPTalents.XPBar.Frame:Hide()
+	for k,v in pairs(PlayerTalentFrameTalents.PvpTalentFrame) do 
+		print(k,v)
+	end
+	PlayerTalentFramePVPTalents = PlayerTalentFrameTalents.PvpTalentFrame
+	PlayerTalentFramePVPTalents:Hide()
+	
+	--[[PlayerTalentFramePVPTalents.XPBar.Frame:Hide()
     PlayerTalentFramePVPTalents.XPBar.NextAvailable.Frame:Hide()
     PlayerTalentFramePVPTalents.XPBar.NextAvailable:ClearAllPoints()
     PlayerTalentFramePVPTalents.XPBar.NextAvailable:SetPoint("LEFT", PlayerTalentFramePVPTalents.XPBar.Bar, "RIGHT")
@@ -332,7 +338,7 @@ local function LoadSkin()
 	PVPTalentPrestigeLevelDialog.BottomDivider:SetAtlas("honorsystem-prestige-rewardline", true)
 	S:Reskin(PVPTalentPrestigeLevelDialog.Accept)
 	S:Reskin(PVPTalentPrestigeLevelDialog.Cancel)
-	S:ReskinClose(PVPTalentPrestigeLevelDialog.CloseButton) --There are 2 buttons with the exact same name, may not be able to skin it properly until fixed by Blizzard.
+	S:ReskinClose(PVPTalentPrestigeLevelDialog.CloseButton) --There are 2 buttons with the exact same name, may not be able to skin it properly until fixed by Blizzard.--]]
 end
 
 S:AddCallbackForAddon("Blizzard_TalentUI", "Talent", LoadSkin)
