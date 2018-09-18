@@ -12,7 +12,6 @@ local function LoadSkin()
 	local PVPQueueFrame = PVPQueueFrame
 	local HonorFrame = HonorFrame
 	local ConquestFrame = ConquestFrame
-	local WarGamesFrame = WarGamesFrame
 
 	-- Category buttons
 
@@ -69,9 +68,6 @@ local function LoadSkin()
 	PVPQueueFrame.CategoryButton1.Background:Show()
 
 	-- Honor frame
-	for k,v in pairs(HonorFrame.BonusFrame) do
-		print(k,v)
-	end
 	local Inset = HonorFrame.Inset
 	local BonusFrame = HonorFrame.BonusFrame
 
@@ -81,7 +77,7 @@ local function LoadSkin()
 	BonusFrame.WorldBattlesTexture:Hide()
 	BonusFrame.ShadowOverlay:Hide()
 
-	S:Reskin(BonusFrame.BrawlButton)
+	-- S:Reskin(BonusFrame.DiceButton)
 
 	for _, bonusButton in pairs({"RandomBGButton", "Arena1Button", "RandomEpicBGButton", "BrawlButton"}) do
 		local bu = BonusFrame[bonusButton]
@@ -114,7 +110,7 @@ local function LoadSkin()
 		end
 	end)
 
-	-- TODO IncludedBattlegroundsDropDown:SetPoint("TOPRIGHT", BonusFrame.DiceButton, 40, 26)
+	-- IncludedBattlegroundsDropDown:SetPoint("TOPRIGHT", BonusFrame.DiceButton, 40, 26)
 
 	-- Honor frame specific
 
@@ -184,8 +180,9 @@ local function LoadSkin()
 	end
 
 	ConquestFrame.Arena3v3:SetPoint("TOP", ConquestFrame.Arena2v2, "BOTTOM", 0, -1)
-
-	-- War games
+	
+	
+	--[[ War games 8.0之后不再需要战争游戏
 
 	Inset = WarGamesFrame.RightInset
 
@@ -270,17 +267,17 @@ local function LoadSkin()
 		hooksecurefunc(header, "SetNormalTexture", onSetNormalTexture)
 	end
 
-	S:ReskinCheck(WarGameTournamentModeCheckButton)
-
+	S:ReskinCheck(WarGameTournamentModeCheckButton)--]]
+	
 	-- Main style
 
 	S:Reskin(HonorFrame.QueueButton)
 	S:Reskin(ConquestFrame.JoinButton)
-	S:Reskin(WarGameStartButton)
+	-- S:Reskin(WarGameStartButton)
 	S:ReskinDropDown(HonorFrameTypeDropDown)
 	S:ReskinScroll(HonorFrameSpecificFrameScrollBar)
-	S:ReskinScroll(WarGamesFrameScrollFrameScrollBar)
-	S:ReskinScroll(WarGamesFrameInfoScrollFrameScrollBar)
+	-- S:ReskinScroll(WarGamesFrameScrollFrameScrollBar)
+	-- S:ReskinScroll(WarGamesFrameInfoScrollFrameScrollBar)
 
 	-- Role and XPbar
 	for _, Hfame in pairs({HonorFrame, ConquestFrame}) do

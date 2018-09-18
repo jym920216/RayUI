@@ -144,7 +144,7 @@ local function LoadSkin()
     TalentFrame:StripTextures()
     TalentFrame.LeftInset:StripTextures()
     S:SetBD(TalentFrame)
-    --TODO TalentFrame.CurrencyIcon:SetAtlas("legionmission-icon-currency", false)
+    TalentFrame.Currency.Icon:SetAtlas("legionmission-icon-currency", false)
     S:ReskinClose(TalentFrame.CloseButton)
 end
 S:AddCallbackForAddon("Blizzard_OrderHallUI", "OrderHall", LoadSkin)
