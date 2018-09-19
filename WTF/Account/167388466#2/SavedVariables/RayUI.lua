@@ -21,7 +21,7 @@ RayUIData = {
 					{
 						["GUID"] = "Player-1685-0237D8FA",
 						["Name"] = "冷魂夺情",
-						["Gold"] = 1627010509,
+						["Gold"] = 1635300301,
 						["Class"] = "MAGE",
 						["Server"] = "石锤",
 					}, -- [1]
@@ -56,8 +56,9 @@ RayUIData = {
 				["motionType"] = "STACKED",
 				["targetScale"] = 1.5,
 			},
-			["ActionBar"] = {
-				["clickondown"] = false,
+			["Chat"] = {
+				["height"] = 200,
+				["width"] = 450,
 			},
 			["Skins"] = {
 				["skadaposition"] = false,
@@ -78,9 +79,9 @@ RayUIData = {
 				["ReminderMover"] = "TOPLEFTRayUIParentTOPLEFT574-224",
 				["ArenaHeaderMover"] = "TOPRIGHTRayUIParentTOPRIGHT-383-199",
 				["RayUF_Raid40Mover"] = "BOTTOMLEFTRayUIParentBOTTOMLEFT15235",
-				["DraenorButtonMover"] = "BOTTOMRayUIParentBOTTOM5454",
-				["BossHeaderMover"] = "TOPRIGHTRayUIParentTOPRIGHT-582-201",
 				["RayUF_PlayerMover"] = "BOTTOMRayUIParentBOTTOM-297463",
+				["BossHeaderMover"] = "TOPRIGHTRayUIParentTOPRIGHT-582-201",
+				["DraenorButtonMover"] = "BOTTOMRayUIParentBOTTOM5454",
 				["BossButtonMover"] = "BOTTOMRayUIParentBOTTOM-5051",
 				["PlayerCastBarMover"] = "BOTTOMRayUIParentBOTTOM-2468",
 				["RayUI_CombatText_InComing Mover"] = "TOPLEFTRayUIParentTOPLEFT491-484",
@@ -305,12 +306,14 @@ RayUIData = {
 				["alwaysShowHealth"] = true,
 				["showHealthValue"] = true,
 			},
-			["Chat"] = {
-				["height"] = 200,
-				["width"] = 450,
+			["ActionBar"] = {
+				["clickondown"] = false,
 			},
 			["Tooltip"] = {
 				["cursor"] = true,
+			},
+			["Watcher"] = {
+				["enable"] = false,
 			},
 			["InfoBar"] = {
 				["List"] = {
@@ -324,22 +327,19 @@ RayUIData = {
 					"WorldQuests", -- [8]
 				},
 			},
-			["Watcher"] = {
-				["enable"] = false,
-			},
 		},
 		["Lastdruid - 石锤"] = {
 			["movers"] = {
-				["ActionBar1Mover"] = "BOTTOMRayUIParentBOTTOM-10250",
+				["RayUF_TargetMover"] = "BOTTOMLEFTRayUIParentBOTTOM190390",
 				["PetBarMover"] = "BOTTOMLEFTActionBar2MoverBOTTOMRIGHT60",
 				["RayUF_petMover"] = "TOPLEFTRayUF_PlayerMoverBOTTOMLEFT0-60",
-				["PlayerCastBarMover"] = "BOTTOMRayUIParentBOTTOM0130",
-				["RayUF_TargetMover"] = "BOTTOMLEFTRayUIParentBOTTOM190390",
+				["RayUF_RaidMover"] = "BOTTOMRayUIParentBOTTOM0180",
+				["ActionBar1Mover"] = "BOTTOMRayUIParentBOTTOM-10250",
 				["AltPowerBarMover"] = "BOTTOMRIGHTRayUIParentBOTTOMRIGHT-36085",
 				["RayUF_Raid40Mover"] = "BOTTOMRayUIParentBOTTOM0180",
 				["RayUF_PlayerMover"] = "BOTTOMRIGHTRayUIParentBOTTOM-190390",
 				["ActionBar4Mover"] = "RIGHTRayUIParentRIGHT-490",
-				["RayUF_RaidMover"] = "BOTTOMRayUIParentBOTTOM0180",
+				["PlayerCastBarMover"] = "BOTTOMRayUIParentBOTTOM0130",
 			},
 			["UnitFrames"] = {
 				["transparent"] = true,

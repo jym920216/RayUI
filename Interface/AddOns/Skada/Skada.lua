@@ -2767,32 +2767,6 @@ end
 do
 
 	function Skada:OnInitialize()
-		-- Register some SharedMedia goodies.
-		media:Register("font", "Adventure",				[[Interface\Addons\Skada\media\fonts\Adventure.ttf]])
-		media:Register("font", "ABF",					[[Interface\Addons\Skada\media\fonts\ABF.ttf]])
-		media:Register("font", "Vera Serif",			[[Interface\Addons\Skada\media\fonts\VeraSe.ttf]])
-		media:Register("font", "Diablo",				[[Interface\Addons\Skada\media\fonts\Avqest.ttf]])
-		media:Register("font", "Accidental Presidency",	[[Interface\Addons\Skada\media\fonts\Accidental Presidency.ttf]])
-		media:Register("statusbar", "Aluminium",      [[Interface\Addons\Skada\media\statusbar\Aluminium]])
-		media:Register("statusbar", "Armory",         [[Interface\Addons\Skada\media\statusbar\Armory]])
-		media:Register("statusbar", "BantoBar",       [[Interface\Addons\Skada\media\statusbar\BantoBar]])
-		media:Register("statusbar", "Glaze2",         [[Interface\Addons\Skada\media\statusbar\Glaze2]])
-		media:Register("statusbar", "Gloss",          [[Interface\Addons\Skada\media\statusbar\Gloss]])
-		media:Register("statusbar", "Graphite",       [[Interface\Addons\Skada\media\statusbar\Graphite]])
-		media:Register("statusbar", "Grid",           [[Interface\Addons\Skada\media\statusbar\Grid]])
-		media:Register("statusbar", "Healbot",        [[Interface\Addons\Skada\media\statusbar\Healbot]])
-		media:Register("statusbar", "LiteStep",       [[Interface\Addons\Skada\media\statusbar\LiteStep]])
-		media:Register("statusbar", "Minimalist",     [[Interface\Addons\Skada\media\statusbar\Minimalist]])
-		media:Register("statusbar", "Otravi",         [[Interface\Addons\Skada\media\statusbar\Otravi]])
-		media:Register("statusbar", "Outline",        [[Interface\Addons\Skada\media\statusbar\Outline]])
-		media:Register("statusbar", "Perl",           [[Interface\Addons\Skada\media\statusbar\Perl]])
-		media:Register("statusbar", "Smooth",         [[Interface\Addons\Skada\media\statusbar\Smooth]])
-		media:Register("statusbar", "Round",          [[Interface\Addons\Skada\media\statusbar\Round]])
-		media:Register("statusbar", "TukTex",         [[Interface\Addons\Skada\media\statusbar\normTex]])
-		media:Register("border", "Glow",              [[Interface\Addons\Skada\media\border\glowTex]])
-		media:Register("border", "Roth",              [[Interface\Addons\Skada\media\border\roth]])
-		media:Register("background", "Copper",        [[Interface\Addons\Skada\media\background\copper]])
-
 		-- Some sounds (copied from Omen).
 		media:Register("sound", "Rubber Ducky",       [[Sound\Doodad\Goblin_Lottery_Open01.ogg]])
 		media:Register("sound", "Cartoon FX",         [[Sound\Doodad\Goblin_Lottery_Open03.ogg]])

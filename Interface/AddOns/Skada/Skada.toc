@@ -1,10 +1,9 @@
 ## Interface: 80000
-## Title: Skada
+## Title: |cff0080ffSkada|r
+## Title-zhCN: |cff0080ffSkada|r 战斗统计
+## Title-zhTW: |cff0080ffSkada|r 戰鬥統計
 ## Notes: Modular damage meter.
-## Notes-koKR: 데미지 미터 모듈입니다.
 ## Notes-zhTW: 模組化的傷害統計。
-## Notes-deDE: Ein Damage-Meter.
-## Notes-frFR: Un damage meter.
 ## Notes-zhCN: 模块化伤害统计。
 ## Author: Zarnivoop
 ## Version: 1.7.5
@@ -19,15 +18,8 @@
 embeds.xml
 
 locale\enUS.lua
-locale\ruRU.lua
-locale\koKR.lua
 locale\zhCN.lua
 locale\zhTW.lua
-locale\frFR.lua
-locale\deDE.lua
-locale\ptBR.lua
-locale\itIT.lua
-locale\esES.lua
 
 Skada.lua
 Menus.lua

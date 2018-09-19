@@ -61,10 +61,10 @@ DBM-Uldir: enabled
 DBM-Zandalar: disabled
 Pawn: enabled
 TinyCharacterStats: enabled
-TinyChat: enabled
+TinyChat: disabled
 TinyInspect: enabled
-TinyParty: enabled
-TinyRoster: enabled
-TinyTooltip: enabled
-TinyUntitled: enabled
+TinyParty: disabled
+TinyRoster: disabled
+TinyTooltip: disabled
+TinyUntitled: disabled
 DBM-Azeroth-BfA: enabled

@@ -12,7 +12,7 @@
 			</Anchor>
 			<Anchor point="RIGHT">
 				<Offset>
-					<AbsDimension x="-21"/>
+					<AbsDimension x="-13"/>
 				</Offset>
 			</Anchor>
 		</Anchors>
@@ -27,58 +27,61 @@
 			</OnClick>
 		</Scripts>
 	</Button>
-	<Button name="BaudErrorFrameMinimapButton" frameStrata="DIALOG" parent="Minimap" movable="true" hidden="true">
-		<Size><AbsDimension x="32" y="32"/></Size>
-		<Anchors>
-		  <Anchor point="BOTTOMLEFT" relativeTo="Minimap">
-			<Offset><AbsDimension x="-15" y="13"/></Offset>
-		  </Anchor>
-		</Anchors>
+	<Button name="BaudErrorFrameMinimapButton" frameStrata="DIALOG" parent="UIParent" movable="true" hidden="true" inherits="MiniMapButtonTemplate">
+		<Size>
+			<AbsDimension x="25" y="25"/>
+		</Size>
 		<Layers>
-		  <Layer level="BORDER">
-			<FontString name="BaudErrorFrameMinimapCount" inherits="GameFontRedSmall">
-			  <Anchors>
-				<Anchor point="CENTER">
-				  <Offset><AbsDimension x="0" y="0"/></Offset>
-				</Anchor>
-			  </Anchors>
-			</FontString>
-		  </Layer>
-		  <Layer level="ARTWORK">
-			<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
-			  <Size><AbsDimension x="52" y="52"/></Size>
-			  <Anchors><Anchor point="TOPLEFT"/></Anchors>
-			</Texture>
-		  </Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="20" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="-1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<FontString name="BaudErrorFrameMinimapCount" font="fonts\ARKai_T.TTF" outline="false" monochrome="false" text="">
+					<Color r="0.39" g="0.58" b="0.92" a="0.8"/>
+					<FontHeight>
+						<AbsValue val="18"/>
+					</FontHeight>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentIcon">
+							<Offset>
+								<AbsDimension y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
 		</Layers>
-		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 		<Scripts>
-		  <OnLoad>
-			self:RegisterForClicks("LeftButtonUp");
-			self:RegisterForDrag("LeftButton");
-			self:SetFrameLevel(self:GetFrameLevel()+1);
-		  </OnLoad>
-		  <OnEnter>
-			BaudErrorFrameMinimapButton_OnEnter(self);
-		  </OnEnter>
-		  <OnLeave>
-			BaudErrorFrameMinimapButton_OnLeave(self);
-		  </OnLeave>
-		  <OnClick>
-			BaudErrorFrame:Show();
-		  </OnClick>
-		  <OnDragStart>
-			BaudErrorFrameMinimapButton_OnDragStart(self);
-		  </OnDragStart>
-		  <OnDragStop>
-			BaudErrorFrameMinimapButton_OnDragStop(self);
-		  </OnDragStop>
-		  <OnUpdate>
-			BaudErrorFrameMinimapButton_OnUpdate(self);
-		  </OnUpdate>
+			<OnLoad>
+				self:RegisterForClicks("LeftButtonUp");
+				self:SetFrameLevel(self:GetFrameLevel()+1);
+			</OnLoad>
+			<OnEnter>
+				BaudErrorFrameMinimapButton_OnEnter(self);
+			</OnEnter>
+			<OnLeave>
+				BaudErrorFrameMinimapButton_OnLeave(self);
+			</OnLeave>
+			<OnClick>
+				BaudErrorFrame:Show();
+			</OnClick>
+			<OnUpdate>
+				BaudErrorFrameMinimapButton_OnUpdate(self);
+			</OnUpdate>
 		</Scripts>
-	  </Button>
-	<Frame name="BaudErrorFrame" toplevel="true" frameStrata="DIALOG" enableMouse="true" parent="UIParent" hidden="true" movable="true">
+	</Button>
+	<Frame name="BaudErrorFrame" toplevel="true" frameStrata="DIALOG" enableMouse="true" parent="UIParent" hidden="true">
 		<Size>
 			<AbsDimension x="600" y="500"/>
 		</Size>
@@ -99,7 +102,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<Texture name="$parentHeader" file="" alpha="0">
+				<Texture name="$parentHeader" alpha="0">
 					<Size>
 						<AbsDimension x="300" y="64"/>
 					</Size>
@@ -130,12 +133,12 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="20" y="-40"/>
+							<AbsDimension x="40" y="-40"/>
 						</Offset>
 					</Anchor>
 					<Anchor point="RIGHT">
 						<Offset>
-							<AbsDimension x="-20"/>
+							<AbsDimension x="-40"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -176,7 +179,7 @@
 						</Anchors>
 						<Scripts>
 							<OnVerticalScroll>
-								FauxScrollFrame_OnVerticalScroll(self, offset, 16, BaudErrorFrameScrollBar_Update);
+								FauxScrollFrame_OnVerticalScroll(16, BaudErrorFrameScrollBar_Update);
 							</OnVerticalScroll>
 						</Scripts>
 					</ScrollFrame>
@@ -192,7 +195,7 @@
 							</Anchor>
 							<Anchor point="RIGHT">
 								<Offset>
-									<AbsDimension x="-21"/>
+									<AbsDimension x="-8"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -210,6 +213,7 @@
 				</Frames>
 				<Scripts>
 					<OnLoad>
+						self:SetBackdropBorderColor(0.37, 0.3, 0.3);
 						self.Entries = 8;
 						for Index = 1, self.Entries do
 							CreateFrame("Button",self:GetName().."Entry"..Index,self,"BaudErrorFrameEntryTemplate"):SetPoint("TOP",0,6-16*Index);
@@ -219,17 +223,17 @@
 			</Frame>
 			<Frame name="$parentDetailScrollBox">
 				<Size>
-					<AbsDimension x="500" y="250"/>
+					<AbsDimension x="500" y="258"/>
 				</Size>
 				<Anchors>
 					<Anchor point="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="20" y="40"/>
+							<AbsDimension x="40" y="40"/>
 						</Offset>
 					</Anchor>
 					<Anchor point="RIGHT">
 						<Offset>
-							<AbsDimension x="-20"/>
+							<AbsDimension x="-40"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -274,10 +278,10 @@
 						<ScrollChild>
 							<EditBox name="BaudErrorFrameEditBox" autoFocus="false" multiLine="true">
 								<Size>
-									<AbsDimension x="550" y="250"/>
+									<AbsDimension x="466" y="250"/>
 								</Size>
 								<TextInsets>
-									<AbsInset left="4" right="21" top="4" bottom="4"/>
+									<AbsInset left="4" right="4" top="4" bottom="4"/>
 								</TextInsets>
 								<FontString inherits="ChatFontNormal"/>
 								<Scripts>
@@ -296,7 +300,7 @@
 						<Scripts>
 							<OnLoad>
 								ScrollFrame_OnLoad(self);
-								self.scrollBarHideable = true;
+								self.scrollBarHideable = 1;
 								getglobal(self:GetName().."ScrollBar"):Hide();
 							</OnLoad>
 						</Scripts>
@@ -304,6 +308,7 @@
 				</Frames>
 				<Scripts>
 					<OnLoad>
+						self:SetBackdropBorderColor(0.37, 0.3, 0.3);
 					</OnLoad>
 				</Scripts>
 			</Frame>
@@ -314,7 +319,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="20" y="10"/>
+							<AbsDimension x="50" y="16"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -331,7 +336,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-20" y="10"/>
+							<AbsDimension x="-50" y="16"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -362,6 +367,7 @@
 		<Scripts>
 			<OnLoad>
 				BaudErrorFrame_OnLoad(self);
+				self:SetBackdropBorderColor(0.37, 0.3, 0.3);
 			</OnLoad>
 			<OnEvent>
 				BaudErrorFrame_OnEvent();
@@ -372,13 +378,6 @@
 			<OnHide>
 				BaudErrorFrame_OnHide();
 			</OnHide>
-			<OnMouseDown>
-				self:StartMoving();
-			</OnMouseDown>
-			<OnMouseUp>
-				self:StopMovingOrSizing();
-				self:SetUserPlaced(false);
-			</OnMouseUp>
 		</Scripts>
 	</Frame>
 </Ui>

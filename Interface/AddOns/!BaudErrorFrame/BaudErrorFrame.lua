@@ -2,7 +2,7 @@ local SelectedError = 1
 local ErrorList = {}
 local SoundTime = 0
 local QueueError = {}
-local EnableSound = true
+local EnableSound = false
 
 function BaudErrorFrame_OnLoad(self)
 	self:RegisterEvent("VARIABLES_LOADED")
@@ -59,7 +59,11 @@ end
 
 function BaudErrorFrameMinimapButton_OnUpdate(self)
 	self:ClearAllPoints()
-	self:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, 0)
+	if IsAddOnLoaded("NDui") then
+		self:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, -2)
+	else
+		self:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
+	end
 end
 
 function BaudErrorFrameHandler(Error)
@@ -68,7 +72,7 @@ end
 
 function BaudErrorFrameShowError(Error)
 	if (GetTime() > SoundTime) and EnableSound then
-		PlaySoundFile("Interface\\AddOns\\RayUI\\media\\error.mp3")
+		PlaySoundFile("Sound\\Creature\\Crone\\OzCroneAttack02.ogg")
 		SoundTime = GetTime() + 1
 	end
 end
@@ -86,15 +90,13 @@ function BaudErrorFrameAdd(Error, Retrace)
 	if BaudErrorFrameConfig then
 		BaudErrorFrameShowError(Error)
 	else
+		if Error:match("script ran too long") then return end
 		tinsert(QueueError, Error)
 	end
 	tinsert(ErrorList, {Error = Error, Count = 1, Stack = debugstack(Retrace)})
 	BaudErrorFrameMinimapCount:SetText(getn(ErrorList))
 	BaudErrorFrameMinimapButton:Show()
 	BaudErrorFrameScrollBar_Update()
-	if EnableSound then
-		PlaySoundFile("Interface\\AddOns\\RayUI\\media\\error.mp3")
-	end
 end
 
 function BaudErrorFrame_Select(Index)
