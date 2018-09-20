@@ -4,8 +4,8 @@ END
 VER 3 0000000000000385 "11" "INV_MISC_QUESTIONMARK"
 /F 忆小喵丶-白银之手
 END
-VER 3 0000000000000342 "123" "132482"
-/dbm pull 8
+VER 3 0000000000000386 "11" "134400"
+/F 冰谷魂殇-罗宁
 END
 VER 3 0000000000000343 "123" "132153"
 /inv 倾城颖子-末日行者
@@ -15,6 +15,9 @@ VER 3 0000000000000343 "123" "132153"
 /inv 丶柯基-末日行者
 /inv 再见巴西-血色十字军
 /inv 有很多的錢-末日行者
+END
+VER 3 0000000000000342 "123" "132482"
+/dbm pull 8
 END
 VER 3 0000000000000344 "2" "132317"
 /click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
@@ -54,14 +57,6 @@ END
 VER 3 000000000000034C "WCL" "134400"
 /combatlog
 END
-VER 3 000000000000034F "　" "INV_Misc_QuestionMark"
-#showtooltip 超级新星
-/cast [@target,harm,exists,nodead]超级新星
-END
-VER 3 0000000000000350 "　" "INV_Misc_QuestionMark"
-#showtooltip 冲击波
-/cast [@target,harm,exists,nodead]冲击波
-END
 VER 3 0000000000000351 "　" "INV_Misc_QuestionMark"
 #showtooltip
 /cast [modifier:alt]缓落术;唤醒
@@ -77,6 +72,14 @@ END
 VER 3 000000000000034E "　" "INV_Misc_QuestionMark"
 #showtooltip
 /cast [mod,@player] [@cursor] []流星
+END
+VER 3 000000000000034F "　" "INV_Misc_QuestionMark"
+#showtooltip 超级新星
+/cast [@target,harm,exists,nodead]超级新星
+END
+VER 3 0000000000000350 "　" "INV_Misc_QuestionMark"
+#showtooltip 冲击波
+/cast [@target,harm,exists,nodead]冲击波
 END
 VER 3 0000000000000353 "　" "134400"
 /cast [talent:3/1]镜像;[talent:3/2]能量符文;[talent:3/3]咒术洪流
@@ -99,20 +102,20 @@ END
 VER 3 0000000000000357 "关闭泛光" "236208"
 /console ffxGlow 0
 END
-VER 3 0000000000000358 "冰箱" "INV_Misc_QuestionMark"
+VER 3 0000000000000359 "冰箱" "INV_Misc_QuestionMark"
 #showtooltip 寒冰屏障
-/stopcasting  
-/cancelAura 寒冰屏障
+/stopcasting
+/cast 闪光术  
 /cast 寒冰屏障
 END
 VER 3 000000000000035A "冰箱" "135841"
 /S 我单吃  
 /cast 寒冰屏障
 END
-VER 3 0000000000000359 "冰箱" "INV_Misc_QuestionMark"
+VER 3 0000000000000358 "冰箱" "INV_Misc_QuestionMark"
 #showtooltip 寒冰屏障
-/stopcasting
-/cast 闪光术  
+/stopcasting  
+/cancelAura 寒冰屏障
 /cast 寒冰屏障
 END
 VER 3 000000000000035B "冰脉" "INV_Misc_QuestionMark"

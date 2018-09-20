@@ -68,7 +68,7 @@ Anchor: BOTTOMRIGHT
 X: -100
 Y: 150
 W: 483
-H: 391
+H: 469
 Frame: NDuiChatCopy
 FrameLevel: 1
 Anchor: CENTER
