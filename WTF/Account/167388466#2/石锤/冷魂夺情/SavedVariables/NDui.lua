@@ -77,12 +77,12 @@ NDuiDB = {
 	["Settings"] = {
 		["GUIScale"] = 1,
 		["DBMRequest"] = false,
-		["Format"] = 2,
+		["VersionCheck"] = true,
 		["LockUIScale"] = false,
 		["SkadaRequest"] = false,
-		["BWRequest"] = true,
+		["Format"] = 2,
 		["UIScale"] = 0.64,
-		["VersionCheck"] = true,
+		["BWRequest"] = true,
 	},
 	["Skins"] = {
 		["Skada"] = true,
