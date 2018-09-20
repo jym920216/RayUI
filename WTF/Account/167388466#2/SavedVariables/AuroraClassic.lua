@@ -6,12 +6,7 @@ AuroraConfig = {
 	["chatBubbles"] = true,
 	["bags"] = false,
 	["alpha"] = 0.5,
-	["buttonSolidColour"] = {
-		0.2, -- [1]
-		0.2, -- [2]
-		0.2, -- [3]
-		0.6, -- [4]
-	},
+	["reskinFont"] = true,
 	["buttonGradientColour"] = {
 		0.3, -- [1]
 		0.3, -- [2]
@@ -19,13 +14,18 @@ AuroraConfig = {
 		0.3, -- [4]
 	},
 	["loot"] = true,
-	["bubbleColor"] = false,
+	["tooltips"] = false,
 	["useCustomColour"] = false,
 	["customColour"] = {
-		["r"] = 1,
-		["g"] = 1,
 		["b"] = 1,
+		["g"] = 1,
+		["r"] = 1,
 	},
-	["tooltips"] = false,
-	["reskinFont"] = true,
+	["bubbleColor"] = false,
+	["buttonSolidColour"] = {
+		0.2, -- [1]
+		0.2, -- [2]
+		0.2, -- [3]
+		0.6, -- [4]
+	},
 }
