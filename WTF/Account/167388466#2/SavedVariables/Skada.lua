@@ -7,7 +7,8 @@ SkadaDB = {
 	["profiles"] = {
 		["Default"] = {
 			["modeclicks"] = {
-				["伤害"] = 1,
+				["敌对伤害"] = 1,
+				["伤害"] = 2,
 			},
 			["windows"] = {
 				{

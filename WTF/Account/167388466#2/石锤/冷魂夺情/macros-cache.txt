@@ -1,7 +1,7 @@
 VER 3 0100000000000127 "T3" "INV_Misc_QuestionMark"
-#showtooltip [talent:3/1]镜像;[talent:3/2]能量符文;
-/cast [talent:3/1]镜像
-/cast [talent:3/2]能量符文
+#showtooltip [talent:3/2]镜像;[talent:3/3]能量符文;
+/cast [talent:3/2]镜像
+/cast [talent:3/3]能量符文
 END
 VER 3 0100000000000128 "T4" "INV_Misc_QuestionMark"
 #showtooltip [talent:4/1]冲击波;[talent:4/2]烈焰飞舞;

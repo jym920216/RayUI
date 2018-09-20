@@ -24,7 +24,7 @@ IntelliMount: enabled
 Molinari: disabled
 Myslot: disabled
 ncShadow: enabled
-Simulationcraft: disabled
+Simulationcraft: enabled
 Skada: enabled
 TellMeWhen_Options: enabled
 TidyPlatesHub: disabled
