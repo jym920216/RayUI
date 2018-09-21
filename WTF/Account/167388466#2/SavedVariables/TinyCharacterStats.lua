@@ -30,15 +30,19 @@ TinyCharacterStatsDB = {
 		}, -- [9]
 		{
 			["statKey"] = "ARMOR",
+			["hidden"] = true,
 		}, -- [10]
 		{
 			["statKey"] = "DODGE",
+			["hidden"] = true,
 		}, -- [11]
 		{
 			["statKey"] = "PARRY",
+			["hidden"] = true,
 		}, -- [12]
 		{
 			["statKey"] = "BLOCK",
+			["hidden"] = true,
 		}, -- [13]
 		{
 			["statKey"] = "MOVESPEED",
@@ -76,9 +80,11 @@ TinyCharacterStatsDB = {
 		}, -- [24]
 		{
 			["statKey"] = "ATTACK_DAMAGE",
+			["hidden"] = true,
 		}, -- [25]
 		{
 			["statKey"] = "ATTACK_AP",
+			["hidden"] = true,
 		}, -- [26]
 		{
 			["statKey"] = "ENERGY_REGEN",
@@ -91,6 +97,7 @@ TinyCharacterStatsDB = {
 		}, -- [29]
 		{
 			["statKey"] = "ATTACK_ATTACKSPEED",
+			["hidden"] = true,
 		}, -- [30]
 		{
 			["statKey"] = "SPELLPOWER",
@@ -100,6 +107,7 @@ TinyCharacterStatsDB = {
 		}, -- [32]
 		{
 			["statKey"] = "STAGGER",
+			["hidden"] = true,
 		}, -- [33]
 		{
 			["statKey"] = "SPEED",
