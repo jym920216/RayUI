@@ -1,0 +1,52 @@
+VER 3 0000000000000001 "1" "INV_MISC_QUESTIONMARK"
+/pull 7
+END
+VER 3 000000000000000F "冰冻" "INV_MISC_QUESTIONMARK"
+#showtooltip [nopet] [target=pet,dead] 召唤水元素; [pet] 冰冻术
+/cast [nopet]召唤水元素
+/cast [target=pet,dead]召唤水元素
+/stopmacro [target=pet,dead] 
+/cast !冰冻术
+/petattack [harm] 
+/petfollow [noharm]
+END
+VER 3 000000000000000B "冰风暴" "INV_MISC_QUESTIONMARK"
+#showtooltips
+/cast [mod:alt]冰风暴
+/castsequence reset=1 冰风暴,0
+END
+VER 3 0000000000000010 "怡宝" "INV_MISC_QUESTIONMARK"
+#showtooltip 寒冰箭
+/施放 寒冰箭
+/petattack
+END
+VER 3 0000000000000011 "怡宝" "INV_MISC_QUESTIONMARK"
+#showtooltip 隐形术
+/stopcasting
+/cast 隐形术
+/petfollow
+/petpassive
+END
+VER 3 000000000000000D "暴风" "INV_MISC_QUESTIONMARK"
+#showtooltips 暴风雪
+/cast [@cursor] 暴风雪
+END
+VER 3 000000000000000E "气定" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast 气定神闲
+/cast 奥术冲击
+/cast 奥术冲击
+END
+VER 3 000000000000000C "羊" "INV_MISC_QUESTIONMARK"
+#showtooltip 变形术
+/focus [target=focus, noharm] [target=focus, dead] [modifier]
+/stopmacro [target=focus, noexists]
+/cast [target=focus] 变形术
+/y 顺我者娼…逆我者羊…
+/in 1
+/p 我羊了
+END
+VER 3 000000000000000A "跟随" "INV_MISC_QUESTIONMARK"
+#showtooltips
+/petfollow
+END

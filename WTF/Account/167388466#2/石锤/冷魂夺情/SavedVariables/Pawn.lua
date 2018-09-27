@@ -2,7 +2,7 @@
 PawnOptions = {
 	["LastVersion"] = 2.0228,
 	["LastPlayerFullName"] = "冷魂夺情-石锤",
-	["AutoSelectScales"] = true,
+	["AutoSelectScales"] = false,
 	["UpgradeTracking"] = false,
 	["LastKeybindingsSet"] = 1,
 }

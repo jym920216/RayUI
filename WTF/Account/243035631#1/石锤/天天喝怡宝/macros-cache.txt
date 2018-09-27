@@ -1,0 +1,77 @@
+VER 3 010000000000000C "3断" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/target 苏拉雅，宇宙之母
+/cast 法术反制
+/targetlasttarget
+END
+VER 3 0100000000000006 "DB_AaslaanFire" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_AaslaanFire
+END
+VER 3 0100000000000008 "DB_Arcane" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_Arcane
+END
+VER 3 0100000000000007 "DB_Fire" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_Fire
+END
+VER 3 0100000000000018 "P3药水" "INV_MISC_QUESTIONMARK"
+/cast 奥术智慧
+/use 延时之力药水
+/use 光铸调和符文
+END
+VER 3 0100000000000011 "WCL" "INV_MISC_QUESTIONMARK"
+/combatlog
+END
+VER 3 0100000000000019 "倒数" "INV_MISC_QUESTIONMARK"
+/PULL 8
+END
+VER 3 010000000000000E "冰箱" "INV_MISC_QUESTIONMARK"
+#showtooltip 寒冰屏障 
+/stopcasting 
+/cancelAura 寒冰屏障
+/cast 闪光术 
+/cast 寒冰屏障
+END
+VER 3 0100000000000012 "冰箱" "135841"
+/S 我单吃  
+/cast 寒冰屏障
+END
+VER 3 0100000000000017 "冰风暴" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/target 瓦利玛萨斯之影
+/cast 冰风暴
+/targetlasttarget
+END
+VER 3 010000000000001A "口交" "INV_MISC_QUESTIONMARK"
+/use 缺指指环
+END
+VER 3 010000000000000D "古尔丹" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/stopcasting
+/CAST [target=focus] 法术吸取
+END
+VER 3 010000000000000A "流星" "INV_MISC_QUESTIONMARK"
+#showtooltips 流星
+/cast [@cursor] 流星
+END
+VER 3 0100000000000009 "烈焰" "INV_MISC_QUESTIONMARK"
+#showtooltips 烈焰风暴
+/cast [@cursor] 烈焰风暴 
+END
+VER 3 0100000000000016 "糖" "INV_MISC_QUESTIONMARK"
+/use 治疗石
+END
+VER 3 010000000000000F "视角" "INV_MISC_QUESTIONMARK"
+/console cameraDistanceMaxZoomFactor 2.6
+END
+VER 3 0100000000000010 "视角" "INV_MISC_QUESTIONMARK"
+/console cameraDistanceMaxZoomFactor 1.5
+END
+VER 3 010000000000000B "解" "INV_MISC_QUESTIONMARK"
+#showtooltip 寒冰屏障
+/stopcasting 
+/cancelAura 寒冰屏障
+/cast 寒冰屏障
+END

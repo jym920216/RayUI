@@ -7,9 +7,10 @@ SkadaDB = {
 	["profiles"] = {
 		["Default"] = {
 			["modeclicks"] = {
-				["敌对伤害"] = 1,
-				["伤害"] = 3,
-				["死亡"] = 1,
+				["敌对伤害"] = 23,
+				["伤害"] = 55,
+				["敌对受到伤害"] = 26,
+				["死亡"] = 8,
 			},
 			["windows"] = {
 				{
@@ -20,26 +21,26 @@ SkadaDB = {
 					["title"] = {
 						["color"] = {
 							["a"] = 0.3,
-							["b"] = 0,
-							["g"] = 0,
 							["r"] = 0,
+							["g"] = 0,
+							["b"] = 0,
 						},
 						["font"] = "",
-						["fontsize"] = 14,
-						["fontflags"] = "OUTLINE",
 						["borderthickness"] = 0,
+						["fontflags"] = "OUTLINE",
+						["fontsize"] = 14,
 						["texture"] = "normTex",
 					},
 					["barfontflags"] = "OUTLINE",
 					["point"] = "BOTTOMRIGHT",
 					["barbgcolor"] = {
 						["a"] = 0,
-						["b"] = 0,
-						["g"] = 0,
 						["r"] = 0,
+						["g"] = 0,
+						["b"] = 0,
 					},
 					["barfontsize"] = 15,
-					["mode"] = "伤害",
+					["mode"] = "敌对受到伤害",
 					["bartexture"] = "normTex",
 					["barwidth"] = 296.666717529297,
 					["background"] = {
@@ -53,9 +54,9 @@ SkadaDB = {
 			},
 			["tooltiprows"] = 10,
 			["versions"] = {
-				["1.6.3"] = true,
-				["1.6.4"] = true,
 				["1.6.7"] = true,
+				["1.6.4"] = true,
+				["1.6.3"] = true,
 			},
 			["setstokeep"] = 30,
 			["tooltippos"] = "topleft",

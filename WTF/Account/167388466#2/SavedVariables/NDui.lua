@@ -3,7 +3,7 @@ NDuiADB = {
 	["AutoSell"] = true,
 	["GuildSortBy"] = 1,
 	["Changelog"] = {
-		["Version"] = "3.8.9",
+		["Version"] = "3.9.1",
 	},
 	["RaidDebuffs"] = {
 	},
@@ -12,7 +12,7 @@ NDuiADB = {
 	["totalGold"] = {
 		["石锤"] = {
 			["冷魂夺情"] = {
-				620607540, -- [1]
+				474203421, -- [1]
 				"MAGE", -- [2]
 			},
 		},
