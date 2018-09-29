@@ -1,7 +1,7 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
 
-B:CreateBorder = function(frame, r, g, b)
+function B:CreateBorder(frame, r, g, b)
 	if frame.style then return end
 	frame.sd = CreateFrame("Frame", nil, frame)
 	frame.sd:SetFrameLevel(frame:GetFrameLevel()-1)
@@ -21,4 +21,17 @@ B:CreateBorder = function(frame, r, g, b)
 		frame.sd:SetBackdropBorderColor(r, g, b)
 	end
 	frame.style = true
+end
+
+function B:CreateText(frame, layer, fontsize, flag, justifyh, shadow)
+	local text = frame:CreateFontString(nil, layer)
+	text:SetFont(font, fontsize, flag)
+	text:SetJustifyH(justifyh)
+	
+	if shadow then
+		text:SetShadowColor(0, 0, 0)
+		text:SetShadowOffset(1, -1)
+	end
+	
+	return text
 end

@@ -8,6 +8,37 @@ TellMeWhenDB = {
 				{
 				}, -- [2]
 			},
+			["TMW:textlayout:1PV49g8_4f=s"] = {
+				{
+					["Anchors"] = {
+						{
+							["y"] = -2,
+							["x"] = -24.7,
+						}, -- [1]
+						{
+							["y"] = 20.9,
+							["x"] = 3.4,
+						}, -- [2]
+						["n"] = 2,
+					},
+					["StringName"] = "绑定/标签",
+					["Size"] = 11,
+				}, -- [1]
+				{
+					["Anchors"] = {
+						{
+							["y"] = -21.1,
+							["x"] = 3.3,
+						}, -- [1]
+					},
+					["StringName"] = "叠加数量",
+					["DefaultText"] = "[Stacks:Hide(0)]",
+					["Size"] = 11,
+				}, -- [2]
+				["GUID"] = "TMW:textlayout:1PV49g8_4f=s",
+				["Name"] = "鸡蛋时间轴字体",
+				["n"] = 2,
+			},
 			["TMW:textlayout:,J2X`hZ?cLrR"] = {
 				{
 					["Outline"] = "OUTLINE",
@@ -21,44 +52,6 @@ TellMeWhenDB = {
 				}, -- [1]
 				["GUID"] = "TMW:textlayout:,J2X`hZ?cLrR",
 				["Name"] = "具体文字",
-			},
-			["TMW:textlayout:1NfT8dtGRTHt"] = {
-				{
-					["SkinAs"] = "HotKey",
-					["StringName"] = "绑定/标签",
-					["Anchors"] = {
-						{
-							["y"] = -2,
-							["x"] = -2,
-							["point"] = "TOPLEFT",
-							["relativePoint"] = "TOPLEFT",
-						}, -- [1]
-						{
-							["y"] = -2,
-							["x"] = -2,
-							["point"] = "TOPRIGHT",
-							["relativePoint"] = "TOPRIGHT",
-						}, -- [2]
-						["n"] = 2,
-					},
-					["Size"] = 10,
-				}, -- [1]
-				{
-					["SkinAs"] = "Count",
-					["Anchors"] = {
-						{
-							["y"] = 2,
-							["x"] = -2,
-							["point"] = "BOTTOMRIGHT",
-							["relativePoint"] = "BOTTOMRIGHT",
-						}, -- [1]
-					},
-					["StringName"] = "叠加数量",
-					["DefaultText"] = "[Stacks:Hide(0)]",
-				}, -- [2]
-				["GUID"] = "TMW:textlayout:1NfT8dtGRTHt",
-				["Name"] = "BOSS技能带字",
-				["n"] = 2,
 			},
 			["icon1"] = {
 				{
@@ -223,35 +216,42 @@ TellMeWhenDB = {
 				["Name"] = "技能名在上 2",
 				["n"] = 2,
 			},
-			["TMW:textlayout:1PV49g8_4f=s"] = {
+			["TMW:textlayout:1NfT8dtGRTHt"] = {
 				{
+					["SkinAs"] = "HotKey",
+					["StringName"] = "绑定/标签",
 					["Anchors"] = {
 						{
 							["y"] = -2,
-							["x"] = -24.7,
+							["x"] = -2,
+							["point"] = "TOPLEFT",
+							["relativePoint"] = "TOPLEFT",
 						}, -- [1]
 						{
-							["y"] = 20.9,
-							["x"] = 3.4,
+							["y"] = -2,
+							["x"] = -2,
+							["point"] = "TOPRIGHT",
+							["relativePoint"] = "TOPRIGHT",
 						}, -- [2]
 						["n"] = 2,
 					},
-					["StringName"] = "绑定/标签",
-					["Size"] = 11,
+					["Size"] = 10,
 				}, -- [1]
 				{
+					["SkinAs"] = "Count",
 					["Anchors"] = {
 						{
-							["y"] = -21.1,
-							["x"] = 3.3,
+							["y"] = 2,
+							["x"] = -2,
+							["point"] = "BOTTOMRIGHT",
+							["relativePoint"] = "BOTTOMRIGHT",
 						}, -- [1]
 					},
 					["StringName"] = "叠加数量",
 					["DefaultText"] = "[Stacks:Hide(0)]",
-					["Size"] = 11,
 				}, -- [2]
-				["GUID"] = "TMW:textlayout:1PV49g8_4f=s",
-				["Name"] = "鸡蛋时间轴字体",
+				["GUID"] = "TMW:textlayout:1NfT8dtGRTHt",
+				["Name"] = "BOSS技能带字",
 				["n"] = 2,
 			},
 		},
@@ -430,12 +430,7 @@ TellMeWhenDB = {
 				{
 					["GUID"] = "TMW:group:1KfDkJGPQwMt",
 					["Enabled"] = false,
-					["Point"] = {
-						["y"] = -60.8575254389214,
-						["x"] = 194.307525634766,
-						["point"] = "TOPLEFT",
-						["relativePoint"] = "TOPLEFT",
-					},
+					["Name"] = "FS技能",
 					["Columns"] = 8,
 					["Scale"] = 1.34333300590515,
 					["Rows"] = 10,
@@ -575,9 +570,9 @@ TellMeWhenDB = {
 							["GUID"] = "TMW:icon:1NdJPz8CNif4",
 							["ShowTimer"] = true,
 							["Enabled"] = true,
-							["Name"] = "火焰冲击",
-							["FakeHidden"] = true,
 							["ShowTimerText"] = true,
+							["FakeHidden"] = true,
+							["Name"] = "火焰冲击",
 							["Events"] = {
 								{
 									["PassingCndt"] = true,
@@ -699,8 +694,6 @@ TellMeWhenDB = {
 								{
 									["Type"] = "Animations",
 									["Animation"] = "SCREENFLASH",
-									["Alpha"] = 0.210843086242676,
-									["AnimColor"] = "36ff0000",
 									["Event"] = "WCSP",
 									["OnConditionConditions"] = {
 										{
@@ -710,6 +703,8 @@ TellMeWhenDB = {
 										}, -- [1]
 										["n"] = 2,
 									},
+									["Alpha"] = 0.210843086242676,
+									["AnimColor"] = "36ff0000",
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -1697,11 +1692,11 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["BuffOrDebuff"] = "EITHER",
 							["Type"] = "buff",
-							["Name"] = "寒冰炸弹",
+							["ShowTimerText"] = true,
 							["Unit"] = "target",
 							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
-							["ShowTimerText"] = true,
+							["Name"] = "寒冰炸弹",
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KfsCpnxkNjb",
@@ -1732,10 +1727,10 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["Enabled"] = true,
 							["BuffOrDebuff"] = "EITHER",
-							["ShowTimerText"] = true,
 							["Name"] = "冰风暴",
+							["ShowTimerText"] = true,
 							["Unit"] = "target",
-							["ShowTTText"] = 1,
+							["FakeHidden"] = true,
 							["OnlyMine"] = true,
 							["Events"] = {
 								{
@@ -1757,7 +1752,7 @@ TellMeWhenDB = {
 							},
 							["Type"] = "buff",
 							["HideIfNoUnits"] = true,
-							["FakeHidden"] = true,
+							["ShowTTText"] = 1,
 							["States"] = {
 								{
 								}, -- [1]
@@ -2149,10 +2144,10 @@ TellMeWhenDB = {
 							["Enabled"] = true,
 							["Conditions"] = {
 								{
-									["Checked"] = true,
-									["Type"] = "BUFFSTACKS",
 									["Name"] = "能量符文",
 									["Level"] = 1,
+									["Checked"] = true,
+									["Type"] = "BUFFSTACKS",
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -2631,7 +2626,12 @@ TellMeWhenDB = {
 							},
 						},
 					},
-					["Name"] = "FS技能",
+					["Point"] = {
+						["y"] = -60.8575254389214,
+						["x"] = 194.307525634766,
+						["point"] = "TOPLEFT",
+						["relativePoint"] = "TOPLEFT",
+					},
 				}, -- [1]
 				{
 					["GUID"] = "TMW:group:1Kf8LTr1Db4O",
@@ -4245,13 +4245,13 @@ TellMeWhenDB = {
 				}, -- [6]
 				{
 					["Enabled"] = false,
+					["Columns"] = 5,
 					["Point"] = {
 						["y"] = -16.7985545132627,
 						["x"] = -0.343474715948105,
 						["point"] = "LEFT",
 						["relativePoint"] = "LEFT",
 					},
-					["Columns"] = 5,
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -4361,13 +4361,13 @@ TellMeWhenDB = {
 				}, -- [7]
 				{
 					["Enabled"] = false,
+					["Columns"] = 10,
 					["Point"] = {
 						["y"] = -6.81781209757073,
 						["x"] = -24.9979572003976,
 						["point"] = "TOPRIGHT",
 						["relativePoint"] = "TOPRIGHT",
 					},
-					["Columns"] = 10,
 					["Name"] = "黑石",
 					["Scale"] = 1.31999933719635,
 					["Rows"] = 10,
@@ -4784,7 +4784,17 @@ TellMeWhenDB = {
 								["n"] = 1,
 							},
 							["CustomTex"] = "156214",
+							["ShowTimerText"] = true,
 							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"[Unit:Name]", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -4795,16 +4805,6 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"[Unit:Name]", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
-							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Unit"] = "",
@@ -4905,22 +4905,13 @@ TellMeWhenDB = {
 							["CLEUDur"] = 10,
 							["Type"] = "cleu",
 							["DestUnit"] = "raid 1-40",
-							["ShowTimerText"] = true,
+							["Name"] = "156626",
 							["Unit"] = "focus",
 							["FakeHidden"] = true,
 							["CLEUEvents"] = {
 								["SPELL_CAST_START"] = true,
 							},
-							["Events"] = {
-								{
-									["Type"] = "Animations",
-									["Infinite"] = true,
-									["Animation"] = "ACTVTNGLOW",
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnShow",
-								}, -- [1]
-								["n"] = 1,
-							},
+							["ShowTimerText"] = true,
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
@@ -4931,7 +4922,16 @@ TellMeWhenDB = {
 								},
 							},
 							["GUID"] = "TMW:icon:1K_ixbUnFieL",
-							["Name"] = "156626",
+							["Events"] = {
+								{
+									["Type"] = "Animations",
+									["Infinite"] = true,
+									["Animation"] = "ACTVTNGLOW",
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnShow",
+								}, -- [1]
+								["n"] = 1,
+							},
 							["SourceUnit"] = "加安上将",
 							["States"] = {
 								{
@@ -5147,20 +5147,6 @@ TellMeWhenDB = {
 							["SourceUnit"] = "执行者苏卡",
 							["Type"] = "cleu",
 							["Unit"] = "focus",
-							["Name"] = "震颤暗影",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -5171,6 +5157,20 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6405,22 +6405,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6431,6 +6415,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6459,22 +6459,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6485,6 +6469,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6513,22 +6513,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6539,6 +6523,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6567,22 +6567,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6593,6 +6577,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6621,22 +6621,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6647,6 +6631,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6675,22 +6675,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6701,6 +6685,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6729,22 +6729,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6755,6 +6739,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6783,22 +6783,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6809,6 +6793,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6837,22 +6837,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6863,6 +6847,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6891,22 +6891,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6917,6 +6901,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6945,22 +6945,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -6971,6 +6955,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -6999,22 +6999,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7025,6 +7009,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7053,22 +7053,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7079,6 +7063,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7107,22 +7107,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7133,6 +7117,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7161,22 +7161,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7187,6 +7171,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7215,22 +7215,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7241,6 +7225,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7269,22 +7269,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7295,6 +7279,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7323,22 +7323,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7349,6 +7333,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7377,22 +7377,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7403,6 +7387,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7431,22 +7431,6 @@ TellMeWhenDB = {
 							["CLEUDur"] = 3.3,
 							["SourceUnit"] = "focus",
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -7457,6 +7441,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -7563,11 +7563,6 @@ TellMeWhenDB = {
 							["Events"] = {
 								{
 									["Type"] = "Animations",
-									["AnimColor"] = "00ff0000",
-									["Animation"] = "ACTVTNGLOW",
-									["Alpha"] = 0,
-									["Duration"] = 1.6,
-									["Event"] = "OnCondition",
 									["OnConditionConditions"] = {
 										{
 											["Operator"] = ">=",
@@ -7577,6 +7572,11 @@ TellMeWhenDB = {
 										}, -- [1]
 										["n"] = 1,
 									},
+									["Animation"] = "ACTVTNGLOW",
+									["Alpha"] = 0,
+									["AnimColor"] = "00ff0000",
+									["Event"] = "OnCondition",
+									["Duration"] = 1.6,
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -7890,13 +7890,13 @@ TellMeWhenDB = {
 				}, -- [12]
 				{
 					["Enabled"] = false,
+					["Columns"] = 7,
 					["Point"] = {
 						["y"] = -75.3956842462605,
 						["x"] = 250.620971679688,
 						["point"] = "TOPLEFT",
 						["relativePoint"] = "TOPLEFT",
 					},
-					["Columns"] = 7,
 					["Name"] = "黑手",
 					["Scale"] = 1.41805946826935,
 					["Rows"] = 2,
@@ -8232,84 +8232,84 @@ TellMeWhenDB = {
 									["Duration"] = 2,
 								}, -- [2]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石!",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [3]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [4]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [5]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [6]
 								{
-									["AnimColor"] = "80ff0000",
+									["Duration"] = 1,
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
-									["Value"] = 5,
-									["Duration"] = 1,
-									["Event"] = "OnDuration",
 									["Animation"] = "SCREENSHAKE",
+									["Value"] = 5,
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["CndtJustPassed"] = true,
 								}, -- [7]
 								{
-									["AnimColor"] = "80ff0000",
+									["Duration"] = 1.2,
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
-									["Value"] = 5,
-									["Duration"] = 1.2,
-									["Event"] = "OnDuration",
 									["Animation"] = "SCREENFLASH",
+									["Value"] = 5,
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["CndtJustPassed"] = true,
 								}, -- [8]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [9]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [10]
 								{
 									["Type"] = "Announcements",
@@ -8434,13 +8434,13 @@ TellMeWhenDB = {
 				}, -- [14]
 				{
 					["Enabled"] = false,
+					["Columns"] = 10,
 					["Point"] = {
 						["y"] = -35.0995479568843,
 						["x"] = -190.62074693203,
 						["point"] = "TOPRIGHT",
 						["relativePoint"] = "TOPRIGHT",
 					},
-					["Columns"] = 10,
 					["Name"] = "地狱火",
 					["Scale"] = 1.28205132484436,
 					["Rows"] = 13,
@@ -9146,14 +9146,14 @@ TellMeWhenDB = {
 									["Infinite"] = true,
 								}, -- [1]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 8,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5S分摊，光柱集合！",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -9198,14 +9198,14 @@ TellMeWhenDB = {
 									["Operator"] = "<=",
 								}, -- [1]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 8,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5S推人",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -10329,7 +10329,10 @@ TellMeWhenDB = {
 				{
 					["Enabled"] = false,
 					["GUID"] = "TMW:group:1N_F5mJUMK0S",
-					["Columns"] = 6,
+					["Point"] = {
+						["y"] = -42.9719083602824,
+						["x"] = -213.691428246471,
+					},
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -10583,10 +10586,7 @@ TellMeWhenDB = {
 							},
 						}, -- [14]
 					},
-					["Point"] = {
-						["y"] = -42.9719083602824,
-						["x"] = -213.691428246471,
-					},
+					["Columns"] = 6,
 				}, -- [19]
 				{
 					["GUID"] = "TMW:group:1N_YeRalhnPL",
@@ -12728,6 +12728,7 @@ TellMeWhenDB = {
 			},
 		},
 		["Singleramble - 朵丹尼尔"] = {
+			["Version"] = 82302,
 			["Groups"] = {
 				{
 					["GUID"] = "TMW:group:1Nw4D0avQxmO",
@@ -12740,6 +12741,10 @@ TellMeWhenDB = {
 					},
 					["Scale"] = 3.14166378974915,
 					["Rows"] = 2,
+					["EnabledSpecs"] = {
+						[63] = false,
+						[64] = false,
+					},
 					["Icons"] = {
 						{
 							["Enabled"] = true,
@@ -13659,20 +13664,11 @@ TellMeWhenDB = {
 							},
 						}, -- [80]
 					},
-					["EnabledSpecs"] = {
-						[63] = false,
-						[64] = false,
-					},
 				}, -- [1]
 				{
 					["GUID"] = "TMW:group:1Nyb_UY=l8A6",
+					["Name"] = "火法",
 					["Columns"] = 5,
-					["Point"] = {
-						["y"] = -66.2116860097771,
-						["x"] = -92.8785443228372,
-						["point"] = "RIGHT",
-						["relativePoint"] = "RIGHT",
-					},
 					["EnabledSpecs"] = {
 						[64] = false,
 						[62] = false,
@@ -13886,7 +13882,12 @@ TellMeWhenDB = {
 							},
 						}, -- [10]
 					},
-					["Name"] = "火法",
+					["Point"] = {
+						["y"] = -66.2116860097771,
+						["x"] = -92.8785443228372,
+						["point"] = "RIGHT",
+						["relativePoint"] = "RIGHT",
+					},
 				}, -- [2]
 				{
 					["GUID"] = "TMW:group:1N=hS3AGzIaE",
@@ -13909,10 +13910,10 @@ TellMeWhenDB = {
 								{
 									["OnConditionConditions"] = {
 										{
-											["Type"] = "BUFFSTACKS",
 											["Level"] = 3,
-											["Name"] = "寒冰指",
+											["Type"] = "BUFFSTACKS",
 											["Checked"] = true,
+											["Name"] = "寒冰指",
 										}, -- [1]
 										["n"] = 1,
 									},
@@ -13945,10 +13946,10 @@ TellMeWhenDB = {
 								{
 									["OnConditionConditions"] = {
 										{
-											["Type"] = "BUFFSTACKS",
 											["Level"] = 3,
-											["Name"] = "连锁反应",
+											["Type"] = "BUFFSTACKS",
 											["Checked"] = true,
+											["Name"] = "连锁反应",
 										}, -- [1]
 										["n"] = 1,
 									},
@@ -14374,7 +14375,6 @@ TellMeWhenDB = {
 				}, -- [5]
 			},
 			["NumGroups"] = 4,
-			["Version"] = 82302,
 		},
 		["冷魂夺情 - 奥特兰克"] = {
 			["DrawEdge"] = true,
@@ -14526,9 +14526,9 @@ TellMeWhenDB = {
 							["GUID"] = "TMW:icon:1NdJPz8CNif4",
 							["ShowTimer"] = true,
 							["Enabled"] = true,
-							["Name"] = "火焰冲击",
-							["FakeHidden"] = true,
 							["ShowTimerText"] = true,
+							["FakeHidden"] = true,
+							["Name"] = "火焰冲击",
 							["Events"] = {
 								{
 									["PassingCndt"] = true,
@@ -15646,11 +15646,11 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["BuffOrDebuff"] = "EITHER",
 							["Enabled"] = true,
-							["ShowTimerText"] = true,
+							["Name"] = "寒冰炸弹",
 							["Unit"] = "target",
 							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
-							["Name"] = "寒冰炸弹",
+							["ShowTimerText"] = true,
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KfsCpnxkNjb",
@@ -15681,10 +15681,10 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["Enabled"] = true,
 							["BuffOrDebuff"] = "EITHER",
-							["Name"] = "冰风暴",
 							["ShowTimerText"] = true,
+							["Name"] = "冰风暴",
 							["Unit"] = "target",
-							["FakeHidden"] = true,
+							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
 							["Events"] = {
 								{
@@ -15706,7 +15706,7 @@ TellMeWhenDB = {
 							},
 							["Type"] = "buff",
 							["HideIfNoUnits"] = true,
-							["ShowTTText"] = 1,
+							["FakeHidden"] = true,
 							["States"] = {
 								{
 								}, -- [1]
@@ -16092,10 +16092,10 @@ TellMeWhenDB = {
 							["Enabled"] = true,
 							["Conditions"] = {
 								{
-									["Name"] = "能量符文",
-									["Level"] = 1,
 									["Checked"] = true,
 									["Type"] = "BUFFSTACKS",
+									["Name"] = "能量符文",
+									["Level"] = 1,
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -16590,8 +16590,11 @@ TellMeWhenDB = {
 				}, -- [2]
 				{
 					["GUID"] = "TMW:group:1KfDoXMj1mHn",
+					["Point"] = {
+						["y"] = -10.0104621343909,
+						["x"] = -187.09210043465,
+					},
 					["Columns"] = 5,
-					["Name"] = "DPS",
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -16949,10 +16952,7 @@ TellMeWhenDB = {
 							},
 						}, -- [20]
 					},
-					["Point"] = {
-						["y"] = -10.0104621343909,
-						["x"] = -187.09210043465,
-					},
+					["Name"] = "DPS",
 				}, -- [3]
 				{
 					["GUID"] = "TMW:group:1Kf8QVCsvR3K",
@@ -18151,8 +18151,13 @@ TellMeWhenDB = {
 				}, -- [6]
 				{
 					["Enabled"] = false,
+					["Point"] = {
+						["y"] = -16.7985545132627,
+						["x"] = -0.343474715948105,
+						["point"] = "LEFT",
+						["relativePoint"] = "LEFT",
+					},
 					["Columns"] = 5,
-					["Name"] = "悬垂堡监视",
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -18258,17 +18263,17 @@ TellMeWhenDB = {
 							},
 						}, -- [5]
 					},
-					["Point"] = {
-						["y"] = -16.7985545132627,
-						["x"] = -0.343474715948105,
-						["point"] = "LEFT",
-						["relativePoint"] = "LEFT",
-					},
+					["Name"] = "悬垂堡监视",
 				}, -- [7]
 				{
 					["Enabled"] = false,
+					["Point"] = {
+						["y"] = -6.81781209757073,
+						["x"] = -24.9979572003976,
+						["point"] = "TOPRIGHT",
+						["relativePoint"] = "TOPRIGHT",
+					},
 					["Columns"] = 10,
-					["Name"] = "黑石",
 					["GUID"] = "TMW:group:1Kps7GT=a_zj",
 					["Scale"] = 1.31999933719635,
 					["Rows"] = 10,
@@ -18685,17 +18690,6 @@ TellMeWhenDB = {
 								["n"] = 1,
 							},
 							["CustomTex"] = "156214",
-							["ShowTimerText"] = true,
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"[Unit:Name]", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -18706,6 +18700,17 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"[Unit:Name]", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Unit"] = "",
@@ -18806,22 +18811,13 @@ TellMeWhenDB = {
 							["CLEUDur"] = 10,
 							["Type"] = "cleu",
 							["DestUnit"] = "raid 1-40",
-							["ShowTimerText"] = true,
+							["Name"] = "156626",
 							["Unit"] = "focus",
 							["FakeHidden"] = true,
 							["CLEUEvents"] = {
 								["SPELL_CAST_START"] = true,
 							},
-							["Events"] = {
-								{
-									["Type"] = "Animations",
-									["Infinite"] = true,
-									["Animation"] = "ACTVTNGLOW",
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnShow",
-								}, -- [1]
-								["n"] = 1,
-							},
+							["ShowTimerText"] = true,
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
@@ -18832,7 +18828,16 @@ TellMeWhenDB = {
 								},
 							},
 							["GUID"] = "TMW:icon:1K_ixbUnFieL",
-							["Name"] = "156626",
+							["Events"] = {
+								{
+									["Type"] = "Animations",
+									["Infinite"] = true,
+									["Animation"] = "ACTVTNGLOW",
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnShow",
+								}, -- [1]
+								["n"] = 1,
+							},
 							["SourceUnit"] = "加安上将",
 							["States"] = {
 								{
@@ -19048,20 +19053,6 @@ TellMeWhenDB = {
 							["SourceUnit"] = "执行者苏卡",
 							["Type"] = "cleu",
 							["Unit"] = "focus",
-							["ShowTimerText"] = true,
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["Name"] = "震颤暗影",
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -19072,6 +19063,20 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["ShowTimerText"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["Name"] = "震颤暗影",
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20168,12 +20173,7 @@ TellMeWhenDB = {
 							},
 						},
 					},
-					["Point"] = {
-						["y"] = -6.81781209757073,
-						["x"] = -24.9979572003976,
-						["point"] = "TOPRIGHT",
-						["relativePoint"] = "TOPRIGHT",
-					},
+					["Name"] = "黑石",
 				}, -- [8]
 				{
 					["Enabled"] = false,
@@ -20313,22 +20313,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20339,6 +20323,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20367,22 +20367,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20393,6 +20377,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20421,22 +20421,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20447,6 +20431,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20475,22 +20475,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20501,6 +20485,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20529,22 +20529,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20555,6 +20539,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20583,22 +20583,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20609,6 +20593,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20637,22 +20637,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20663,6 +20647,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20691,22 +20691,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20717,6 +20701,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20745,22 +20745,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20771,6 +20755,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20799,22 +20799,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20825,6 +20809,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20853,22 +20853,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20879,6 +20863,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20907,22 +20907,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20933,6 +20917,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -20961,22 +20961,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -20987,6 +20971,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21015,22 +21015,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21041,6 +21025,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21069,22 +21069,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21095,6 +21079,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21123,22 +21123,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21149,6 +21133,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21177,22 +21177,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21203,6 +21187,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21231,22 +21231,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21257,6 +21241,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21285,22 +21285,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21311,6 +21295,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21339,22 +21339,6 @@ TellMeWhenDB = {
 							["UnitConditions"] = {
 								["n"] = 1,
 							},
-							["Name"] = "震颤暗影",
-							["Unit"] = "focus",
-							["DestUnit"] = "raid 1-40",
-							["CLEUEvents"] = {
-								["SPELL_CAST_START"] = true,
-							},
-							["ShowTimerText"] = true,
-							["SettingsPerView"] = {
-								["icon"] = {
-									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
-									["Texts"] = {
-										"", -- [1]
-										"[Stacks:Hide(0)]", -- [2]
-									},
-								},
-							},
 							["Events"] = {
 								{
 									["Type"] = "Animations",
@@ -21365,6 +21349,22 @@ TellMeWhenDB = {
 								}, -- [1]
 								["n"] = 1,
 							},
+							["Unit"] = "focus",
+							["DestUnit"] = "raid 1-40",
+							["CLEUEvents"] = {
+								["SPELL_CAST_START"] = true,
+							},
+							["Name"] = "震颤暗影",
+							["SettingsPerView"] = {
+								["icon"] = {
+									["TextLayout"] = "TMW:textlayout:1KpR=EhU3ZGd",
+									["Texts"] = {
+										"", -- [1]
+										"[Stacks:Hide(0)]", -- [2]
+									},
+								},
+							},
+							["ShowTimerText"] = true,
 							["Conditions"] = {
 								{
 									["Type"] = "NAME",
@@ -21469,11 +21469,6 @@ TellMeWhenDB = {
 							["Events"] = {
 								{
 									["Type"] = "Animations",
-									["AnimColor"] = "00ff0000",
-									["Animation"] = "ACTVTNGLOW",
-									["Alpha"] = 0,
-									["Duration"] = 1.6,
-									["Event"] = "OnCondition",
 									["OnConditionConditions"] = {
 										{
 											["Operator"] = ">=",
@@ -21483,6 +21478,11 @@ TellMeWhenDB = {
 										}, -- [1]
 										["n"] = 1,
 									},
+									["Animation"] = "ACTVTNGLOW",
+									["Alpha"] = 0,
+									["AnimColor"] = "00ff0000",
+									["Event"] = "OnCondition",
+									["Duration"] = 1.6,
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -21796,8 +21796,13 @@ TellMeWhenDB = {
 				}, -- [12]
 				{
 					["Enabled"] = false,
+					["Point"] = {
+						["y"] = -75.3956842462605,
+						["x"] = 250.620971679688,
+						["point"] = "TOPLEFT",
+						["relativePoint"] = "TOPLEFT",
+					},
 					["Columns"] = 7,
-					["Name"] = "黑手",
 					["GUID"] = "TMW:group:1Kx4HLfZfW7t",
 					["Scale"] = 1.41805946826935,
 					["Rows"] = 2,
@@ -22135,84 +22140,84 @@ TellMeWhenDB = {
 									["Duration"] = 2,
 								}, -- [2]
 								{
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Value"] = 5,
-									["Text"] = "5秒后落石!",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石!",
 								}, -- [3]
 								{
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Value"] = 5,
-									["Text"] = "5秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石",
 								}, -- [4]
 								{
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [5]
 								{
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [6]
 								{
-									["Duration"] = 1,
+									["AnimColor"] = "80ff0000",
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["Animation"] = "SCREENSHAKE",
-									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["CndtJustPassed"] = true,
+									["Value"] = 5,
+									["Duration"] = 1,
+									["Event"] = "OnDuration",
+									["Animation"] = "SCREENSHAKE",
 								}, -- [7]
 								{
-									["Duration"] = 1.2,
+									["AnimColor"] = "80ff0000",
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["Animation"] = "SCREENFLASH",
-									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["CndtJustPassed"] = true,
+									["Value"] = 5,
+									["Duration"] = 1.2,
+									["Event"] = "OnDuration",
+									["Animation"] = "SCREENFLASH",
 								}, -- [8]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 5,
-									["Text"] = "5秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石",
 								}, -- [9]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [10]
 								{
 									["Type"] = "Announcements",
@@ -22242,12 +22247,7 @@ TellMeWhenDB = {
 							},
 						}, -- [14]
 					},
-					["Point"] = {
-						["y"] = -75.3956842462605,
-						["x"] = 250.620971679688,
-						["point"] = "TOPLEFT",
-						["relativePoint"] = "TOPLEFT",
-					},
+					["Name"] = "黑手",
 				}, -- [13]
 				{
 					["Enabled"] = false,
@@ -22340,8 +22340,13 @@ TellMeWhenDB = {
 				}, -- [14]
 				{
 					["Enabled"] = false,
+					["Point"] = {
+						["y"] = -35.0995479568843,
+						["x"] = -190.62074693203,
+						["point"] = "TOPRIGHT",
+						["relativePoint"] = "TOPRIGHT",
+					},
 					["Columns"] = 10,
-					["Name"] = "地狱火",
 					["GUID"] = "TMW:group:1LgE9A3FwybF",
 					["Scale"] = 1.28205132484436,
 					["Rows"] = 13,
@@ -22909,12 +22914,7 @@ TellMeWhenDB = {
 							},
 						},
 					},
-					["Point"] = {
-						["y"] = -35.0995479568843,
-						["x"] = -190.62074693203,
-						["point"] = "TOPRIGHT",
-						["relativePoint"] = "TOPRIGHT",
-					},
+					["Name"] = "地狱火",
 				}, -- [15]
 				{
 					["GUID"] = "TMW:group:1LjUctPWDnwJ",
@@ -23061,14 +23061,14 @@ TellMeWhenDB = {
 									["Infinite"] = true,
 								}, -- [1]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 8,
-									["Text"] = "5S分摊，光柱集合！",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5S分摊，光柱集合！",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -23113,14 +23113,14 @@ TellMeWhenDB = {
 									["Operator"] = "<=",
 								}, -- [1]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 8,
-									["Text"] = "5S推人",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5S推人",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -28048,9 +28048,9 @@ TellMeWhenDB = {
 								["SPELL_SUMMON"] = true,
 							},
 							["Type"] = "cleu",
-							["SourceUnit"] = "player",
 							["CLEUDur"] = 40,
 							["Name"] = "镜像",
+							["ShowTimerText"] = true,
 							["GUID"] = "TMW:icon:1Kfggmihko_Y",
 							["CustomTex"] = "55342",
 							["States"] = {
@@ -28063,9 +28063,9 @@ TellMeWhenDB = {
 								}, -- [4]
 							},
 							["FakeHidden"] = true,
-							["ShowTimerText"] = true,
 							["Enabled"] = true,
 							["CLEUNoRefresh"] = true,
+							["SourceUnit"] = "player",
 						}, -- [57]
 						{
 							["ShowTimer"] = true,

@@ -3,8 +3,8 @@ ns[1] = {}			-- B, Basement
 ns[2] = {}			-- C, Config
 ns[3] = {}			-- L, Locales
 ns[4] = {}			-- DB, Database
-CMHelper = CMHelper or {}
-CMHelperDB = CMHelperDB or {}
+ColdUI = ColdUI or {}
+ColdUIDB = ColdUIDB or {}
 
 local B, C, L, D = unpack(ns)
 

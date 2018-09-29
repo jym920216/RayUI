@@ -1,2 +1,3 @@
 
-ColdUIDB = nil
+ColdUIDB = {
+}
