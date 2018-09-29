@@ -3,17 +3,6 @@ VER 3 0100000000000127 "T3" "INV_Misc_QuestionMark"
 /cast [talent:3/2]镜像
 /cast [talent:3/3]能量符文
 END
-VER 3 0100000000000128 "T4" "INV_Misc_QuestionMark"
-#showtooltip [talent:4/1]冲击波;[talent:4/2]烈焰飞舞;
-/cast [talent:4/1]冲击波
-/cast [talent:4/2]烈焰飞舞
-/use 屠夫之巫术暗影紫玉吊坠
-END
-VER 3 0100000000000129 "T5" "INV_Misc_QuestionMark"
-#showtooltip [talent:5/1]浮冰;[talent:5/2]冰霜之环
-/cast [talent:5/1]浮冰
-/cast [mod,@player] [@cursor][][talent:5/2]冰霜之环
-END
 VER 3 0100000000000139 "冰脉" "135838"
 #showtooltip
 /stopcasting
@@ -22,9 +11,21 @@ VER 3 0100000000000139 "冰脉" "135838"
 /use 缺指指环
 /cast 狂暴
 END
+VER 3 010000000000013D "单吃" "INV_MISC_QUESTIONMARK"
+#showtooltip 寒冰屏障
+/stopcasting
+/cast 闪光术  
+/cast 寒冰屏障
+END
+VER 3 0100000000000140 "反制" "INV_MISC_QUESTIONMARK"
+#showtooltip 法术反制
+/stopcasting
+/cast [modifier:alt,target=focus,exists,nodead]法术反制;法术反制
+/s 我已经打断 下个准备
+END
 VER 3 010000000000012C "变形术" "INV_Misc_QuestionMark"
 #showtooltip 变形术(兔子)  
-/Cast [modifier:alt,target=focus,exists] 变形术(兔子);变形术(兔子)
+/cast [modifier:alt,target=focus,exists] 变形术(兔子);变形术(兔子)
 END
 VER 3 010000000000012D "奥冲" "INV_Misc_QuestionMark"
 #showtooltip 奥术冲击 
@@ -36,45 +37,40 @@ VER 3 010000000000012E "奥强" "INV_Misc_QuestionMark"
 /use 缺指指环
 /use 勇气号角
 END
-VER 3 010000000000012F "寒冰炸弹" "INV_Misc_QuestionMark"
-#showtooltip 寒冰炸弹
-/Cast [modifier:alt,target=focus,exists] 寒冰炸弹;寒冰炸弹
+VER 3 0100000000000141 "暴风雪" "INV_MISC_QUESTIONMARK"
+#showtooltip 
+/cast [mod,@player] [@cursor] []暴风雪
 END
 VER 3 0100000000000130 "梦境" "132864"
 /click ExtraActionButton1
+END
+VER 3 010000000000013F "气定" "INV_MISC_QUESTIONMARK"
+#showtooltip 
+/cast 气定神闲
+/cast 奥术冲击
 END
 VER 3 0100000000000131 "水元素" "INV_Misc_QuestionMark"
 #showtooltip [nopet][@pet,dead]召唤水元素;冰冻术
 /cast [nopet][@pet,dead]召唤水元素;冰冻术
 /petattack
 END
-VER 3 0100000000000132 "水流" "INV_Misc_QuestionMark"
-#showtooltip 水流喷射
-/cast 水流喷射
-END
 VER 3 0100000000000133 "法术偷取" "INV_Misc_QuestionMark"
 #showtooltip 法术吸取 
 /stopcasting 
 /Cast [modifier:alt,target=focus,exists] 法术吸取;法术吸取
 END
-VER 3 0100000000000134 "活体炸弹" "INV_Misc_QuestionMark"
-#showtooltip 活动炸弹
-/Cast [modifier:alt,target=focus,exists] 活动炸弹;活动炸弹
+VER 3 010000000000013A "流星" "INV_MISC_QUESTIONMARK"
+#showtooltips 流星
+/cast [@cursor] 流星
 END
-VER 3 0100000000000135 "火冲" "INV_Misc_QuestionMark"
-#showtooltip 炼狱冲击
-/stopcasting 
-/Cast [modifier:alt,target=focus,exists] 炼狱冲击;炼狱冲击
+VER 3 010000000000013C "火冲" "INV_MISC_QUESTIONMARK"
+#show 火焰冲击
+/castsequence [nomod] reset=1 火焰冲击,炎爆术
+/castsequence [mod] reset=1 火焰冲击,火焰冲击,炎爆术   
 END
-VER 3 0100000000000136 "燃烧" "INV_Misc_QuestionMark"
-#showtooltip 燃烧 
-/cast 燃烧
-/use 缺指指环
-/use 生锈的哨兵奖章
-END
-VER 3 0100000000000137 "虚空风暴" "INV_Misc_QuestionMark"
-#showtooltip 虚空风暴
-/Cast [modifier:alt,target=focus,exists] 虚空风暴;虚空风暴
+VER 3 010000000000013B "烈焰风暴" "INV_MISC_QUESTIONMARK"
+#showtooltip 
+/cast [mod,@player] [@cursor] []烈焰风暴
 END
 VER 3 0100000000000138 "飞弹" "INV_Misc_QuestionMark"
 #showtooltip 奥术飞弹

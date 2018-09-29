@@ -14,14 +14,13 @@ VER 3 0100000000000129 "T5" "INV_Misc_QuestionMark"
 /cast [talent:5/1]浮冰
 /cast [mod,@player] [@cursor][][talent:5/2]冰霜之环
 END
-VER 3 010000000000012A "　" "INV_Misc_QuestionMark"
-#showtooltip 闪现术
-/cast 闪现术
-END
-VER 3 010000000000012B "冰" "INV_Misc_QuestionMark"
-#showtooltips 闪光术 
-/cast 闪光术
-/cast [nochanneling:冰霜射线] 能量符文
+VER 3 0100000000000139 "冰脉" "135838"
+#showtooltip
+/stopcasting
+/cast 冰冷血脉
+/use 14
+/use 缺指指环
+/cast 狂暴
 END
 VER 3 010000000000012C "变形术" "INV_Misc_QuestionMark"
 #showtooltip 变形术(兔子)  
