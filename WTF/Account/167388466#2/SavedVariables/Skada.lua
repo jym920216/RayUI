@@ -8,8 +8,8 @@ SkadaDB = {
 	["profiles"] = {
 		["Default"] = {
 			["modeclicks"] = {
-				["死亡"] = 1,
 				["伤害"] = 2,
+				["死亡"] = 1,
 			},
 			["windows"] = {
 				{
@@ -20,23 +20,23 @@ SkadaDB = {
 					["title"] = {
 						["color"] = {
 							["a"] = 0.3,
-							["r"] = 0,
-							["g"] = 0,
 							["b"] = 0,
+							["g"] = 0,
+							["r"] = 0,
 						},
 						["font"] = "",
-						["borderthickness"] = 0,
-						["fontflags"] = "OUTLINE",
 						["fontsize"] = 14,
+						["fontflags"] = "OUTLINE",
+						["borderthickness"] = 0,
 						["texture"] = "normTex",
 					},
 					["barfontflags"] = "OUTLINE",
 					["point"] = "BOTTOMRIGHT",
 					["barbgcolor"] = {
 						["a"] = 0,
-						["r"] = 0,
-						["g"] = 0,
 						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
 					},
 					["barfontsize"] = 15,
 					["mode"] = "伤害",
@@ -53,9 +53,9 @@ SkadaDB = {
 			},
 			["tooltiprows"] = 10,
 			["versions"] = {
-				["1.6.7"] = true,
-				["1.6.4"] = true,
 				["1.6.3"] = true,
+				["1.6.4"] = true,
+				["1.6.7"] = true,
 			},
 			["setstokeep"] = 30,
 			["tooltippos"] = "topleft",

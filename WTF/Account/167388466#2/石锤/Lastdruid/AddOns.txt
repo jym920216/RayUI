@@ -16,7 +16,7 @@ NPA2_Options: disabled
 MeetingStone: disabled
 AngryKeystones: enabled
 AuctionLite: enabled
-!BaudErrorFrame: enabled
+!BaudErrorFrame: disabled
 ExRT: enabled
 Foglight: disabled
 GarrisonMissionManager: enabled
@@ -37,7 +37,7 @@ TidyPlates_Threat: disabled
 WorldQuestsList: enabled
 RayUI: enabled
 RayUI_Options: enabled
-ColdUI: disabled
+ColdUI: enabled
 DBM-Core: enabled
 DBM-StatusBarTimers: enabled
 DBM-GUI: enabled
@@ -68,3 +68,4 @@ TinyRoster: disabled
 TinyTooltip: disabled
 TinyUntitled: disabled
 DBM-Azeroth-BfA: enabled
+NDui: disabled

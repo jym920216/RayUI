@@ -1,2 +1,2 @@
 
-ColdUICharacterData = nil
+ColdUIDB = nil
