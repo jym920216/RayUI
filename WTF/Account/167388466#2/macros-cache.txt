@@ -54,15 +54,6 @@ VER 3 0000000000000359 "冰箱" "INV_Misc_QuestionMark"
 /cast 闪光术  
 /cast 寒冰屏障
 END
-VER 3 000000000000035B "冰脉" "INV_Misc_QuestionMark"
-#showtooltips 冰冷血脉 
-/cast 水流喷射 
-/cast 冰冷血脉 
-/cast 冰霜射线
-/use 缺指指环
-/use 生锈的哨兵奖章
-/use 生命共鸣器
-END
 VER 3 000000000000035E "单吃" "INV_Misc_QuestionMark"
 #showtooltip 寒冰屏障 
 /stopcasting 
@@ -104,12 +95,6 @@ VER 3 000000000000038B "姐姐" "135856"
 /tar 苏拉雅，宇宙之母
 /cast 法术反制
 /targetlasttarget
-END
-VER 3 000000000000036B "寒冰宝珠" "INV_Misc_QuestionMark"
-#showtooltip 寒冰宝珠
-/stopcasting
-/use 13
-/cast 寒冰宝珠
 END
 VER 3 000000000000036C "打断" "INV_Misc_QuestionMark"
 #showtooltips 法术反制
@@ -160,14 +145,6 @@ VER 3 0000000000000379 "燃烧" "INV_Misc_QuestionMark"
 #showtooltip 燃烧
 /stopcasting
 /cast 燃烧
-/use 缺指指环
-/cast 狂暴
-END
-VER 3 0000000000000392 "狂暴" "INV_Misc_QuestionMark"
-#showtooltip
-/stopcasting
-/cast 冰冷血脉
-/use 14
 /use 缺指指环
 /cast 狂暴
 END

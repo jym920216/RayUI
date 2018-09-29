@@ -2,22 +2,21 @@
 SkadaDB = {
 	["hasUpgraded"] = true,
 	["profileKeys"] = {
+		["Silentpang - 石锤"] = "Default",
 		["冷魂夺情 - 石锤"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
 			["modeclicks"] = {
-				["敌对伤害"] = 23,
-				["伤害"] = 55,
-				["敌对受到伤害"] = 26,
-				["死亡"] = 8,
+				["伤害"] = 2,
+				["死亡"] = 1,
 			},
 			["windows"] = {
 				{
 					["classicons"] = false,
 					["barslocked"] = true,
-					["y"] = 27.3335952758789,
-					["x"] = -6.333984375,
+					["y"] = 24,
+					["x"] = -3,
 					["title"] = {
 						["color"] = {
 							["a"] = 0.3,
@@ -40,11 +39,11 @@ SkadaDB = {
 						["r"] = 0,
 					},
 					["barfontsize"] = 15,
-					["mode"] = "敌对受到伤害",
+					["mode"] = "伤害",
 					["bartexture"] = "normTex",
-					["barwidth"] = 296.666717529297,
+					["barwidth"] = 300,
 					["background"] = {
-						["height"] = 253.33332824707,
+						["height"] = 180,
 						["bordercolor"] = {
 							["a"] = 0,
 						},

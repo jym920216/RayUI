@@ -8,50 +8,50 @@ NDuiDB = {
 		["PPPHeight"] = 5,
 		["MinAlpha"] = 0.7,
 		["FullHealth"] = false,
-		["ColorBorder"] = false,
-		["TransColor"] = {
-			["r"] = 1,
+		["CustomColor"] = {
+			["b"] = 0.3,
 			["g"] = 0.8,
-			["b"] = 0,
+			["r"] = 0,
 		},
-		["VerticalSpacing"] = 0.7,
+		["SecureColor"] = {
+			["b"] = 1,
+			["g"] = 0,
+			["r"] = 1,
+		},
+		["InsecureColor"] = {
+			["b"] = 0,
+			["g"] = 0,
+			["r"] = 1,
+		},
 		["DPSRevertThreat"] = false,
 		["ShowUnitPower"] = true,
 		["PPHeight"] = 5,
-		["maxAuras"] = 5,
+		["HighlightIndicator"] = true,
 		["ShowPlayerPlate"] = false,
 		["HostileCC"] = true,
-		["AuraSize"] = 22,
+		["CustomUnitColor"] = true,
 		["TankMode"] = false,
-		["Width"] = 100,
+		["InsideView"] = true,
 		["Distance"] = 42,
 		["QuestIcon"] = true,
-		["InsideView"] = true,
-		["CustomUnitColor"] = true,
+		["Width"] = 100,
+		["AuraSize"] = 22,
 		["UnitList"] = "",
-		["HighlightIndicator"] = true,
+		["maxAuras"] = 5,
 		["FriendlyCC"] = false,
 		["Height"] = 5,
-		["InsecureColor"] = {
-			["r"] = 1,
-			["g"] = 0,
+		["VerticalSpacing"] = 0.7,
+		["TransColor"] = {
 			["b"] = 0,
-		},
-		["SecureColor"] = {
-			["r"] = 1,
-			["g"] = 0,
-			["b"] = 1,
-		},
-		["CustomColor"] = {
-			["r"] = 0,
 			["g"] = 0.8,
-			["b"] = 0.3,
+			["r"] = 1,
 		},
+		["ColorBorder"] = false,
 	},
 	["Misc"] = {
 		["PetFilter"] = true,
 		["HideErrors"] = true,
-		["BrokenSpell"] = false,
+		["BrokenSpell"] = true,
 		["QuestNotifier"] = false,
 		["HideTalking"] = true,
 		["TradeTab"] = true,
@@ -62,16 +62,16 @@ NDuiDB = {
 		["OwnInterrupt"] = true,
 		["ItemLevel"] = true,
 		["MissingStats"] = true,
-		["Interrupt"] = false,
-		["SoloInfo"] = true,
-		["Screenshot"] = true,
-		["ExpRep"] = true,
-		["RareAlerter"] = true,
-		["QuestProgress"] = false,
-		["Mail"] = true,
-		["HideBanner"] = true,
-		["FasterLoot"] = true,
+		["Interrupt"] = true,
 		["OnlyCompleteRing"] = false,
+		["Screenshot"] = true,
+		["HideBanner"] = true,
+		["RareAlerter"] = true,
+		["QuestProgress"] = true,
+		["Mail"] = true,
+		["ExpRep"] = true,
+		["FasterLoot"] = true,
+		["SoloInfo"] = true,
 	},
 	["Tutorial"] = {
 		["Complete"] = true,
@@ -80,13 +80,13 @@ NDuiDB = {
 		["BagsWidth"] = 12,
 		["ItemSetFilter"] = false,
 		["ReverseSort"] = true,
-		["BagsiLvl"] = true,
+		["Enable"] = true,
 		["BankWidth"] = 14,
 		["Artifact"] = true,
 		["IconSize"] = 34,
 		["ItemFilter"] = true,
 		["BagsScale"] = 1,
-		["Enable"] = true,
+		["BagsiLvl"] = true,
 	},
 	["Auras"] = {
 		["Totems"] = true,
@@ -99,12 +99,12 @@ NDuiDB = {
 	["Settings"] = {
 		["GUIScale"] = 1,
 		["DBMRequest"] = false,
-		["VersionCheck"] = true,
+		["BWRequest"] = true,
 		["LockUIScale"] = false,
 		["SkadaRequest"] = false,
-		["Format"] = 2,
+		["VersionCheck"] = true,
 		["UIScale"] = 0.64,
-		["BWRequest"] = true,
+		["Format"] = 2,
 	},
 	["Skins"] = {
 		["Skada"] = true,
@@ -115,15 +115,15 @@ NDuiDB = {
 		["ChatLine"] = true,
 		["InfobarLine"] = true,
 		["WeakAuras"] = true,
-		["RMRune"] = false,
+		["RMRune"] = true,
 		["MicroMenu"] = true,
-		["DBMCount"] = "10",
+		["MenuLine"] = true,
 		["RM"] = true,
 		["Bigwigs"] = true,
 		["PetBattle"] = true,
 		["ClassLine"] = true,
 		["TrackerSkin"] = true,
-		["MenuLine"] = true,
+		["DBMCount"] = "10",
 	},
 	["InternalCD"] = {
 	},
@@ -135,8 +135,8 @@ NDuiDB = {
 		["ShowRecycleBin"] = true,
 		["Clock"] = true,
 		["WhoPings"] = true,
-		["CombatPulse"] = true,
 		["MapReveal"] = true,
+		["CombatPulse"] = true,
 	},
 	["Tooltip"] = {
 		["FactionIcon"] = true,
@@ -146,25 +146,138 @@ NDuiDB = {
 		["ClassColor"] = false,
 		["CombatHide"] = true,
 		["HideRank"] = false,
-		["HidePVP"] = true,
+		["AzeriteArmor"] = true,
 		["HideFaction"] = true,
 		["LFDRole"] = false,
-		["AzeriteArmor"] = true,
+		["HidePVP"] = true,
 	},
-	["AuraWatchMover"] = {
-		[5] = {
+	["UFs"] = {
+		["InstanceAuras"] = true,
+		["HealthPerc"] = false,
+		["SpecRaidPos"] = false,
+		["PetCombatText"] = true,
+		["StealableBuff"] = true,
+		["ToTAuras"] = false,
+		["AurasClickThrough"] = false,
+		["SmoothColor"] = false,
+		["Castbars"] = true,
+		["ClassColor"] = false,
+		["AutoRes"] = true,
+		["DebuffBorder"] = true,
+		["HeightScale"] = 1,
+		["HorizonRaid"] = false,
+		["Dispellable"] = false,
+		["Portrait"] = true,
+		["Boss"] = true,
+		["HotsDots"] = true,
+		["RaidClassColor"] = false,
+		["RaidFrame"] = true,
+		["FCTOverHealing"] = false,
+		["AutoAttack"] = true,
+		["CombatText"] = true,
+		["ShowTeamIndex"] = false,
+		["SwingTimer"] = false,
+		["RaidScale"] = 1,
+		["ReverseRaid"] = false,
+		["SimpleMode"] = false,
+		["SwingBar"] = false,
+		["NumGroups"] = 6,
+		["Enable"] = true,
+		["RaidClickSets"] = false,
+		["Arena"] = true,
+		["PlayerDebuff"] = true,
+	},
+	["AuraWatch"] = {
+		["Enable"] = true,
+		["IconScale"] = 1,
+		["ClickThrough"] = false,
+	},
+	["Chat"] = {
+		["Oldname"] = false,
+		["Freedom"] = true,
+		["Invite"] = true,
+		["GuildInvite"] = true,
+		["ChatMenu"] = false,
+		["Keyword"] = "raid",
+		["Matches"] = 1,
+		["WhisperColor"] = true,
+		["BlockAddonAlert"] = true,
+		["FilterList"] = "",
+		["Lock"] = true,
+		["Sticky"] = false,
+		["Timestamp"] = false,
+		["AtList"] = "",
+		["EnableFilter"] = true,
+	},
+	["Actionbar"] = {
+		["Enable"] = true,
+		["Hotkeys"] = true,
+		["Scale"] = 1,
+		["Bar4Fade"] = false,
+		["Count"] = true,
+		["Style"] = 1,
+		["Bar5Fade"] = true,
+		["Classcolor"] = false,
+		["DecimalCD"] = true,
+		["Cooldown"] = true,
+		["Macro"] = true,
+	},
+	["Mover"] = {
+		["FocusUF"] = {
 			"CENTER", -- [1]
 			"UIParent", -- [2]
 			"CENTER", -- [3]
-			221.388870239258, -- [4]
-			-49.1667098999023, -- [5]
+			301.666076660156, -- [4]
+			-87.7779235839844, -- [5]
 		},
-		[4] = {
+		["PlayerPlate"] = {
 			"CENTER", -- [1]
 			"UIParent", -- [2]
 			"CENTER", -- [3]
-			-259.111022949219, -- [4]
-			-8.33365058898926, -- [5]
+			8.88888263702393, -- [4]
+			-177.777694702148, -- [5]
+		},
+		["PlayerCombatText"] = {
+			"CENTER", -- [1]
+			"UIParent", -- [2]
+			"CENTER", -- [3]
+			-497.22216796875, -- [4]
+			-161.777847290039, -- [5]
+		},
+		["PlayerCB"] = {
+			"CENTER", -- [1]
+			"UIParent", -- [2]
+			"CENTER", -- [3]
+			7.11103296279907, -- [4]
+			-151.222198486328, -- [5]
+		},
+		["TargetCombatText"] = {
+			"CENTER", -- [1]
+			"UIParent", -- [2]
+			"CENTER", -- [3]
+			497.221923828125, -- [4]
+			-162.888824462891, -- [5]
+		},
+		["TargetCB"] = {
+			"CENTER", -- [1]
+			"UIParent", -- [2]
+			"CENTER", -- [3]
+			14.8887958526611, -- [4]
+			162.110992431641, -- [5]
+		},
+		["FotUF"] = {
+			"CENTER", -- [1]
+			"UIParent", -- [2]
+			"CENTER", -- [3]
+			263.332763671875, -- [4]
+			-118.888969421387, -- [5]
+		},
+	},
+	["RaidClickSets"] = {
+		["ALT鼠标右键"] = {
+			"鼠标右键", -- [1]
+			"ALT", -- [2]
+			130, -- [3]
 		},
 	},
 	["AuraWatchList"] = {
@@ -195,126 +308,20 @@ NDuiDB = {
 		["Switcher2"] = true,
 		["Switcher6"] = true,
 	},
-	["Chat"] = {
-		["Oldname"] = false,
-		["Freedom"] = true,
-		["Invite"] = true,
-		["BlockAddonAlert"] = true,
-		["ChatMenu"] = false,
-		["Keyword"] = "raid",
-		["AtList"] = "",
-		["WhisperColor"] = true,
-		["GuildInvite"] = true,
-		["FilterList"] = "",
-		["Lock"] = true,
-		["Timestamp"] = false,
-		["Matches"] = 1,
-		["Sticky"] = false,
-		["EnableFilter"] = true,
-	},
-	["Actionbar"] = {
-		["Enable"] = true,
-		["Hotkeys"] = true,
-		["Macro"] = true,
-		["Cooldown"] = true,
-		["DecimalCD"] = true,
-		["Count"] = true,
-		["Bar5Fade"] = true,
-		["Classcolor"] = false,
-		["Style"] = 1,
-		["Bar4Fade"] = false,
-		["Scale"] = 1,
-	},
-	["Mover"] = {
-		["FocusUF"] = {
+	["AuraWatchMover"] = {
+		[5] = {
 			"CENTER", -- [1]
 			"UIParent", -- [2]
 			"CENTER", -- [3]
-			301.666076660156, -- [4]
-			-87.7779235839844, -- [5]
+			221.388870239258, -- [4]
+			-49.1667098999023, -- [5]
 		},
-		["PlayerCombatText"] = {
+		[4] = {
 			"CENTER", -- [1]
 			"UIParent", -- [2]
 			"CENTER", -- [3]
-			-497.22216796875, -- [4]
-			-161.777847290039, -- [5]
+			-259.111022949219, -- [4]
+			-8.33365058898926, -- [5]
 		},
-		["PlayerCB"] = {
-			"CENTER", -- [1]
-			"UIParent", -- [2]
-			"CENTER", -- [3]
-			7.11103296279907, -- [4]
-			-151.222198486328, -- [5]
-		},
-		["FotUF"] = {
-			"CENTER", -- [1]
-			"UIParent", -- [2]
-			"CENTER", -- [3]
-			263.332763671875, -- [4]
-			-118.888969421387, -- [5]
-		},
-		["TargetCB"] = {
-			"CENTER", -- [1]
-			"UIParent", -- [2]
-			"CENTER", -- [3]
-			14.8887958526611, -- [4]
-			162.110992431641, -- [5]
-		},
-		["TargetCombatText"] = {
-			"CENTER", -- [1]
-			"UIParent", -- [2]
-			"CENTER", -- [3]
-			497.221923828125, -- [4]
-			-162.888824462891, -- [5]
-		},
-	},
-	["RaidClickSets"] = {
-		["ALT鼠标右键"] = {
-			"鼠标右键", -- [1]
-			"ALT", -- [2]
-			130, -- [3]
-		},
-	},
-	["AuraWatch"] = {
-		["Enable"] = true,
-		["IconScale"] = 1,
-		["ClickThrough"] = false,
-	},
-	["UFs"] = {
-		["InstanceAuras"] = true,
-		["HealthPerc"] = false,
-		["SpecRaidPos"] = false,
-		["PetCombatText"] = true,
-		["StealableBuff"] = true,
-		["ToTAuras"] = false,
-		["AurasClickThrough"] = false,
-		["SmoothColor"] = false,
-		["Castbars"] = true,
-		["ClassColor"] = false,
-		["AutoRes"] = true,
-		["DebuffBorder"] = true,
-		["HeightScale"] = 1,
-		["HorizonRaid"] = false,
-		["Dispellable"] = false,
-		["Portrait"] = true,
-		["Boss"] = true,
-		["HotsDots"] = true,
-		["RaidClassColor"] = false,
-		["RaidFrame"] = true,
-		["Arena"] = true,
-		["RaidClickSets"] = false,
-		["Enable"] = true,
-		["ShowTeamIndex"] = false,
-		["SwingTimer"] = false,
-		["NumGroups"] = 6,
-		["ReverseRaid"] = false,
-		["SwingBar"] = false,
-		["SimpleMode"] = false,
-		["RaidScale"] = 1,
-		["CombatText"] = true,
-		["AutoAttack"] = true,
-		["FCTOverHealing"] = false,
-		["PlayerDebuff"] = true,
 	},
 }
