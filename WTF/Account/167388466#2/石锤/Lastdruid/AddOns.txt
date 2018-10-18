@@ -22,7 +22,7 @@ Foglight: disabled
 GarrisonMissionManager: enabled
 IntelliMount: enabled
 Molinari: disabled
-Myslot: disabled
+Myslot: enabled
 ncShadow: enabled
 Simulationcraft: enabled
 Skada: enabled
@@ -68,4 +68,4 @@ TinyRoster: disabled
 TinyTooltip: disabled
 TinyUntitled: disabled
 DBM-Azeroth-BfA: enabled
-NDui: disabled
+NDui: enabled

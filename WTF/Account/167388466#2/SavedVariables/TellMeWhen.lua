@@ -430,7 +430,12 @@ TellMeWhenDB = {
 				{
 					["GUID"] = "TMW:group:1KfDkJGPQwMt",
 					["Enabled"] = false,
-					["Name"] = "FS技能",
+					["Point"] = {
+						["y"] = -60.8575254389214,
+						["x"] = 194.307525634766,
+						["point"] = "TOPLEFT",
+						["relativePoint"] = "TOPLEFT",
+					},
 					["Columns"] = 8,
 					["Scale"] = 1.34333300590515,
 					["Rows"] = 10,
@@ -570,9 +575,9 @@ TellMeWhenDB = {
 							["GUID"] = "TMW:icon:1NdJPz8CNif4",
 							["ShowTimer"] = true,
 							["Enabled"] = true,
-							["ShowTimerText"] = true,
-							["FakeHidden"] = true,
 							["Name"] = "火焰冲击",
+							["FakeHidden"] = true,
+							["ShowTimerText"] = true,
 							["Events"] = {
 								{
 									["PassingCndt"] = true,
@@ -694,6 +699,8 @@ TellMeWhenDB = {
 								{
 									["Type"] = "Animations",
 									["Animation"] = "SCREENFLASH",
+									["Alpha"] = 0.210843086242676,
+									["AnimColor"] = "36ff0000",
 									["Event"] = "WCSP",
 									["OnConditionConditions"] = {
 										{
@@ -703,8 +710,6 @@ TellMeWhenDB = {
 										}, -- [1]
 										["n"] = 2,
 									},
-									["Alpha"] = 0.210843086242676,
-									["AnimColor"] = "36ff0000",
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -1692,11 +1697,11 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["BuffOrDebuff"] = "EITHER",
 							["Type"] = "buff",
-							["ShowTimerText"] = true,
+							["Name"] = "寒冰炸弹",
 							["Unit"] = "target",
 							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
-							["Name"] = "寒冰炸弹",
+							["ShowTimerText"] = true,
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KfsCpnxkNjb",
@@ -1727,10 +1732,10 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["Enabled"] = true,
 							["BuffOrDebuff"] = "EITHER",
-							["Name"] = "冰风暴",
 							["ShowTimerText"] = true,
+							["Name"] = "冰风暴",
 							["Unit"] = "target",
-							["FakeHidden"] = true,
+							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
 							["Events"] = {
 								{
@@ -1752,7 +1757,7 @@ TellMeWhenDB = {
 							},
 							["Type"] = "buff",
 							["HideIfNoUnits"] = true,
-							["ShowTTText"] = 1,
+							["FakeHidden"] = true,
 							["States"] = {
 								{
 								}, -- [1]
@@ -2144,10 +2149,10 @@ TellMeWhenDB = {
 							["Enabled"] = true,
 							["Conditions"] = {
 								{
-									["Name"] = "能量符文",
-									["Level"] = 1,
 									["Checked"] = true,
 									["Type"] = "BUFFSTACKS",
+									["Name"] = "能量符文",
+									["Level"] = 1,
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -2626,12 +2631,7 @@ TellMeWhenDB = {
 							},
 						},
 					},
-					["Point"] = {
-						["y"] = -60.8575254389214,
-						["x"] = 194.307525634766,
-						["point"] = "TOPLEFT",
-						["relativePoint"] = "TOPLEFT",
-					},
+					["Name"] = "FS技能",
 				}, -- [1]
 				{
 					["GUID"] = "TMW:group:1Kf8LTr1Db4O",
@@ -4245,13 +4245,13 @@ TellMeWhenDB = {
 				}, -- [6]
 				{
 					["Enabled"] = false,
-					["Columns"] = 5,
 					["Point"] = {
 						["y"] = -16.7985545132627,
 						["x"] = -0.343474715948105,
 						["point"] = "LEFT",
 						["relativePoint"] = "LEFT",
 					},
+					["Columns"] = 5,
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -4361,13 +4361,13 @@ TellMeWhenDB = {
 				}, -- [7]
 				{
 					["Enabled"] = false,
-					["Columns"] = 10,
 					["Point"] = {
 						["y"] = -6.81781209757073,
 						["x"] = -24.9979572003976,
 						["point"] = "TOPRIGHT",
 						["relativePoint"] = "TOPRIGHT",
 					},
+					["Columns"] = 10,
 					["Name"] = "黑石",
 					["Scale"] = 1.31999933719635,
 					["Rows"] = 10,
@@ -7890,13 +7890,13 @@ TellMeWhenDB = {
 				}, -- [12]
 				{
 					["Enabled"] = false,
-					["Columns"] = 7,
 					["Point"] = {
 						["y"] = -75.3956842462605,
 						["x"] = 250.620971679688,
 						["point"] = "TOPLEFT",
 						["relativePoint"] = "TOPLEFT",
 					},
+					["Columns"] = 7,
 					["Name"] = "黑手",
 					["Scale"] = 1.41805946826935,
 					["Rows"] = 2,
@@ -8232,84 +8232,84 @@ TellMeWhenDB = {
 									["Duration"] = 2,
 								}, -- [2]
 								{
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Value"] = 5,
-									["Text"] = "5秒后落石!",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石!",
 								}, -- [3]
 								{
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Value"] = 5,
-									["Text"] = "5秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石",
 								}, -- [4]
 								{
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [5]
 								{
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [6]
 								{
-									["Duration"] = 1,
+									["AnimColor"] = "80ff0000",
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["Animation"] = "SCREENSHAKE",
-									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["CndtJustPassed"] = true,
+									["Value"] = 5,
+									["Duration"] = 1,
+									["Event"] = "OnDuration",
+									["Animation"] = "SCREENSHAKE",
 								}, -- [7]
 								{
-									["Duration"] = 1.2,
+									["AnimColor"] = "80ff0000",
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["Animation"] = "SCREENFLASH",
-									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["CndtJustPassed"] = true,
+									["Value"] = 5,
+									["Duration"] = 1.2,
+									["Event"] = "OnDuration",
+									["Animation"] = "SCREENFLASH",
 								}, -- [8]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 5,
-									["Text"] = "5秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5秒后落石",
 								}, -- [9]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 3,
-									["Text"] = "3秒后落石",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "3秒后落石",
 								}, -- [10]
 								{
 									["Type"] = "Announcements",
@@ -8434,13 +8434,13 @@ TellMeWhenDB = {
 				}, -- [14]
 				{
 					["Enabled"] = false,
-					["Columns"] = 10,
 					["Point"] = {
 						["y"] = -35.0995479568843,
 						["x"] = -190.62074693203,
 						["point"] = "TOPRIGHT",
 						["relativePoint"] = "TOPRIGHT",
 					},
+					["Columns"] = 10,
 					["Name"] = "地狱火",
 					["Scale"] = 1.28205132484436,
 					["Rows"] = 13,
@@ -9146,14 +9146,14 @@ TellMeWhenDB = {
 									["Infinite"] = true,
 								}, -- [1]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 8,
-									["Text"] = "5S分摊，光柱集合！",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5S分摊，光柱集合！",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -9198,14 +9198,14 @@ TellMeWhenDB = {
 									["Operator"] = "<=",
 								}, -- [1]
 								{
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Value"] = 8,
-									["Text"] = "5S推人",
-									["Event"] = "OnDuration",
 									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["Text"] = "5S推人",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -10329,10 +10329,7 @@ TellMeWhenDB = {
 				{
 					["Enabled"] = false,
 					["GUID"] = "TMW:group:1N_F5mJUMK0S",
-					["Point"] = {
-						["y"] = -42.9719083602824,
-						["x"] = -213.691428246471,
-					},
+					["Columns"] = 6,
 					["SettingsPerView"] = {
 						["icon"] = {
 							["SpacingX"] = 2,
@@ -10586,7 +10583,10 @@ TellMeWhenDB = {
 							},
 						}, -- [14]
 					},
-					["Columns"] = 6,
+					["Point"] = {
+						["y"] = -42.9719083602824,
+						["x"] = -213.691428246471,
+					},
 				}, -- [19]
 				{
 					["GUID"] = "TMW:group:1N_YeRalhnPL",
@@ -12741,10 +12741,6 @@ TellMeWhenDB = {
 					},
 					["Scale"] = 3.14166378974915,
 					["Rows"] = 2,
-					["EnabledSpecs"] = {
-						[63] = false,
-						[64] = false,
-					},
 					["Icons"] = {
 						{
 							["Enabled"] = true,
@@ -13664,6 +13660,10 @@ TellMeWhenDB = {
 							},
 						}, -- [80]
 					},
+					["EnabledSpecs"] = {
+						[63] = false,
+						[64] = false,
+					},
 				}, -- [1]
 				{
 					["GUID"] = "TMW:group:1Nyb_UY=l8A6",
@@ -13910,10 +13910,10 @@ TellMeWhenDB = {
 								{
 									["OnConditionConditions"] = {
 										{
-											["Level"] = 3,
 											["Type"] = "BUFFSTACKS",
-											["Checked"] = true,
+											["Level"] = 3,
 											["Name"] = "寒冰指",
+											["Checked"] = true,
 										}, -- [1]
 										["n"] = 1,
 									},
@@ -13946,10 +13946,10 @@ TellMeWhenDB = {
 								{
 									["OnConditionConditions"] = {
 										{
-											["Level"] = 3,
 											["Type"] = "BUFFSTACKS",
-											["Checked"] = true,
+											["Level"] = 3,
 											["Name"] = "连锁反应",
+											["Checked"] = true,
 										}, -- [1]
 										["n"] = 1,
 									},
@@ -14526,9 +14526,9 @@ TellMeWhenDB = {
 							["GUID"] = "TMW:icon:1NdJPz8CNif4",
 							["ShowTimer"] = true,
 							["Enabled"] = true,
-							["ShowTimerText"] = true,
-							["FakeHidden"] = true,
 							["Name"] = "火焰冲击",
+							["FakeHidden"] = true,
+							["ShowTimerText"] = true,
 							["Events"] = {
 								{
 									["PassingCndt"] = true,
@@ -15646,11 +15646,11 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["BuffOrDebuff"] = "EITHER",
 							["Enabled"] = true,
-							["Name"] = "寒冰炸弹",
+							["ShowTimerText"] = true,
 							["Unit"] = "target",
 							["ShowTTText"] = 1,
 							["OnlyMine"] = true,
-							["ShowTimerText"] = true,
+							["Name"] = "寒冰炸弹",
 							["SettingsPerView"] = {
 								["icon"] = {
 									["TextLayout"] = "TMW:textlayout:1KfsCpnxkNjb",
@@ -15681,10 +15681,10 @@ TellMeWhenDB = {
 							["ShowTimer"] = true,
 							["Enabled"] = true,
 							["BuffOrDebuff"] = "EITHER",
-							["ShowTimerText"] = true,
 							["Name"] = "冰风暴",
+							["ShowTimerText"] = true,
 							["Unit"] = "target",
-							["ShowTTText"] = 1,
+							["FakeHidden"] = true,
 							["OnlyMine"] = true,
 							["Events"] = {
 								{
@@ -15706,7 +15706,7 @@ TellMeWhenDB = {
 							},
 							["Type"] = "buff",
 							["HideIfNoUnits"] = true,
-							["FakeHidden"] = true,
+							["ShowTTText"] = 1,
 							["States"] = {
 								{
 								}, -- [1]
@@ -16092,10 +16092,10 @@ TellMeWhenDB = {
 							["Enabled"] = true,
 							["Conditions"] = {
 								{
-									["Checked"] = true,
-									["Type"] = "BUFFSTACKS",
 									["Name"] = "能量符文",
 									["Level"] = 1,
+									["Checked"] = true,
+									["Type"] = "BUFFSTACKS",
 								}, -- [1]
 								["n"] = 1,
 							},
@@ -22140,84 +22140,84 @@ TellMeWhenDB = {
 									["Duration"] = 2,
 								}, -- [2]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石!",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [3]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [4]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "YELL",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "YELL",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [5]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "RAID_WARNING",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "RAID_WARNING",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [6]
 								{
-									["AnimColor"] = "80ff0000",
+									["Duration"] = 1,
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
-									["Value"] = 5,
-									["Duration"] = 1,
-									["Event"] = "OnDuration",
 									["Animation"] = "SCREENSHAKE",
+									["Value"] = 5,
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["CndtJustPassed"] = true,
 								}, -- [7]
 								{
-									["AnimColor"] = "80ff0000",
+									["Duration"] = 1.2,
 									["Type"] = "Animations",
 									["PassingCndt"] = true,
-									["CndtJustPassed"] = true,
-									["Value"] = 5,
-									["Duration"] = 1.2,
-									["Event"] = "OnDuration",
 									["Animation"] = "SCREENFLASH",
+									["Value"] = 5,
+									["AnimColor"] = "80ff0000",
+									["Event"] = "OnDuration",
+									["CndtJustPassed"] = true,
 								}, -- [8]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 5,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [9]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 3,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "3秒后落石",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [10]
 								{
 									["Type"] = "Announcements",
@@ -23061,14 +23061,14 @@ TellMeWhenDB = {
 									["Infinite"] = true,
 								}, -- [1]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 8,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5S分摊，光柱集合！",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -23113,14 +23113,14 @@ TellMeWhenDB = {
 									["Operator"] = "<=",
 								}, -- [1]
 								{
-									["CndtJustPassed"] = true,
+									["Channel"] = "SAY",
 									["Type"] = "Announcements",
 									["PassingCndt"] = true,
-									["Channel"] = "SAY",
+									["CndtJustPassed"] = true,
 									["Value"] = 8,
-									["AnimColor"] = "80ff0000",
-									["Event"] = "OnDuration",
 									["Text"] = "5S推人",
+									["Event"] = "OnDuration",
+									["AnimColor"] = "80ff0000",
 								}, -- [2]
 								["n"] = 2,
 							},
@@ -27250,6 +27250,19 @@ TellMeWhenDB = {
 							["GUID"] = "TMW:icon:1NgpCODpCrob",
 						}, -- [24]
 						{
+							["ShowTimer"] = true,
+							["OnlyMine"] = true,
+							["Type"] = "buff",
+							["Name"] = "节能施法",
+							["ShowTimerText"] = true,
+							["Enabled"] = true,
+							["SettingsPerView"] = {
+								["icon"] = {
+									["Texts"] = {
+										"", -- [1]
+									},
+								},
+							},
 							["States"] = {
 								{
 								}, -- [1]
@@ -27259,6 +27272,8 @@ TellMeWhenDB = {
 								{
 								}, -- [4]
 							},
+							["FakeHidden"] = true,
+							["GUID"] = "TMW:icon:1Rn8Jzvfr5eT",
 						}, -- [25]
 						{
 							["ShowTimer"] = true,
@@ -28676,6 +28691,7 @@ TellMeWhenDB = {
 					["Columns"] = 1,
 					["Icons"] = {
 						{
+							["Type"] = "buff",
 							["States"] = {
 								{
 								}, -- [1]
@@ -28685,6 +28701,8 @@ TellMeWhenDB = {
 								{
 								}, -- [4]
 							},
+							["Enabled"] = true,
+							["Name"] = "终极菌体",
 						}, -- [1]
 						{
 							["ShowTimer"] = true,
@@ -28821,6 +28839,7 @@ TellMeWhenDB = {
 								"TMW:icon:1KfC1FKaPsqD", -- [1]
 								"TMW:icon:1NdJOs1=6RwU", -- [2]
 								"TMW:icon:1O0lYQB1_Hsg", -- [3]
+								"TMW:icon:1Rn8Jzvfr5eT", -- [4]
 							},
 							["States"] = {
 								{
@@ -30111,8 +30130,8 @@ TellMeWhenDB = {
 					},
 				}, -- [8]
 				{
-					["GUID"] = "TMW:group:1RguJwibLh1Q",
 					["Scale"] = 2.40740132331848,
+					["Enabled"] = false,
 					["Columns"] = 5,
 					["Icons"] = {
 						{
@@ -30328,6 +30347,7 @@ TellMeWhenDB = {
 						}, -- [5]
 					},
 					["Name"] = "维克提斯",
+					["GUID"] = "TMW:group:1RguJwibLh1Q",
 					["Point"] = {
 						["y"] = 84.6924871486336,
 						["x"] = -174.692827918407,

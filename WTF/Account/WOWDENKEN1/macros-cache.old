@@ -1,0 +1,324 @@
+VER 3 0000000000000011 " 审判" "INV_MISC_QUESTIONMARK"
+#showtooltip 审判 
+/use [@mouseover,harm,nodead] [harm,nodead] [@targettarget,harm,nodead][@focus,harm,nodead][@targettargettarget,harm,nodead] 审判 
+/stopmacro [harm,nodead][targettarget,harm,nodead] 
+/targetenemy 
+/use 审判 
+/targetlasttarget
+END
+VER 3 0000000000000025 "1" "INV_Misc_QuestionMark"
+#showtooltip 压制
+/startattack 
+/castsequence reset=0.6 0,0,0,猛击
+/click MultiBarBottomLeftButton1
+/cast !压制
+/console Sound_EnableSFX 1 
+/script UIErrorsFrame:Clear()
+END
+VER 3 0000000000000012 "1" "ABILITY_MONK_JAB"
+/施放 贯日击
+/use 七星圣印之握
+END
+VER 3 0000000000000013 "1111" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/castsequence reset=8/combat 醉酿投,幻灭踢,猛虎掌,猛虎掌,贯日击,贯日击,幻灭踢,猛虎掌,贯日击,猛虎掌,猛虎掌,醉酿投,幻灭踢,猛虎掌,猛虎掌,贯日击,猛虎掌,猛虎掌,猛虎掌,贯日击,猛虎掌,
+END
+VER 3 0000000000000014 "11111" "ACHIEVEMENT_GUILDPERK_MOBILEBANKING"
+/stopcasting
+/target 恐角之魂
+/cast 碎玉闪电
+/targetlasttarget
+END
+VER 3 0000000000000026 "12" "Ability_Ambush"
+/小鸡
+END
+VER 3 0000000000000045 "123213" "135833"
+/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
+/click DropDownList1Button6
+END
+VER 3 0000000000000028 "2" "ABILITY_WARRIOR_BLOODBATH"
+#show 浴血奋战
+/cast 浴血奋战
+/use 上古屠夫护手
+/施放 血性狂怒(种族特长)
+/施放 狂暴之怒
+END
+VER 3 0000000000000027 "2" "INV_MISC_QUESTIONMARK"
+#show 风暴之锤
+/施放 狂暴之怒
+/施放 血性狂怒(种族特长)
+/use 上古屠夫护手
+/施放 风暴之锤
+END
+VER 3 0000000000000015 "222" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/castsequence reset=8/combat 醉酿投,幻灭踢,猛虎掌,猛虎掌,贯日击,贯日击,幻灭踢,猛虎掌,贯日击,猛虎掌,猛虎掌,醉酿投,幻灭踢,猛虎掌,猛虎掌,贯日击,贯日击,幻灭踢,猛虎掌,贯日击,猛虎掌,猛虎掌,醉酿投,幻灭踢,猛虎掌,猛虎掌,贯日击,贯日击,幻灭踢,猛虎掌,贯日击,猛虎掌,猛虎掌,
+END
+VER 3 000000000000003F "234324" "GARRISON_BUILDING_LUMBERMILL"
+/pull 5
+END
+VER 3 0000000000000016 "5555" "INV_MISC_QUESTIONMARK"
+/6 悬锤H2号 来一个奶 只要NQ 或者 JLM 装等要求645+··来的直接密···！
+END
+VER 3 0000000000000017 "BF_Mount" "ABILITY_MOUNT_CHARGER"
+/bfmount
+END
+VER 3 0000000000000029 "BF_Mount" "ability_mount_charger"
+/cancelform
+/bfmount
+END
+VER 3 000000000000002A "BF_Pet" "achievement_worldevent_brewmaster"
+/cancelform
+/BFPET
+END
+VER 3 0000000000000018 "BF_Pet" "ACHIEVEMENT_WORLDEVENT_BREWMASTER"
+/BFPET
+END
+VER 3 0000000000000019 "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 清创生血;  [@mouseover,exists,mod:ctrl] 清创生血; [@mouseover,exists,mod:shift] 清创生血
+END
+VER 3 000000000000002B "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
+VER 3 000000000000001A "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
+VER 3 0000000000000046 "Decursive" "134400"
+/stopcasting
+/cast [@mouseover,nomod,exists] 净化疾病;  [@mouseover,exists,mod:ctrl] 驱散魔法; [@mouseover,exists,mod:shift] 净化疾病
+END
+VER 3 000000000000000D "DKP" "ACHIEVEMENT_GUILDPERK_MRPOPULARITY_RANK2"
+/MD
+END
+VER 3 000000000000001B "G  " "INV_STAVE_2H_THUNDERISLERAID_D_01"
+/6   《神殿》H黑石G团   欢迎各种 675左右稳定人员加入 只要你不是天然呆·可以密聊· 目前黑石9/10H{酷} 公修5000G/天
+END
+VER 3 000000000000001C "MillHelper" "ABILITY_MILING"
+/click MillHelperButton
+END
+VER 3 0000000000000041 "tab" "INV_SWORD_04"
+/run SetCVar("TargetPriorityAllowAnyOnScreen", 0)
+END
+VER 3 0000000000000042 "wcl" "INV_JEWELRY_TRINKET_04"
+/Combatlog
+END
+VER 3 000000000000002C "YY" "ACHIEVEMENT_GUILDPERK_FASTTRACK_RANK2"
+/团队 YY 22702130    各位速度进~~
+END
+VER 3 000000000000001D "YY" "ACHIEVEMENT_GUILD_FORGREATJUSTICERANK2"
+/团队   55955   可以YY 待命 叫了2分钟不到直接T了   ·！
+END
+VER 3 0000000000000040 "中心" "INV_CHEST_LEATHER_07"
+/click ExtraActionButton1
+END
+VER 3 000000000000002D "中间" "SPELL_NATURE_SWIFTNESS"
+/click ExtraActionButton1
+END
+VER 3 0000000000000047 "倒数" "132925"
+/dbm pull 10
+END
+VER 3 000000000000000F "元素冲击" "INV_MISC_QUESTIONMARK"
+#showtooltip 元素冲击
+/targetenemy
+/施放 元素冲击
+END
+VER 3 0000000000000043 "光柱" "SPELL_NATURE_WISPSPLODE"
+/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
+/click DropDownList1Button2
+END
+VER 3 0000000000000010 "叮当" "INV_MISC_QUESTIONMARK"
+/团队 接球接球
+END
+VER 3 000000000000001E "啦怪···" "INV_SWORD_27"
+/run T,F=T or 0,F or CreateFrame("frame")if X then X=nil else X=function()local t=GetTime()if t-T>20 then SendChatMessage("（神殿）H黑石G团，价格2，4。6。欢迎各种老板，来686各种DPS，，","channel",nil,6);T=t;end;end;end;F:SetScript("OnUpdate",X)
+END
+VER 3 0000000000000048 "回春" "136081"
+/cast [target=mouseover,help][target=target,help,exists][target=player]回春术
+END
+VER 3 000000000000002E "在" "Ability_BullRush"
+/target 萨洛拉丝女王
+/协助
+/回春术(等级 13)
+END
+VER 3 0000000000000033 "在线" "SPELL_HOLY_ELUNESGRACE"
+/script T,F=T or 0,F or CreateFrame("frame")if X then X=nil else X=function()local t=GetTime()if t-T>1 then StaticPopup1Button1:Click()T=t end end end F:SetScript ("OnUpdate",X)
+END
+VER 3 0000000000000034 "坐骑" "Ability_Mount_Charger"
+/RandomMount
+END
+VER 3 0000000000000035 "姿态" "INV_Misc_QuestionMark"
+#showtooltip 
+/use [stance:1]防御姿态;[stance:2/3]战斗姿态
+END
+VER 3 000000000000001F "开怪宏··！" "ABILITY_MOUNT_CHARGER"
+/dbm pull 8
+END
+VER 3 0000000000000049 "愈合" "136085"
+/cast [target=mouseover,help][target=target,help,exists][target=player]愈合
+END
+VER 3 0000000000000020 "打断" "INV_MISC_QUESTIONMARK"
+/施放 切喉手
+/y   222222222222222222
+END
+VER 3 0000000000000021 "拉怪" "INV_AXE_1H_THUNDERISLERAID_D_01"
+/6 《神殿》H悬锤G团 新CD·5K 1W ·来包团老板和躺尸老板··！支付宝结算· 只要老板了 lao 5前
+END
+VER 3 0000000000000036 "挑战" "INV_Misc_QuestionMark"
+#showtooltip 挑战战旗
+/target 挑战战旗
+/cast 捍卫
+/cast 援护
+/cast 挑战战旗
+END
+VER 3 0000000000000037 "挫志" "INV_Misc_QuestionMark"
+#showtooltip 挫志战旗
+/target 挫志战旗
+/cast 捍卫
+/cast 援护
+/cast 挫志战旗
+END
+VER 3 0000000000000038 "收人" "Ability_Creature_Cursed_01"
+/5 怒傻子开组，来的MMM，进团自己改职责。差一个T开了
+END
+VER 3 0000000000000039 "救" "INV_Misc_QuestionMark"
+#showtooltip 拯救之手
+/cast [target=mouseover,nomodifier,exists] 拯救之手;拯救之手
+END
+VER 3 000000000000004A "树皮" "572025"
+/cast [target=mouseover,help][target=target,help,exists][target=player]铁木树皮
+END
+VER 3 0000000000000044 "欢乐桶" "ABILITY_SKYREACH_LENS_FLARE"
+/script SetRaidTarget("mouseover",2)
+END
+VER 3 000000000000004B "欢乐桶" "1029587"
+/script SetRaidTarget("mouseover",2)
+/click ExtraActionButton1
+END
+VER 3 000000000000005A "求" "INV_MISC_QUESTIONMARK"
+/消消话 t% 求让不用的装备
+END
+VER 3 000000000000004C "治疗之触" "136041"
+/cast [target=mouseover,help][target=target,help,exists][target=player]治疗之触
+END
+VER 3 0000000000000057 "法阵" "INV_MISC_QUESTIONMARK"
+#showtooltip 恶魔法阵
+/cancelAura 恶魔法阵
+/cast 恶魔法阵
+END
+VER 3 000000000000004D "激活" "136048"
+/cast [target=mouseover,help][target=target,help,exists][target=player]激活
+END
+VER 3 000000000000003A "爆发" "WARRIOR_SKULLBANNER"
+/cast 鲁莽
+/cast 天神下凡
+/cast 颅骨战旗
+/cast 浴血奋战
+END
+VER 3 0000000000000022 "爆发2MIN" "SPELL_MISC_EMOTIONHAPPY"
+/CAST 白虎下凡
+/use 跳动的山脉之心
+END
+VER 3 000000000000003C "盾墙" "ABILITY_WARRIOR_DEFENSIVESTANCE"
+/equip 乌克的猢狲刀片
+#showtooltips 盾墙
+/equip 精工魂卫护盾
+/cast 盾墙
+END
+VER 3 000000000000003B "盾墙" "INV_Misc_QuestionMark"
+#showtooltip 盾墙
+/equip 埃辛诺斯壁垒
+/cast 盾墙
+/cast 防御姿态
+END
+VER 3 000000000000003D "组团" "ACHIEVEMENT_GUILD_DOCTORISIN"
+/5 【底蕴战神】PT AG新CD内销G团装备3.5.8起，战火不加，来565+带装等密。DPS达到第一的50%以上分G。来DPS，治疗
+END
+VER 3 000000000000004E "结界" "132137"
+/cast [target=mouseover,help][target=target,help,exists][target=player]塞纳里奥结界
+END
+VER 3 000000000000004F "绿色光柱" "136094"
+/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
+/click DropDownList1Button5
+END
+VER 3 000000000000005B "群" "INV_MISC_QUESTIONMARK"
+#showtooltip 嚎镇八方
+/tar 玄牛雕像
+/cast 嚎镇八方
+END
+VER 3 0000000000000056 "羽" "INV_MISC_QUESTIONMARK"
+#showtooltip 天堂之羽
+/cast [@player] 天堂之羽
+/use 1
+END
+VER 3 0000000000000023 "聊天" "ABILITY_MONK_ZENFLIGHT"
+2W  任性       ZS4W  克里 40W  白夜6W   轩8W
+END
+VER 3 000000000000002F "致死" "ABILITY_WARRIOR_SAVAGEBLOW"
+/施放 致死打击
+/施放 断筋
+END
+VER 3 0000000000000050 "花" "INV_Misc_QuestionMark"
+#showtooltip 生命绽放
+/cast [target=mouseover,nomodifier,exists] 生命绽放;生命绽放
+END
+VER 3 000000000000003E "视角" "INV_MISC_RABBIT"
+/run SetCVar("cameraDistanceMaxFactor", 2.6)
+END
+VER 3 0000000000000030 "调戏" "SPELL_HOLY_DEVINEAEGIS"
+/大喊 走在%T的背后，%T吓了一跳。.
+/大喊 双手环抱%T，%T的脸红了……
+/大喊 褪去%T的外衣，身材真好~~
+/大喊 亲吻%T，真浪漫。
+/大喊 爱抚%T，%T发出销魂的叹息声。
+/大喊 慢慢除去%T的内@衣，%T更加害羞了~
+/大喊 爱抚%T。
+/大喊 %T的呼吸开始急促。
+/大喊 %T飘飘欲仙了。
+END
+VER 3 0000000000000051 "迅捷" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触
+/cast 自然迅捷 
+/cast [target=mouseover,help][target=target,help,exists][target=player]治疗之触
+END
+VER 3 0000000000000053 "迅捷" "134914"
+/cast [target=mouseover,help][target=target,help,exists][target=player]迅捷治愈
+END
+VER 3 0000000000000052 "迅捷" "INV_Misc_QuestionMark"
+#showtooltip 迅捷治愈
+/cast [target=mouseover,nomodifier,exists] 迅捷治愈;迅捷治愈
+END
+VER 3 0000000000000054 "野性" "236153"
+/cast [target=mouseover,help][target=target,help,exists][target=player]野性成长
+END
+VER 3 0000000000000031 "闪" "INV_Misc_QuestionMark"
+#showtooltip 圣光闪现
+/cast [target=mouseover,nomodifier,exists] 圣光闪现;圣光闪现
+END
+VER 3 0000000000000032 "防御" "ABILITY_WARRIOR_DEFENSIVESTANCE"
+/cast [stance:1/3] 防御姿态
+/equip 乌克的猢狲刀片 
+/equip 精工魂卫护盾
+END
+VER 3 0000000000000024 "驱" "INV_Misc_QuestionMark"
+#showtooltip 清洁术
+/cast [target=mouseover,nomodifier,exists] 清洁术;清洁术
+END
+VER 3 0000000000000055 "驱散" "236288"
+/cast [target=mouseover,help][target=target,help,exists][target=player]自然之愈
+END
+VER 3 0000000000000059 "驱散" "INV_MISC_QUESTIONMARK"
+#showtooltip 清洁术
+/stopcasting
+/cast 清洁术
+END
+VER 3 000000000000000E "驱散" "INV_MISC_QUESTIONMARK"
+#showtooltip 净化灵魂
+/stopcasting
+/施放 净化灵魂
+END
+VER 3 0000000000000058 "骷髅" "INV_MISC_QUESTIONMARK"
+/script SetRaidTarget("target",8)
+END

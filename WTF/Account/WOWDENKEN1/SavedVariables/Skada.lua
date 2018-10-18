@@ -2,6 +2,7 @@
 SkadaDB = {
 	["profileKeys"] = {
 		["亮泽啦 - 石锤"] = "Default",
+		["亮泽啊 - 翡翠梦境"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
@@ -13,9 +14,9 @@ SkadaDB = {
 				}, -- [1]
 			},
 			["versions"] = {
-				["1.6.3"] = true,
-				["1.6.4"] = true,
 				["1.6.7"] = true,
+				["1.6.4"] = true,
+				["1.6.3"] = true,
 			},
 		},
 	},

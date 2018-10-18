@@ -1,3 +1,4 @@
 ColdUI: enabled
-NDui: disabled
+NDui: enabled
 !BaudErrorFrame: disabled
+Myslot: enabled

@@ -1,3 +1,6 @@
+VER 3 0000000000000391 "1" "134400"
+/pull 7
+END
 VER 3 0000000000000344 "2" "132317"
 /click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
 /click DropDownList1Button5
@@ -5,31 +8,42 @@ END
 VER 3 0000000000000345 "BF_Mount" "132226"
 /bfmount
 END
+VER 3 000000000000039A "DB_Arcane" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Arcane
+END
+VER 3 000000000000039B "DB_Fire" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Fire
+END
 VER 3 000000000000034A "MillHelper" "236229"
 /click MillHelperButton
 /LegionInvasionTimer
 /console SET profanityFilter "0"
 END
-VER 3 0000000000000355 "倒数" "135833"
-/in 1 /rw 55555
-/in 2 /rw 44444
-/in 3 /rw 33333
-/in 4 /rw 22222
-/in 5 /rw 11111
+VER 3 000000000000039D "WCL" "134400"
+/combatlog
+END
+VER 3 000000000000039E "倒数" "134400"
+/PULL 8
 END
 VER 3 0000000000000356 "光柱" "252184"
 /click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
 /click DropDownList1Button3
 END
+VER 3 00000000000003A0 "冰箱" "135841"
+/S 我单吃  
+/cast 寒冰屏障
+END
+VER 3 000000000000039F "冰箱" "INV_Misc_QuestionMark"
+#showtooltip 寒冰屏障 
+/stopcasting 
+/cancelAura 寒冰屏障
+/cast 闪光术 
+/cast 寒冰屏障
+END
 VER 3 0000000000000390 "坐骑" "INV_MISC_QUESTIONMARK"
 /use [flyable]惊魂号;天蓝水黾
-END
-VER 3 0000000000000367 "奥强" "INV_Misc_QuestionMark"
-#showtooltip 奥术强化
-/cast 奥术强化
-/use 气定神闲
-/use 生锈的哨兵奖章
-/use 生命共鸣器
 END
 VER 3 0000000000000370 "标记" "237509"
 /script SetRaidTarget("target",3)
@@ -37,9 +51,35 @@ END
 VER 3 000000000000036F "标记" "237509"
 /script if (i==nil) or (i<=0) then i=9; end; i=i-1; SetRaidTarget("mouseover",i)
 END
-VER 3 000000000000037E "视角" "134400"
-/console cameraDistanceMaxZoomFactor 2.6
+VER 3 00000000000003A5 "糖" "538745"
+/use 治疗石
+END
+VER 3 0000000000000398 "羊" "INV_Misc_QuestionMark"
+#showtooltip 变形术
+/focus [target=focus, noharm] [target=focus, dead] [modifier]
+/stopmacro [target=focus, noexists]
+/cast [target=focus] 变形术
+/y 顺我者娼…逆我者羊…
+/in 1
+/p 我羊了
 END
 VER 3 000000000000037F "视角宏" "1392549"
 /run SetCVar("cameraDistanceMaxZoomFactor", 2.6)
+END
+VER 3 00000000000003A7 "解" "INV_Misc_QuestionMark"
+#showtooltip 寒冰屏障
+/stopcasting 
+/cancelAura 寒冰屏障
+/cast 寒冰屏障
+END
+VER 3 0000000000000399 "跟随" "INV_Misc_QuestionMark"
+#showtooltips
+/petfollow
+END
+VER 3 0000000000000395 "隐形" "INV_Misc_QuestionMark"
+#showtooltip 隐形术
+/stopcasting
+/cast 隐形术
+/petfollow
+/petpassive
 END

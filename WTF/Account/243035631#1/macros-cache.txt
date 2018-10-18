@@ -15,6 +15,10 @@ VER 3 000000000000000B "冰风暴" "INV_MISC_QUESTIONMARK"
 /cast [mod:alt]冰风暴
 /castsequence reset=1 冰风暴,0
 END
+VER 3 0000000000000012 "奥强" "INV_MISC_QUESTIONMARK"
+/cast 奥术强化
+/use 怨火柳枝
+END
 VER 3 0000000000000010 "怡宝" "INV_MISC_QUESTIONMARK"
 #showtooltip 寒冰箭
 /施放 寒冰箭
@@ -35,14 +39,12 @@ VER 3 000000000000000E "气定" "INV_MISC_QUESTIONMARK"
 /stopcasting
 /cast 气定神闲
 /cast 奥术冲击
-/cast 奥术冲击
 END
 VER 3 000000000000000C "羊" "INV_MISC_QUESTIONMARK"
 #showtooltip 变形术
 /focus [target=focus, noharm] [target=focus, dead] [modifier]
 /stopmacro [target=focus, noexists]
 /cast [target=focus] 变形术
-/y 顺我者娼…逆我者羊…
 /in 1
 /p 我羊了
 END

@@ -1,5 +1,9 @@
 
 NDuiADB = {
+	["AutoSell"] = true,
+	["Changelog"] = {
+		["Version"] = "3.9.1",
+	},
 	["RaidDebuffs"] = {
 	},
 	["DetectVersion"] = "3.9.1",
@@ -7,12 +11,17 @@ NDuiADB = {
 	["totalGold"] = {
 		["石锤"] = {
 			["亮泽啦"] = {
-				834141310, -- [1]
+				709514383, -- [1]
 				"MONK", -- [2]
 			},
 		},
+		["翡翠梦境"] = {
+			["亮泽啊"] = {
+				39800662, -- [1]
+				"HUNTER", -- [2]
+			},
+		},
 	},
-	["AutoSell"] = true,
 	["ChatFilter"] = "",
 	["RepairType"] = 1,
 	["Timestamp"] = false,

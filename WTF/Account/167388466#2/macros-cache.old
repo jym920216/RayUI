@@ -1,3 +1,6 @@
+VER 3 0000000000000391 "1" "134400"
+/pull 7
+END
 VER 3 0000000000000344 "2" "132317"
 /click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
 /click DropDownList1Button5
@@ -5,107 +8,42 @@ END
 VER 3 0000000000000345 "BF_Mount" "132226"
 /bfmount
 END
+VER 3 000000000000039A "DB_Arcane" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Arcane
+END
+VER 3 000000000000039B "DB_Fire" "INV_Misc_QuestionMark"
+#showtooltip
+/click DB_Fire
+END
 VER 3 000000000000034A "MillHelper" "236229"
 /click MillHelperButton
 /LegionInvasionTimer
 /console SET profanityFilter "0"
 END
-VER 3 000000000000038D "T3" "INV_Misc_QuestionMark"
-#showtooltip [talent:3/1]镜像;[talent:3/2]能量符文;
-/cast [talent:3/1]镜像
-/cast [talent:3/2]能量符文
+VER 3 000000000000039D "WCL" "134400"
+/combatlog
 END
-VER 3 000000000000034B "T7" "INV_Misc_QuestionMark"
-#showtooltip [talent:7/2]燃烬风暴;[talent:7/3]流星
-/cast [talent:7/2]燃烬风暴
-/cast [mod,@player] [@cursor][][talent:7/3]流星
-END
-VER 3 000000000000038A "买东西" "609813"
-/click MerchantItem4ItemButton RightButton
-/click StaticPopup1Button1 
-END
-VER 3 0000000000000355 "倒数" "135833"
-/in 1 /rw 55555
-/in 2 /rw 44444
-/in 3 /rw 33333
-/in 4 /rw 22222
-/in 5 /rw 11111
+VER 3 000000000000039E "倒数" "134400"
+/PULL 8
 END
 VER 3 0000000000000356 "光柱" "252184"
 /click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
 /click DropDownList1Button3
 END
-VER 3 000000000000038F "关闭泛光" "236208"
-/console ffxGlow 0
-END
-VER 3 0000000000000358 "冰箱" "INV_Misc_QuestionMark"
-#showtooltip 寒冰屏障
-/stopcasting  
-/cancelAura 寒冰屏障
-/cast 寒冰屏障
-END
-VER 3 000000000000035A "冰箱" "135841"
+VER 3 00000000000003A0 "冰箱" "135841"
 /S 我单吃  
 /cast 寒冰屏障
 END
-VER 3 0000000000000359 "冰箱" "INV_Misc_QuestionMark"
-#showtooltip 寒冰屏障
-/stopcasting
-/cast 闪光术  
-/cast 寒冰屏障
-END
-VER 3 000000000000035E "单吃" "INV_Misc_QuestionMark"
+VER 3 000000000000039F "冰箱" "INV_Misc_QuestionMark"
 #showtooltip 寒冰屏障 
 /stopcasting 
 /cancelAura 寒冰屏障
 /cast 闪光术 
 /cast 寒冰屏障
 END
-VER 3 0000000000000361 "反制" "INV_Misc_QuestionMark"
-#showtooltip 法术反制
-/stopcasting
-/cast [modifier:alt,target=focus,exists,nodead]法术反制;法术反制
-/s 我已经打断 下个准备
-END
-VER 3 0000000000000362 "变羊" "INV_Misc_QuestionMark"
-#showtooltip 变形术
-/stopcasting
-/focus [target=focus,noexists] 
-/cast [modifier:alt,target=focus,exists] 变形术;变形术
-END
-VER 3 0000000000000364 "古尔丹" "135729"
-/stopcasting
-/target 埃辛诺斯灵魂碎片
-/cast 法术吸取
-/targetlasttarget
-END
-VER 3 0000000000000367 "奥强" "INV_Misc_QuestionMark"
-#showtooltip 奥术强化
-/cast 奥术强化
-/use 气定神闲
-/use 生锈的哨兵奖章
-/use 生命共鸣器
-END
-VER 3 0000000000000368 "奥术冲击" "INV_Misc_QuestionMark"
-#showtooltip 奥术冲击
-/Cast [modifier:ctrl,target=focus,exists] 奥术冲击;奥术冲击
-END
-VER 3 000000000000038B "姐姐" "135856"
-/stopcasting
-/tar 苏拉雅，宇宙之母
-/cast 法术反制
-/targetlasttarget
-END
-VER 3 000000000000036C "打断" "INV_Misc_QuestionMark"
-#showtooltips 法术反制
-/stopcasting
-/target 锋颚踏浪者
-/cast 法术反制;
-/targetlasttarget
-END
-VER 3 000000000000036E "暴风雪" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod,@player] [@cursor] []暴风雪
+VER 3 0000000000000390 "坐骑" "INV_MISC_QUESTIONMARK"
+/use [flyable]惊魂号;天蓝水黾
 END
 VER 3 000000000000036F "标记" "237509"
 /script if (i==nil) or (i<=0) then i=9; end; i=i-1; SetRaidTarget("mouseover",i)
@@ -113,66 +51,35 @@ END
 VER 3 0000000000000370 "标记" "237509"
 /script SetRaidTarget("target",3)
 END
-VER 3 0000000000000371 "气定" "INV_Misc_QuestionMark"
-#showtooltip 
-/cast 气定神闲
-/cast 奥术冲击
+VER 3 00000000000003A5 "糖" "538745"
+/use 治疗石
 END
-VER 3 000000000000038C "流星" "INV_Misc_QuestionMark"
-#showtooltips 流星
-/cast [@cursor] 流星
-END
-VER 3 0000000000000375 "火焰冲击" "135807"
-#show 火焰冲击
-/castsequence [nomod] reset=1 火焰冲击,炎爆术
-/castsequence [mod] reset=1 火焰冲击,火焰冲击,炎爆术   
-END
-VER 3 0000000000000376 "烈焰" "INV_Misc_QuestionMark"
-#showtooltips 烈焰风暴
-/cast [@cursor] 烈焰风暴 
-END
-VER 3 0000000000000377 "烈焰风暴" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod,@player] [@cursor] []烈焰风暴
-END
-VER 3 0000000000000378 "焦点炎爆" "INV_Misc_QuestionMark"
-#showtooltip 炎爆术
-/目标 focus
-/cast 炎爆术
-/targetlasttarget
-END
-VER 3 0000000000000379 "燃烧" "INV_Misc_QuestionMark"
-#showtooltip 燃烧
-/stopcasting
-/cast 燃烧
-/use 缺指指环
-/cast 狂暴
-END
-VER 3 000000000000037D "视角" "134400"
-/console cameraDistanceMaxZoomFactor 1.5
-END
-VER 3 000000000000037E "视角" "134400"
-/console cameraDistanceMaxZoomFactor 2.6
+VER 3 0000000000000398 "羊" "INV_Misc_QuestionMark"
+#showtooltip 变形术
+/focus [target=focus, noharm] [target=focus, dead] [modifier]
+/stopmacro [target=focus, noexists]
+/cast [target=focus] 变形术
+/y 顺我者娼…逆我者羊…
+/in 1
+/p 我羊了
 END
 VER 3 000000000000037F "视角宏" "1392549"
 /run SetCVar("cameraDistanceMaxZoomFactor", 2.6)
 END
-VER 3 0000000000000380 "跟随" "132171"
-/跟随 淡陌丶红尘
-/跟随 寂静丶欢喜
+VER 3 00000000000003A7 "解" "INV_Misc_QuestionMark"
+#showtooltip 寒冰屏障
+/stopcasting 
+/cancelAura 寒冰屏障
+/cast 寒冰屏障
 END
-VER 3 0000000000000381 "钓鱼" "134400"
-/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
-/click DropDownList1Button2
+VER 3 0000000000000399 "跟随" "INV_Misc_QuestionMark"
+#showtooltips
+/petfollow
 END
-VER 3 0000000000000382 "镜像" "INV_Misc_QuestionMark"
-#showtooltip [talent:3/1]镜像;[talent:3/2]能量符文;
-/use 13
-/cast [talent:3/1]镜像
-/cast [talent:3/2]能量符文
-END
-VER 3 0000000000000383 "镜法" "INV_Misc_QuestionMark"
-#showtooltip [talent:3/1] 镜像; [talent:3/2] 能量符文; [talent:3/3] 咒术洪流
-/cast 镜像
-/cast 能量符文
+VER 3 0000000000000395 "隐形" "INV_Misc_QuestionMark"
+#showtooltip 隐形术
+/stopcasting
+/cast 隐形术
+/petfollow
+/petpassive
 END

@@ -67,6 +67,7 @@ VExRT = {
 		["gnGUIDs"] = {
 			["西莱斯特-范达尔鹿盔"] = 65,
 			["天天喝怡宝"] = 64,
+			["Isendra"] = 64,
 		},
 		["NoRaid"] = true,
 		["CDECol"] = {

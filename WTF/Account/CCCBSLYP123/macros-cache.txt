@@ -1,0 +1,534 @@
+VER 3 0000000000000050 " " "INV_Misc_QuestionMark"
+#showtooltip 
+/cancelaura 疾跑
+/cancelaura 狂奔怒吼
+/cancelaura 身心合一
+/cancelaura 保护之手
+/use 6
+END
+VER 3 0000000000000012 " " "Spell_Magic_LesserInvisibilty"
+/STOPCASTING
+/cast [target=focus]变形术(龟)
+END
+VER 3 0000000000000014 " " "Spell_Holy_DivineIntervention"
+/CAST 战斗大师的毁灭
+/CAST 邪能治疗石
+END
+VER 3 0000000000000013 " " "Spell_Fire_Fireball"
+#showtooltip 火焰冲击
+/stopcasting
+/Cast [target=focus,exists] 火焰冲击;火焰冲击\
+END
+VER 3 0000000000000015 " " "Spell_Frost_ColdHearted"
+/CAST 冰冷血脉
+/cast 生锈的哨兵奖章
+END
+VER 3 0000000000000019 " " "Spell_Nature_Polymorph_Cow"
+/p  YYYYYYYYYYYY
+END
+VER 3 0000000000000018 " " "Ability_Creature_Cursed_01"
+/stopcasting 
+/Cast [target=focus,exists] 深度冻结
+END
+VER 3 000000000000003E " " "SPELL_MAGE_RUNEOFPOWER"
+/施放 能量符文
+/USE 蠕动肌腱
+END
+VER 3 0000000000000017 " " "Spell_Magic_PolymorphPig"
+/tar 希格林
+/cast 变形术
+END
+VER 3 000000000000003C " " "INV_Misc_QuestionMark"
+#showtooltips 寒冰宝珠
+/use 10
+/cast 生命之血
+/cast 血性狂怒
+END
+VER 3 000000000000001B " " "Spell_Fire_FelPyroblast"
+/CAST 火焰冲击(等级 11)
+/CAST 无情角斗士的丝质护手
+/CAST 卡德加的征服护手
+END
+VER 3 000000000000001C " " "Spell_Frost_ChainsOfIce"
+#showtooltip 深度冻结
+/stopcasting
+/Cast [target=focus,exists] 深度冻结;深度冻结\
+END
+VER 3 000000000000002F " " "SPELL_FROST_ICESHOCK"
+#showtooltip
+/stopcasting
+/Cast [modifier:alt,target=focus,harm,nodead]法术反制;[modifier:ctrl,target=mouseover,harm,nodead]法术反制;法术反制
+END
+VER 3 0000000000000022 " " "INV_MISC_QUESTIONMARK"
+/r 再给开个YYYYYYYYYYYYY
+END
+VER 3 0000000000000030 " " "SPELL_FROST_FROSTNOVA"
+#showtooltip
+/script if(GetPetActionCooldown(5)>0 and GetSpellCooldown('召唤水元素')==0)then PetDismiss()end
+/cast [nopet]召唤水元素;冰冻术
+/petpassive
+/petattack [harm]
+/petfollow [noharm]
+END
+VER 3 0000000000000032 " " "SPELL_FROST_COLDHEARTED"
+#showtooltips 冰冷血脉
+/CAST 冰冷血脉
+/cast 寒冰宝珠
+END
+VER 3 000000000000005D " " "INV_Misc_QuestionMark"
+/tar 青玉魁麟
+END
+VER 3 000000000000005C " " "INV_Misc_QuestionMark"
+#showtooltip
+/cast [target=寶儿茼学]激活
+END
+VER 3 000000000000005B " " "INV_Misc_QuestionMark"
+#showtooltip 操控时间
+/施放 蒙塔克的灼热之息手套
+/施放 狂暴(种族特长)
+/施放 操控时间
+END
+VER 3 000000000000005A " " "ABILITY_SHOOTWAND"
+/目标 恐角之魂
+/CAST 灼烧
+/targetlasttarget
+END
+VER 3 0000000000000059 " " "SPELL_FROST_FROZENORB"
+/cast 寒冰宝珠
+/use 狂战士的魂能战符
+END
+VER 3 0000000000000058 " " "INV_MISC_QUESTIONMARK"
+/密语猪一样的猪 11
+END
+VER 3 0000000000000057 " " "SPELL_ARCANE_ARCANE03"
+/cast [target=focus]  星涌术
+/stopcasting
+END
+VER 3 0000000000000056 " " "ABILITY_CREATURE_CURSED_05"
+/dbm pull 22
+END
+VER 3 0000000000000055 " " "SPELL_MAGIC_LESSERINVISIBILTY"
+/cast 镜像
+/cast 虚无碎片
+END
+VER 3 0000000000000054 " " "INV_MISC_QUESTIONMARK"
+/cast [target=孢子射手]
+END
+VER 3 0000000000000053 " " "INV_Misc_QuestionMark"
+#showtooltip 操控时间
+/use 10
+/施放 狂暴(种族特长)
+/施放 操控时间
+END
+VER 3 0000000000000052 " " "INV_Misc_QuestionMark"
+#showtooltip 唤醒
+/施放 时光护盾
+/施放 唤醒
+END
+VER 3 0000000000000051 " " "SPELL_MISC_PETHEAL"
+/tar 幻灵晶体
+/TAR 真菌食肉者
+END
+VER 3 000000000000003D " " "INV_MISC_QUESTIONMARK"
+/团队  我没血了 加我 苍月之殇4队
+END
+VER 3 000000000000004F " " "INV_Misc_QuestionMark"
+#showtooltip 镜像
+/USE 虚无碎片
+/施放 狂暴(种族特长)
+/cast 镜像
+END
+VER 3 000000000000004E " " "INV_MISC_QUESTIONMARK"
+/w Jghjyu-安苏 换号FS
+END
+VER 3 000000000000004D " " "INV_Misc_QuestionMark"
+#showtooltip 灾难之握
+/cast [nochanneling:灾难之握]灾难之握
+END
+VER 3 000000000000004C " " "ABILITY_MAGE_FIRESTARTER"
+/目标 南海勇夫
+/施放 阳炎术
+END
+VER 3 000000000000004B " " "INV_AXE_02"
+/目标 爆裂幼蝎
+/目标 酸喉幼蝎
+END
+VER 3 000000000000004A " " "SPELL_ARCANE_ARCANE02"
+/cast [@focus] 法术反制
+END
+VER 3 0000000000000049 " " "ABILITY_DRUID_TIGERSROAR"
+/施放 奥术强化
+/施放 法力宝石
+/施放 狂暴(种族特长)
+/施放 
+END
+VER 3 0000000000000048 " " "INV_GAUNTLET_PLATE_PVPDEATHKNIGHT_C_02"
+/use 10
+/施放 火球術
+END
+VER 3 0000000000000047 " " "INV_Misc_QuestionMark"
+/cast 寒冰宝珠
+/cast 生命共鸣器
+END
+VER 3 0000000000000046 " " "SPELL_MAGE_FOCUSINGCRYSTAL"
+#showto/施放 幻灵晶体
+END
+VER 3 0000000000000045 " " "INV_Misc_QuestionMark"
+#showtooltip 冰冷血脉
+/施放 冰冷血脉
+/施放 狂暴(种族特长)
+END
+VER 3 0000000000000044 " " "INV_Misc_QuestionMark"
+#showtooltip 法术反制
+/cast [target=focus] 法术反制
+END
+VER 3 0000000000000043 " " "SPELL_NATURE_LIGHTNING"
+/施放 奥术强化
+/use 怨火柳枝
+END
+VER 3 0000000000000042 " " "SPELL_FROST_COLDHEARTED"
+/施放 冰冷血脉
+/use 13
+/use 14
+END
+VER 3 0000000000000041 " " "SPELL_MAGIC_POLYMORPHPIG"
+/密语 猪一样的猪 奶我啊
+END
+VER 3 0000000000000040 " " "INV_Misc_QuestionMark"
+#showtooltip 奥术飞弹
+/cast [nochanneling:奥术冲击] 奥术飞弹
+END
+VER 3 000000000000003B " " "INV_MISC_QUESTIONMARK"
+/cast 燃烧
+/cast 生锈的哨兵奖章
+END
+VER 3 000000000000005E "  " "INV_MISC_QUESTIONMARK"
+/tar 一边
+/follow
+END
+VER 3 000000000000005F "  " "INV_Misc_QuestionMark"
+#showtooltip 奥术冲击
+/cast [nochanneling:奥术飞弹] 奥术冲击
+END
+VER 3 0000000000000060 "   " "INV_MISC_QUESTIONMARK"
+/w 猪一般的猪 奶我 么么哒.么么哒
+END
+VER 3 0000000000000061 "   " "ABILITY_MOUNT_FOSSILIZEDRAPTOR"
+#show
+/cast [flyable]沙石幼龙
+/cast 化石迅猛龙
+END
+VER 3 0000000000000062 " 1" "INV_MISC_QUESTIONMARK"
+/施放 水流喷射
+END
+VER 3 0000000000000006 " 冰箱" "135841"
+/stopcasting 
+/cancelAura 寒冰屏障 
+/cast 寒冰屏障 
+END
+VER 3 0000000000000063 " 寒冰箭" "INV_Misc_QuestionMark"
+#showtooltip 寒冰箭
+/startattack
+/cast [mod:alt,target=focus] 寒冰箭;寒冰箭
+END
+VER 3 000000000000003F " 拍卖" "1033909"
+/W LMCD-战歌 组
+END
+VER 3 0000000000000064 " 水晶" "ACHIEVEMENT_DUNGEON_SHADOWMOONHIDEOUT.BLP"
+/use 14
+/施放 奥术强化
+/cast 幻灵晶体
+END
+VER 3 0000000000000065 "#showtooltips 浮冰" "INV_Misc_QuestionMark"
+#showtooltips 浮冰
+/castsequence reset=0 浮冰,寒冰箭,浮冰,寒冰箭,浮冰,寒冰箭
+/castsequence reset= 0 浮冰,寒冰箭,浮冰,寒冰箭,浮冰,寒冰箭
+/castsequence reset= 0 浮冰,寒冰箭,浮冰,寒冰箭,浮冰,寒冰箭
+/castsequence reset= 0 浮冰,寒冰箭,浮冰,寒冰箭,浮冰,寒冰箭
+/cast 寒冰箭
+END
+VER 3 0000000000000024 "." "SPELL_FROST_FROSTBOLT02"
+#showtooltip 寒冰箭
+/castsequence reset=0 0,寒冰箭
+/use 寒冰炸弹
+/script UIErrorsFrame:Clear() 
+END
+VER 3 0000000000000023 "." "SPELL_FROST_COLDHEARTED"
+#showtooltip 冰冷血脉
+/castsequence reset=30 气定神闲,冰冷血脉,操控时间,霜火之箭,冰枪术,寒冰箭,冰枪术,寒冰炸弹,冰枪术,霜火之箭,寒冰箭,冰枪术,寒冰箭,寒冰箭
+END
+VER 3 0000000000000025 "." "SPELL_FROST_FROSTNOVA"
+/cast 冰冻术
+END
+VER 3 0000000000000026 "." "SPELL_FROST_FROSTBLAST"
+/cast 冰枪术
+/cast 时空之主手套
+END
+VER 3 000000000000006E "1" "ABILITY_WARLOCK_FIREANDBRIMSTONE"
+/cancelaura 硫磺烈火
+END
+VER 3 000000000000000E "1" "Ability_CheapShot"
+/stopcasting 
+/Cast [target=focus,exists] 深度冻结
+END
+VER 3 0000000000000066 "1" "INV_Misc_QuestionMark"
+#showtooltips 浮冰
+/castsequence reset=0 浮冰,火球术,浮冰,火球术,浮冰,火球术
+/castsequence reset= 0 浮冰,火球术,浮冰,火球术,浮冰,火球术
+/castsequence reset= 0 浮冰,火球术,浮冰,火球术,浮冰,火球术
+/castsequence reset= 0 浮冰,火球术,浮冰,火球术,浮冰,火球术
+/cast 火球术
+END
+VER 3 0000000000000067 "1" "INV_MISC_QUESTIONMARK"
+/dbm pull
+END
+VER 3 000000000000006B "1" "INV_Misc_QuestionMark"
+#showtooltip 寒冰新星
+/cast [mod:alt,@player] [@target,nodead] 寒冰新星 
+END
+VER 3 000000000000006C "1" "TRADE_ARCHAEOLOGY_ANTLEREDCLOAKCLASP.BLP"
+/cast 堆叠式雄鹿
+END
+VER 3 0000000000000073 "1" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/施放 暗影之怒
+/s 1111111111
+END
+VER 3 0000000000000072 "1" "ABILITY_AMBUSH"
+/团队 第一次  大团图腾  取代 盾墙
+/团队 第二次  大团饰品  取代 援护 牺牲
+/团队 第三次  包子罩子  取代 包子压制
+/团队 第四次  大团饰品  取代 春哥  援护
+/团队 第五次  鸥罩子      取代 鸥压制
+/团队 第六次  大团饰品  取代  牺牲 援护
+/团队 第七次  琉璃罩子  MMACRO 16 "BF_Mount" Ability_Mage_FireStarter
+/cancelform
+/bfmount
+END
+VER 3 0000000000000071 "1" "INV_Misc_QuestionMark"
+#showtooltip [nopet][target=pet,dead]召唤水元素;[pet]水流喷射
+/run if (GetSpellCooldown("召唤水元素")==0 and IsModifierKeyDown()==1) then PetDismiss(); end 
+/use [nopet,nomounted] [@pet,dead] 召唤水元素
+/petattack [harm]
+/use [nomod,pet]!水流喷射
+/dismount
+END
+VER 3 0000000000000070 "1" "INV_Misc_QuestionMark"
+#showtooltip 操控时间
+/stopcasting 
+/cast 操控时间
+END
+VER 3 000000000000006F "1" "ACHIEVEMENT_GUILDPERK_MRPOPULARITY_RANK2"
+/argetenemy/cast 虚空风暴
+END
+VER 3 0000000000000068 "1" "INV_MISC_QUESTIONMARK"
+/cast 火球术
+/use  虚无碎片
+END
+VER 3 0000000000000069 "1" "INV_MISC_QUESTIONMARK"
+/目标 心能精华
+END
+VER 3 000000000000006D "1" "INV_MISC_POWDER_THORIUM"
+/script SetCVar("cameradistanceMax",30) 
+END
+VER 3 000000000000006A "1" "INV_Misc_QuestionMark"
+#showtooltips 操控时间
+/cast 冰冷血脉
+/use 10
+/cast 血性狂怒
+/cast 生命之血
+/cast 操控时间
+/cast 冰枪术
+END
+VER 3 0000000000000074 "100" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [talent:7/1]奥数强化;[talent:7/2]幻灵晶体;[talent:7/3]奥术宝珠
+END
+VER 3 0000000000000075 "11" "INV_MISC_QUESTIONMARK"
+/tar 南洋箭鼠
+END
+VER 3 0000000000000034 "11" "ABILITY_MAGE_DEEPFREEZE"
+/cast [target=arena1] 深度冻结
+END
+VER 3 0000000000000031 "11" "INV_MISC_QUESTIONMARK"
+/w 紫焰楓魂-壁炉谷 111
+END
+VER 3 0000000000000035 "111" "ABILITY_MAGE_FROSTJAW"
+/cast [target=arena1] 
+END
+VER 3 0000000000000036 "111" "SPELL_NATURE_SWIFTNESS"
+/cast [target=英舞者] 解除诅咒
+END
+VER 3 0000000000000076 "1111" "840189"
+/cast 黑冰箭
+/cast 狂战士的魂能战符
+END
+VER 3 0000000000000077 "123" "SPELL_ARCANE_BLAST"
+/目标 丑恶的融合怪
+/cast 奥术冲击
+END
+VER 3 0000000000000078 "2" "INV_Misc_QuestionMark"
+#showtooltip  /use [mod:alt]霜火之箭;浮冰
+END
+VER 3 0000000000000079 "21 " "ACHIEVEMENT_GUILDPERK_MOBILEBANKING"
+/cleartarget
+/target 重拳
+END
+VER 3 0000000000000037 "22" "ABILITY_MAGE_DEEPFREEZE"
+/cast [target=arena2] 深度冻结
+END
+VER 3 0000000000000038 "222" "ABILITY_MAGE_FROSTJAW"
+/cast [target=arena2] 冰霜之颌
+END
+VER 3 000000000000007A "23" "SPELL_MAGIC_MANAGAIN"
+/click ExtraActionButton1
+END
+VER 3 000000000000007B "3" "INV_Misc_QuestionMark"
+#showtooltip 暗影灼烧
+/cast [@mouseover,harm,nodead][harm,nodead] 暗影灼烧
+END
+VER 3 0000000000000039 "33" "ABILITY_MAGE_DEEPFREEZE"
+/cast [target=arena3] 深度冻结
+END
+VER 3 000000000000003A "333" "ABILITY_MAGE_FROSTJAW"
+/cast [target=arena3] 冰霜之颌
+END
+VER 3 0000000000000033 "5" "SPELL_NATURE_POLYMORPH"
+/cast [target=arena5] 变形术(绵羊)
+END
+VER 3 000000000000007D "`" "SPELL_MAGE_INFERNOBLAST"
+#show 炼狱冲击
+/cast [@focus] 炼狱冲击
+END
+VER 3 000000000000007E "`" "INV_MISC_QUESTIONMARK"
+#show 炎爆术
+/cast [@focus] 炎爆术
+END
+VER 3 000000000000007C "`" "INV_Misc_QuestionMark"
+#showtooltip 闪现术 
+/stopcasting 
+/cast 闪现术
+END
+VER 3 000000000000007F "`·" "SPELL_FIRE_FLAMEBOLT"
+#show 火球术
+/use 10
+/cast 火球术
+END
+VER 3 0000000000000080 "a" "INV_MISC_QUESTIONMARK"
+/W 战火秃头-国王之谷 666
+END
+VER 3 0000000000000081 "Arcane impact" "INV_Misc_QuestionMark"
+#showtooltip 奥术冲击
+/cast 奥术冲击
+END
+VER 3 0000000000000011 "BF_Mount" "ability_mount_charger"
+/bfmount
+END
+VER 3 0000000000000082 "BF_Mount" "ABILITY_MOUNT_CHARGER"
+/click ExtraActionButton1
+/stopcasting
+/stopcasting
+END
+VER 3 0000000000000027 "BF_Pet" "ACHIEVEMENT_WORLDEVENT_BREWMASTER"
+/BFPET
+END
+VER 3 0000000000000016 "CD刷" "136103"
+/run local M=function(a,b)SendChatMessage(b,"WHISPER",nil,a)end;M("兔子修炼成马-白银之手","1")M("昀萧-夏维安","1")M("死神的黑羽翼-山丘之王","1")M("未闻君名-白银之手","1")M("千山云影-雷霆号角","1")M("永夜绽放之薇-艾森娜","9")M("林荫下的乞丐-安苏","44296")
+/Y 进本必须用结束宏！
+END
+VER 3 0000000000000021 "CD结束" "134153"
+/P 3
+/S 使用版本1.33N
+/S 谁再组你都拒绝，祝红手！
+/W 兔子修炼成马-白银之手 0
+/W 昀萧-夏维安 0
+/W 林荫下的乞丐-安苏 0
+/W 死神的黑羽翼-山丘之王 0
+/W 永夜绽放之薇-艾森娜 0
+/W 永夜绽放之薇-艾森娜 1.33N
+/W 未闻君名-白银之手 0
+/W 千山云影-雷霆号角 0
+END
+VER 3 0000000000000010 "Decursive" "INV_Misc_QuestionMark"
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除诅咒;  [@mouseover,exists,mod:ctrl] 变形术; [@mouseover,exists,mod:shift] 解除诅咒
+END
+VER 3 0000000000000028 "Decursive" "1"
+/stopcasting
+/cast [@mouseover,nomod,exists] 清洁术;  [@mouseover,exists,mod:ctrl] 清洁术; [@mouseover,exists,mod:shift] 清洁术
+END
+VER 3 0000000000000020 "V" "Spell_Shadow_MindRot"
+#showtooltip 法术反制
+/stopcasting
+/Cast [target=focus,exists] 法术反制;法术反制
+END
+VER 3 000000000000001E "V" "Spell_Shadow_ImpPhaseShift"
+#showtooltip 法术反制
+/stopcasting
+/cancelaura 寒冰屏障
+/Cast [target=focus,harm,exists,modifier:shift]法术反制; [target=mouseover, harm, exists]法术反制; 法术反制
+/focus [target=focus,noexists] [target=focus,dead] target
+END
+VER 3 000000000000001D "一键驱散" "INV_Misc_QuestionMark"
+/stopcasting
+/cast [target=mouseover,nomod,exists] 解除诅咒;  [target=mouseover,exists,mod:ctrl] 变形术; [target=mouseover,exists,mod:shift] 解除诅咒
+END
+VER 3 0000000000000029 "世界BOSS" "ACHIEVEMENT_GUILDPERK_MOBILEBANKING"
+/run for k, v in pairs({ ["炮舰"] = 32098, ["怒之煞"] = 32099, ["纳拉克"] = 32518, ["乌达斯塔"] = 32519}) do print(format("%s: %s", k, IsQuestFlaggedCompleted(v) and "\124cff00ff00已杀\124r" or "\124cffff0000未杀\124r")) end
+END
+VER 3 000000000000001A "中间技能" "135796"
+/click ExtraActionButton1
+END
+VER 3 000000000000000F "坐骑" "Ability_Mount_Charger"
+/RandomMount
+END
+VER 3 000000000000001F "水元素" "SPELL_FROST_SUMMONWATERELEMENTAL_2"
+#showtooltip [nopet] [target=pet,dead] 召唤水元素; [pet] 冰冻术
+/cast [nopet]召唤水元素
+/cast [target=pet,dead]召唤水元素
+/stopmacro [target=pet,dead] 
+/cast !冰冻术
+/petattack [harm] 
+/petfollow [noharm]
+END
+VER 3 0000000000000084 "流星" "1033911"
+#showtooltips 流星
+/cast [@cursor] 流星
+END
+VER 3 0000000000000083 "烈焰风暴" "135826"
+#showtooltips 烈焰风暴
+/cast [@cursor] 烈焰风暴
+END
+VER 3 000000000000002A "焦点反制" "SPELL_FROST_ICESHOCK"
+/Cast [target=focus,harm,exists][]法术反制
+END
+VER 3 000000000000002B "爆发" "SPELL_FROST_COLDHEARTED"
+/施放 冰冷血脉
+/施放 镜像
+/施放 气定神闲
+/施放 操控时间
+END
+VER 3 000000000000002C "移除" "INV_MISC_QUESTIONMARK"
+/邀请 丶牧歌-白银之手
+END
+VER 3 000000000000002D "羊" "SPELL_NATURE_POLYMORPH"
+/use 气定神闲
+/use 变形术
+END
+VER 3 000000000000002E "邀请" "INV_MISC_QUESTIONMARK"
+/Click RaidFrameConvertToRaidButton
+/邀请 茜茜郡主-斯坦索姆
+/邀请 烟花再美-玛里苟斯
+/邀请 树语者-埃德萨拉
+/邀请 飘舞-安威玛尔
+/邀请 叮当叮当-艾苏恩
+/邀请 木下丶沧月-奥尔加隆
+/邀请 炙炎焚天-亡语者
+/邀请 Ameliatam-提尔之手
+/邀请 Aruka-格瑞姆巴托
+/邀请 Vanadiss-罗宁
+/邀请 Sweatpants-影之哀伤
+/邀请 凸逼囝啵丸-丹莫德
+/邀请 玄天丶皓世-破碎岭
+/邀请 夜来风雨声-迅捷微风
+END

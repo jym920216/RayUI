@@ -78,7 +78,7 @@ VER 3 0000000000000018 "BF_Pet" "ACHIEVEMENT_WORLDEVENT_BREWMASTER"
 END
 VER 3 0000000000000019 "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] 清创生血;  [@mouseover,exists,mod:ctrl] 清创生血; [@mouseover,exists,mod:shift] 清创生血
+/cast [@mouseover,nomod,exists] 恐惧;  [@mouseover,exists,mod:ctrl] 恐惧; [@mouseover,exists,mod:shift] 恐惧
 END
 VER 3 000000000000002B "Decursive" "INV_MISC_QUESTIONMARK"
 /script DecursiveRootTable.Dcr:Println('没有相关技能')
@@ -306,9 +306,6 @@ VER 3 0000000000000024 "驱" "INV_Misc_QuestionMark"
 #showtooltip 清洁术
 /cast [target=mouseover,nomodifier,exists] 清洁术;清洁术
 END
-VER 3 0000000000000055 "驱散" "236288"
-/cast [target=mouseover,help][target=target,help,exists][target=player]自然之愈
-END
 VER 3 0000000000000059 "驱散" "INV_MISC_QUESTIONMARK"
 #showtooltip 清洁术
 /stopcasting
@@ -318,6 +315,9 @@ VER 3 000000000000000E "驱散" "INV_MISC_QUESTIONMARK"
 #showtooltip 净化灵魂
 /stopcasting
 /施放 净化灵魂
+END
+VER 3 0000000000000055 "驱散" "236288"
+/cast [target=mouseover,help][target=target,help,exists][target=player]自然之愈
 END
 VER 3 0000000000000058 "骷髅" "INV_MISC_QUESTIONMARK"
 /script SetRaidTarget("target",8)

@@ -1,0 +1,60 @@
+VER 3 0100000000000008 " " "INV_Misc_QuestionMark"
+#showtooltip
+/stopcasting
+/use 闪光术
+/cancelAura 寒冰屏障
+/use 寒冰屏障
+END
+VER 3 0100000000000004 " 偷取" "135844"
+/cast 法术吸取
+END
+VER 3 0100000000000005 " 冰环" "135844"
+/cast 冰霜新星
+END
+VER 3 0100000000000007 " 冰锥" "135844"
+/cast 冰锥术
+END
+VER 3 0100000000000006 " 冰风暴" "135844"
+/cast 冰风暴
+END
+VER 3 010000000000000A " 宝珠" "135844"
+/cast 寒冰宝珠
+END
+VER 3 010000000000000C " 寒冰箭" "135844"
+/cast 寒冰箭
+END
+VER 3 0100000000000009 " 自利" "135844"
+/cast 自利
+END
+VER 3 010000000000000B " 黑冰" "135844"
+/cast 黑冰箭
+END
+VER 3 0100000000000010 "1" "136103"
+/click ExtraActionButton1 
+END
+VER 3 0100000000000002 "DB_Ichthys_Frosty" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click DB_Ichthys_Frosty
+END
+VER 3 010000000000000E "反制" "135844"
+/cast 法术反制
+END
+VER 3 0100000000000001 "变形" "135844"
+/cast 变形术
+END
+VER 3 010000000000000D "寒冰护体" "135844"
+/cast 寒冰护体
+END
+VER 3 0100000000000003 "暴风雪" "135857"
+#showtooltips 暴风雪
+/cast [@cursor] 暴风雪
+END
+VER 3 0100000000000011 "血脉" "135844"
+/cast 冰冷血脉
+END
+VER 3 0100000000000012 "闪光" "135844"
+/cast 闪光术
+END
+VER 3 010000000000000F "隐形" "135844"
+/cast 隐形术
+END

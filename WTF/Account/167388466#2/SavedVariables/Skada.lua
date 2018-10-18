@@ -8,8 +8,13 @@ SkadaDB = {
 	["profiles"] = {
 		["Default"] = {
 			["modeclicks"] = {
-				["伤害"] = 2,
-				["死亡"] = 1,
+				["治疗"] = 1,
+				["承受法术伤害"] = 4,
+				["死亡"] = 23,
+				["敌对伤害"] = 1,
+				["伤害"] = 75,
+				["敌对受到伤害"] = 45,
+				["友方误伤"] = 1,
 			},
 			["windows"] = {
 				{
@@ -39,7 +44,7 @@ SkadaDB = {
 						["r"] = 0,
 					},
 					["barfontsize"] = 15,
-					["mode"] = "伤害",
+					["mode"] = "敌对受到伤害",
 					["bartexture"] = "normTex",
 					["barwidth"] = 300,
 					["background"] = {
