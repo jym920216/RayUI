@@ -7,7 +7,7 @@ NDuiADB = {
 	},
 	["RaidDebuffs"] = {
 	},
-	["DetectVersion"] = "3.9.0",
+	["DetectVersion"] = "3.12.0",
 	["ChatAt"] = "",
 	["totalGold"] = {
 		["石锤"] = {
@@ -16,7 +16,7 @@ NDuiADB = {
 				"ROGUE", -- [2]
 			},
 			["冷魂夺情"] = {
-				26167557792, -- [1]
+				24928207690, -- [1]
 				"MAGE", -- [2]
 			},
 		},

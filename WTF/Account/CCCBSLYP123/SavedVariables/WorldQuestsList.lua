@@ -1,19 +1,19 @@
 
 VWQL = {
-	["Ignore"] = {
-	},
-	["AzeriteFormat"] = 20,
-	["Sort"] = 5,
+	["HideLegion"] = true,
 	["VERSION"] = 81,
+	["Sort"] = 5,
+	["AzeriteFormat"] = 20,
 	["Scale"] = 0.8,
 	["DisableIconsGeneralMap947"] = true,
 	["大牛子-范达尔鹿盔"] = {
-		["VERSION"] = 81,
+		["Filter"] = 63,
 		["FilterType"] = {
 		},
 		["Quests"] = {
 		},
-		["Filter"] = 63,
+		["VERSION"] = 81,
 	},
-	["HideLegion"] = true,
+	["Ignore"] = {
+	},
 }

@@ -202,21 +202,21 @@ VER 3 000000000000003B " " "INV_MISC_QUESTIONMARK"
 /cast 燃烧
 /cast 生锈的哨兵奖章
 END
-VER 3 000000000000005E "  " "INV_MISC_QUESTIONMARK"
-/tar 一边
-/follow
-END
 VER 3 000000000000005F "  " "INV_Misc_QuestionMark"
 #showtooltip 奥术冲击
 /cast [nochanneling:奥术飞弹] 奥术冲击
 END
-VER 3 0000000000000060 "   " "INV_MISC_QUESTIONMARK"
-/w 猪一般的猪 奶我 么么哒.么么哒
+VER 3 000000000000005E "  " "INV_MISC_QUESTIONMARK"
+/tar 一边
+/follow
 END
 VER 3 0000000000000061 "   " "ABILITY_MOUNT_FOSSILIZEDRAPTOR"
 #show
 /cast [flyable]沙石幼龙
 /cast 化石迅猛龙
+END
+VER 3 0000000000000060 "   " "INV_MISC_QUESTIONMARK"
+/w 猪一般的猪 奶我 么么哒.么么哒
 END
 VER 3 0000000000000062 " 1" "INV_MISC_QUESTIONMARK"
 /施放 水流喷射
@@ -344,20 +344,20 @@ VER 3 0000000000000074 "100" "INV_Misc_QuestionMark"
 #showtooltip
 /cast [talent:7/1]奥数强化;[talent:7/2]幻灵晶体;[talent:7/3]奥术宝珠
 END
-VER 3 0000000000000075 "11" "INV_MISC_QUESTIONMARK"
-/tar 南洋箭鼠
-END
 VER 3 0000000000000034 "11" "ABILITY_MAGE_DEEPFREEZE"
 /cast [target=arena1] 深度冻结
 END
 VER 3 0000000000000031 "11" "INV_MISC_QUESTIONMARK"
 /w 紫焰楓魂-壁炉谷 111
 END
-VER 3 0000000000000035 "111" "ABILITY_MAGE_FROSTJAW"
-/cast [target=arena1] 
+VER 3 0000000000000075 "11" "INV_MISC_QUESTIONMARK"
+/tar 南洋箭鼠
 END
 VER 3 0000000000000036 "111" "SPELL_NATURE_SWIFTNESS"
 /cast [target=英舞者] 解除诅咒
+END
+VER 3 0000000000000035 "111" "ABILITY_MAGE_FROSTJAW"
+/cast [target=arena1] 
 END
 VER 3 0000000000000076 "1111" "840189"
 /cast 黑冰箭
@@ -396,10 +396,6 @@ END
 VER 3 0000000000000033 "5" "SPELL_NATURE_POLYMORPH"
 /cast [target=arena5] 变形术(绵羊)
 END
-VER 3 000000000000007D "`" "SPELL_MAGE_INFERNOBLAST"
-#show 炼狱冲击
-/cast [@focus] 炼狱冲击
-END
 VER 3 000000000000007E "`" "INV_MISC_QUESTIONMARK"
 #show 炎爆术
 /cast [@focus] 炎爆术
@@ -408,6 +404,10 @@ VER 3 000000000000007C "`" "INV_Misc_QuestionMark"
 #showtooltip 闪现术 
 /stopcasting 
 /cast 闪现术
+END
+VER 3 000000000000007D "`" "SPELL_MAGE_INFERNOBLAST"
+#show 炼狱冲击
+/cast [@focus] 炼狱冲击
 END
 VER 3 000000000000007F "`·" "SPELL_FIRE_FLAMEBOLT"
 #show 火球术
@@ -421,13 +421,13 @@ VER 3 0000000000000081 "Arcane impact" "INV_Misc_QuestionMark"
 #showtooltip 奥术冲击
 /cast 奥术冲击
 END
-VER 3 0000000000000011 "BF_Mount" "ability_mount_charger"
-/bfmount
-END
 VER 3 0000000000000082 "BF_Mount" "ABILITY_MOUNT_CHARGER"
 /click ExtraActionButton1
 /stopcasting
 /stopcasting
+END
+VER 3 0000000000000011 "BF_Mount" "ability_mount_charger"
+/bfmount
 END
 VER 3 0000000000000027 "BF_Pet" "ACHIEVEMENT_WORLDEVENT_BREWMASTER"
 /BFPET
@@ -457,17 +457,17 @@ VER 3 0000000000000028 "Decursive" "1"
 /stopcasting
 /cast [@mouseover,nomod,exists] 清洁术;  [@mouseover,exists,mod:ctrl] 清洁术; [@mouseover,exists,mod:shift] 清洁术
 END
-VER 3 0000000000000020 "V" "Spell_Shadow_MindRot"
-#showtooltip 法术反制
-/stopcasting
-/Cast [target=focus,exists] 法术反制;法术反制
-END
 VER 3 000000000000001E "V" "Spell_Shadow_ImpPhaseShift"
 #showtooltip 法术反制
 /stopcasting
 /cancelaura 寒冰屏障
 /Cast [target=focus,harm,exists,modifier:shift]法术反制; [target=mouseover, harm, exists]法术反制; 法术反制
 /focus [target=focus,noexists] [target=focus,dead] target
+END
+VER 3 0000000000000020 "V" "Spell_Shadow_MindRot"
+#showtooltip 法术反制
+/stopcasting
+/Cast [target=focus,exists] 法术反制;法术反制
 END
 VER 3 000000000000001D "一键驱散" "INV_Misc_QuestionMark"
 /stopcasting

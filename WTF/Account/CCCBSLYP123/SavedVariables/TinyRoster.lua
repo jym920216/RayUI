@@ -1,15 +1,15 @@
 
 TinyRosterDB = {
-	["AchievementFrame.searchBox"] = {
-		["depands"] = "Blizzard_AchievementUI",
-	},
-	["MountJournalSearchBox"] = {
-		["depands"] = "Blizzard_Collections",
-	},
 	["TradeSkillFrame.SearchBox"] = {
 		["depands"] = "Blizzard_TradeSkillUI",
 	},
 	["ToyBox.searchBox"] = {
+		["depands"] = "Blizzard_Collections",
+	},
+	["AchievementFrame.searchBox"] = {
+		["depands"] = "Blizzard_AchievementUI",
+	},
+	["MountJournalSearchBox"] = {
 		["depands"] = "Blizzard_Collections",
 	},
 	["GlyphFrame.SearchBox"] = {
@@ -19,8 +19,8 @@ TinyRosterDB = {
 		["list"] = {
 		},
 	},
-	["PetJournalSearchBox"] = {
-		["depands"] = "Blizzard_Collections",
+	["EncounterJournalSearchBox"] = {
+		["depands"] = "Blizzard_EncounterJournal",
 	},
 	["BrowseName"] = {
 		["depands"] = "Blizzard_AuctionUI",
@@ -29,8 +29,8 @@ TinyRosterDB = {
 		["list"] = {
 		},
 	},
-	["GuildItemSearchBox"] = {
-		["depands"] = "Blizzard_GuildBankUI",
+	["PetJournalSearchBox"] = {
+		["depands"] = "Blizzard_Collections",
 	},
 	["BagItemSearchBox"] = {
 		["list"] = {
@@ -39,8 +39,8 @@ TinyRosterDB = {
 	["HeirloomsJournalSearchBox"] = {
 		["depands"] = "Blizzard_Collections",
 	},
-	["EncounterJournalSearchBox"] = {
-		["depands"] = "Blizzard_EncounterJournal",
+	["GuildItemSearchBox"] = {
+		["depands"] = "Blizzard_GuildBankUI",
 	},
 	["WardrobeCollectionFrameSearchBox"] = {
 		["depands"] = "Blizzard_Collections",

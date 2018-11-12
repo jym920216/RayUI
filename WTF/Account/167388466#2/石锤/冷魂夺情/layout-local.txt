@@ -55,6 +55,13 @@ X: 0
 Y: 0
 W: 800
 H: 525
+Frame: SimcCopyFrame
+FrameLevel: 1
+Anchor: CENTER
+X: 0
+Y: 0
+W: 700
+H: 450
 Frame: NDui_BackpackBank
 FrameLevel: 2
 Anchor: BOTTOM
@@ -75,7 +82,7 @@ Anchor: BOTTOMRIGHT
 X: -100
 Y: 150
 W: 483
-H: 196
+H: 469
 Frame: NDuiChatCopy
 FrameLevel: 1
 Anchor: CENTER
@@ -83,10 +90,3 @@ X: 0
 Y: 0
 W: 700
 H: 400
-Frame: SimcCopyFrame
-FrameLevel: 1
-Anchor: CENTER
-X: 0
-Y: 0
-W: 700
-H: 450
