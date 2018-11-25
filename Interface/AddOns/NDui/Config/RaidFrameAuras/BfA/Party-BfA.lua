@@ -12,6 +12,7 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 240443) -- 爆裂
 module:RegisterDebuff(TIER, INSTANCE, 0, 257459) -- 上钩了
 module:RegisterDebuff(TIER, INSTANCE, 0, 260954) -- 铁之凝视
 module:RegisterDebuff(TIER, INSTANCE, 0, 270624) -- 窒息勒压
+module:RegisterDebuff(TIER, INSTANCE, 0, 257169) -- 恐惧咆哮
 
 INSTANCE = 1022 -- 地渊孢林
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -30,6 +31,7 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 266923) -- 充电
 module:RegisterDebuff(TIER, INSTANCE, 0, 263371) -- 导电
 module:RegisterDebuff(TIER, INSTANCE, 0, 263958) -- 缠绕的蛇群
 module:RegisterDebuff(TIER, INSTANCE, 0, 269686) -- 瘟疫
+module:RegisterDebuff(TIER, INSTANCE, 0, 273563) -- 神经毒素
 
 INSTANCE = 1002 -- 托尔达戈
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -42,6 +44,8 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 257028) -- 点火器
 module:RegisterDebuff(TIER, INSTANCE, 0, 256038) -- 致命狙击
 module:RegisterDebuff(TIER, INSTANCE, 0, 256105) -- 爆炸
 module:RegisterDebuff(TIER, INSTANCE, 0, 258128) -- 衰弱怒吼
+module:RegisterDebuff(TIER, INSTANCE, 0, 256201) -- 爆炎弹
+module:RegisterDebuff(TIER, INSTANCE, 0, 260067, 6) -- 恶毒槌击
 
 INSTANCE = 1012 -- 暴富矿区
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -60,7 +64,7 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 240443) -- 爆裂
 module:RegisterDebuff(TIER, INSTANCE, 0, 268086) -- 恐怖光环
 module:RegisterDebuff(TIER, INSTANCE, 0, 267907) -- 灵魂荆棘
 module:RegisterDebuff(TIER, INSTANCE, 0, 261440) -- 恶性病原体
-module:RegisterDebuff(TIER, INSTANCE, 0, 260741, 5) -- 锯齿荨麻
+module:RegisterDebuff(TIER, INSTANCE, 0, 260741, 6) -- 锯齿荨麻
 
 INSTANCE = 1001 -- 自由镇
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -72,6 +76,7 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 258338) -- 眩晕酒桶
 module:RegisterDebuff(TIER, INSTANCE, 0, 257314) -- 黑火药炸弹
 module:RegisterDebuff(TIER, INSTANCE, 0, 257305) -- 火炮弹幕
 module:RegisterDebuff(TIER, INSTANCE, 0, 281357) -- 水鼠啤酒
+module:RegisterDebuff(TIER, INSTANCE, 0, 274389) -- 捕鼠陷阱
 
 INSTANCE = 1041 -- 诸王之眠
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -92,6 +97,7 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 250258) -- 剧毒跳碾
 module:RegisterDebuff(TIER, INSTANCE, 0, 255371) -- 恐惧之面
 module:RegisterDebuff(TIER, INSTANCE, 0, 257407) -- 追踪
 module:RegisterDebuff(TIER, INSTANCE, 0, 250050) -- 沙德拉的回响
+module:RegisterDebuff(TIER, INSTANCE, 0, 255558) -- 污血
 
 INSTANCE = 1036 -- 风暴神殿
 module:RegisterDebuff(TIER, INSTANCE, 0, 209858) -- 死疽
@@ -102,3 +108,4 @@ module:RegisterDebuff(TIER, INSTANCE, 0, 264144) -- 逆流
 module:RegisterDebuff(TIER, INSTANCE, 0, 267899) -- 妨害劈斩
 module:RegisterDebuff(TIER, INSTANCE, 0, 269131) -- 上古摧心者
 module:RegisterDebuff(TIER, INSTANCE, 0, 268214) -- 割肉
+module:RegisterDebuff(TIER, INSTANCE, 0, 276297) -- 虚空种子

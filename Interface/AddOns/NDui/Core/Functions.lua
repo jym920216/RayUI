@@ -1,6 +1,10 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
-local cr, cg, cb = DB.cc.r, DB.cc.g, DB.cc.b
+local cr, cg, cb = DB.r, DB.g, DB.b
+
+local type, pairs, tonumber, wipe = type, pairs, tonumber, table.wipe
+local strmatch, gmatch, strfind, format = string.match, string.gmatch, string.find, string.format
+local min, max, abs, floor = math.min, math.max, math.abs, math.floor
 
 -- Gradient Frame
 function B:CreateGF(w, h, o, r, g, b, a1, a2)
@@ -156,7 +160,7 @@ function B:CreateCB(a)
 end
 
 -- Movable Frame
-function B:CreateMF(parent)
+function B:CreateMF(parent, saved)
 	local frame = parent or self
 	frame:SetMovable(true)
 	frame:SetUserPlaced(true)
@@ -165,7 +169,20 @@ function B:CreateMF(parent)
 	self:EnableMouse(true)
 	self:RegisterForDrag("LeftButton")
 	self:SetScript("OnDragStart", function() frame:StartMoving() end)
-	self:SetScript("OnDragStop", function() frame:StopMovingOrSizing() end)
+	self:SetScript("OnDragStop", function()
+		frame:StopMovingOrSizing()
+		if not saved then return end
+		local orig, _, tar, x, y = frame:GetPoint()
+		NDuiDB["TempAnchor"][frame:GetName()] = {orig, "UIParent", tar, x, y}
+	end)
+end
+
+function B:RestoreMF()
+	local name = self:GetName()
+	if name and NDuiDB["TempAnchor"][name] then
+		self:ClearAllPoints()
+		self:SetPoint(unpack(NDuiDB["TempAnchor"][name]))
+	end
 end
 
 -- Icon Style
@@ -213,30 +230,30 @@ end
 
 -- Numberize
 function B.Numb(n)
-	if NDuiDB["Settings"]["Format"] == 1 then
+	if NDuiADB["NumberFormat"] == 1 then
 		if n >= 1e12 then
-			return ("%.2ft"):format(n / 1e12)
+			return format("%.2ft", n / 1e12)
 		elseif n >= 1e9 then
-			return ("%.2fb"):format(n / 1e9)
+			return format("%.2fb", n / 1e9)
 		elseif n >= 1e6 then
-			return ("%.2fm"):format(n / 1e6)
+			return format("%.2fm", n / 1e6)
 		elseif n >= 1e3 then
-			return ("%.1fk"):format(n / 1e3)
+			return format("%.1fk", n / 1e3)
 		else
-			return ("%.0f"):format(n)
+			return format("%.0f", n)
 		end
-	elseif NDuiDB["Settings"]["Format"] == 2 then
+	elseif NDuiADB["NumberFormat"] == 2 then
 		if n >= 1e12 then
-			return ("%.2f"..L["NumberCap3"]):format(n / 1e12)
+			return format("%.2f"..L["NumberCap3"], n / 1e12)
 		elseif n >= 1e8 then
-			return ("%.2f"..L["NumberCap2"]):format(n / 1e8)
+			return format("%.2f"..L["NumberCap2"], n / 1e8)
 		elseif n >= 1e4 then
-			return ("%.1f"..L["NumberCap1"]):format(n / 1e4)
+			return format("%.1f"..L["NumberCap1"], n / 1e4)
 		else
-			return ("%.0f"):format(n)
+			return format("%.0f", n)
 		end
 	else
-		return ("%.0f"):format(n)
+		return format("%.0f", n)
 	end
 end
 
@@ -246,12 +263,12 @@ function B.HexRGB(r, g, b)
 		if type(r) == "table" then
 			if r.r then r, g, b = r.r, r.g, r.b else r, g, b = unpack(r) end
 		end
-		return ("|cff%02x%02x%02x"):format(r*255, g*255, b*255)
+		return format("|cff%02x%02x%02x", r*255, g*255, b*255)
 	end
 end
 
 function B.ClassColor(class)
-	local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
+	local color = DB.ClassColors[class]
 	if not color then return 1, 1, 1 end
 	return color.r, color.g, color.b
 end
@@ -322,12 +339,12 @@ f:SetScript("OnUpdate", function()
 	local limit = 30/GetFramerate()
 	for bar, value in pairs(smoothing) do
 		local cur = bar:GetValue()
-		local new = cur + math.min((value-cur)/8, math.max(value-cur, limit))
+		local new = cur + min((value-cur)/8, max(value-cur, limit))
 		if new ~= new then
 			new = value
 		end
 		bar:SetValue_(new)
-		if cur == value or math.abs(new - value) < 1 then
+		if cur == value or abs(new - value) < 1 then
 			smoothing[bar] = nil
 			bar:SetValue_(value)
 		end
@@ -346,19 +363,6 @@ function B:SmoothBar()
 			end
 		end
 	end
-end
-
--- Guild Check
-function B.UnitInGuild(unitName)
-	if not unitName then return end
-	for i = 1, GetNumGuildMembers() do
-		local name = GetGuildRosterInfo(i)
-		if name and Ambiguate(name, "none") == Ambiguate(unitName, "none") then
-			return true
-		end
-	end
-
-	return false
 end
 
 -- Timer Format
@@ -384,7 +388,7 @@ function B.FormatTime(s)
 	end
 end
 
--- Table Backup
+-- Table
 function B.CopyTable(source, target)
 	for key, value in pairs(source) do
 		if type(value) == "table" then
@@ -398,13 +402,60 @@ function B.CopyTable(source, target)
 	end
 end
 
+function B.SplitList(list, variable, cleanup)
+	if cleanup then wipe(list) end
+
+	for word in gmatch(variable, "%S+") do
+		list[word] = true
+	end
+end
+
+-- Itemlevel
+local iLvlDB = {}
+local itemLevelString = _G["ITEM_LEVEL"]:gsub("%%d", "")
+local tip = CreateFrame("GameTooltip", "NDui_iLvlTooltip", nil, "GameTooltipTemplate")
+
+function B.GetItemLevel(link, arg1, arg2)
+	if iLvlDB[link] then return iLvlDB[link] end
+
+	tip:SetOwner(UIParent, "ANCHOR_NONE")
+	if arg1 and type(arg1) == "string" then
+		tip:SetInventoryItem(arg1, arg2)
+	elseif arg1 and type(arg1) == "number" then
+		tip:SetBagItem(arg1, arg2)
+	else
+		tip:SetHyperlink(link)
+	end
+
+	for i = 2, 5 do
+		local text = _G[tip:GetName().."TextLeft"..i]:GetText() or ""
+		local found = strfind(text, itemLevelString)
+		if found then
+			local level = strmatch(text, "(%d+)%)?$")
+			iLvlDB[link] = tonumber(level)
+			break
+		end
+	end
+	return iLvlDB[link]
+end
+
+function B.GetNPCID(guid)
+	local id = tonumber(strmatch((guid or ""), "%-(%d-)%-%x-$"))
+	return id
+end
+
 -- GUI APIs
 function B:CreateButton(width, height, text, fontSize)
 	local bu = CreateFrame("Button", nil, self)
 	bu:SetSize(width, height)
 	B.CreateBD(bu, .3)
-	B.CreateBC(bu)
-	bu.text = B.CreateFS(bu, fontSize or 14, text, true)
+	if type(text) == "boolean" then
+		B.CreateIF(bu, true)
+		bu.Icon:SetTexture(fontSize)
+	else
+		B.CreateBC(bu)
+		bu.text = B.CreateFS(bu, fontSize or 14, text, true)
+	end
 
 	return bu
 end
@@ -439,7 +490,8 @@ function B:CreateDropDown(width, height, data)
 	local dd = CreateFrame("Frame", nil, self)
 	dd:SetSize(width, height)
 	B.CreateBD(dd, .3)
-	dd.Text = B.CreateFS(dd, 14, "")
+	dd.Text = B.CreateFS(dd, 14, "", false, "LEFT", 5, 0)
+	dd.Text:SetPoint("RIGHT", -5, 0)
 	dd.options = {}
 
 	local bu = CreateFrame("Button", nil, dd)
@@ -454,6 +506,7 @@ function B:CreateDropDown(width, height, data)
 	local list = CreateFrame("Frame", nil, dd)
 	list:SetPoint("TOP", dd, "BOTTOM")
 	B.CreateBD(list, 1)
+	list:Hide()
 	bu:SetScript("OnShow", function() list:Hide() end)
 	bu:SetScript("OnClick", function()
 		PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK)
@@ -491,7 +544,8 @@ function B:CreateDropDown(width, height, data)
 		opt[i]:SetSize(width - 8, height)
 		B.CreateBD(opt[i], .3)
 		opt[i]:SetBackdropBorderColor(1, 1, 1, .2)
-		B.CreateFS(opt[i], 14, j, false, "LEFT", 5, 0)
+		local text = B.CreateFS(opt[i], 14, j, false, "LEFT", 5, 0)
+		text:SetPoint("RIGHT", -5, 0)
 		opt[i].text = j
 		opt[i]:SetScript("OnClick", optOnClick)
 		opt[i]:SetScript("OnEnter", optOnEnter)

@@ -1,8 +1,11 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
+
 local oUF = ns.oUF or oUF
 local cast = ns.cast
 local UF = B:RegisterModule("UnitFrames")
+local format, floor = string.format, math.floor
+local pairs, next = pairs, next
 
 -- Custom colors
 oUF.colors.smooth = {1, 0, 0, .85, .8, .45, .1, .1, .1}
@@ -107,7 +110,7 @@ function UF:CreateHealthText(self)
 	elseif self.mystyle == "nameplate" then
 		self:Tag(name, "[nplevel][name]")
 	elseif self.mystyle == "arena" then
-		self:Tag(name, "[color][name][raidcolor][arenaspec]")
+		self:Tag(name, "[arenaspec] [color][name]")
 	else
 		self:Tag(name, "[color][name]")
 	end
@@ -259,35 +262,36 @@ function UF:CreateRaidMark(self)
 	self.RaidTargetIndicator = ri
 end
 
+local function createBarMover(bar, text, value, anchor)
+	local mover = B.Mover(bar, text, value, anchor, bar:GetHeight()+bar:GetWidth()+5, bar:GetHeight()+5)
+	bar:ClearAllPoints()
+	bar:SetPoint("RIGHT", mover)
+end
+
 function UF:CreateCastBar(self)
 	if self.mystyle ~= "nameplate" and not NDuiDB["UFs"]["Castbars"] then return end
 
 	local cb = CreateFrame("StatusBar", "oUF_Castbar"..self.mystyle, self)
 	cb:SetHeight(20)
 	cb:SetWidth(self:GetWidth() - 22)
-	cb:SetStatusBarTexture(DB.normTex)
-	cb:SetFrameLevel(1)
-
-	local bg = B.CreateBG(cb)
-	B.CreateBD(bg)
-	B.CreateSD(bg)
-	B.CreateTex(bg)
+	B.CreateSB(cb, true, .3, .7, 1)
 
 	if self.mystyle == "player" then
 		cb:SetSize(unpack(C.UFs.PlayercbSize))
-		cb.Mover = B.Mover(cb, L["Player Castbar"], "PlayerCB", C.UFs.Playercb, cb:GetWidth(), 32)
+		createBarMover(cb, L["Player Castbar"], "PlayerCB", C.UFs.Playercb)
 	elseif self.mystyle == "target" then
 		cb:SetSize(unpack(C.UFs.TargetcbSize))
-		cb.Mover = B.Mover(cb, L["Target Castbar"], "TargetCB", C.UFs.Targetcb, cb:GetWidth(), 32)
+		createBarMover(cb, L["Target Castbar"], "TargetCB", C.UFs.Targetcb)
 	elseif self.mystyle == "focus" then
 		cb:SetSize(unpack(C.UFs.FocuscbSize))
-		cb.Mover = B.Mover(cb, L["Focus Castbar"], "FocusCB", C.UFs.Focuscb, cb:GetWidth(), 32)
+		createBarMover(cb, L["Focus Castbar"], "FocusCB", C.UFs.Focuscb)
 	elseif self.mystyle == "boss" or self.mystyle == "arena" then
 		cb:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -8)
 		cb:SetSize(self:GetWidth(), 10)
 	elseif self.mystyle == "nameplate" then
+		cb:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, -5)
 		cb:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, -5)
-		cb:SetSize(self:GetWidth(), self:GetHeight())
+		cb:SetHeight(self:GetHeight())
 	end
 
 	cb.CastingColor = {.3, .7, 1}
@@ -296,19 +300,10 @@ function UF:CreateCastBar(self)
 	cb.CompleteColor = {.1, .8, 0}
 	cb.FailColor = {1, .1, 0}
 
-	local spark = cb:CreateTexture(nil, "OVERLAY")
-	spark:SetBlendMode("ADD")
-	spark:SetAlpha(0.5)
-	spark:SetHeight(cb:GetHeight()*2.5)
-	cb.Spark = spark
-
 	local timer = B.CreateFS(cb, retVal(self, 12, 12, 12, 10), "", false, "RIGHT", -2, 0)
-	cb.Time = timer
-
 	local name = B.CreateFS(cb, retVal(self, 12, 12, 12, 10), "", false, "LEFT", 2, 0)
-	name:SetJustifyH("LEFT")
 	name:SetPoint("RIGHT", timer, "LEFT", -5, 0)
-	cb.Text = name
+	name:SetJustifyH("LEFT")
 
 	if self.mystyle ~= "boss" and self.mystyle ~= "arena" then
 		cb.Icon = cb:CreateTexture(nil, "ARTWORK")
@@ -321,17 +316,17 @@ function UF:CreateCastBar(self)
 	if self.mystyle == "player" then
 		local safe = cb:CreateTexture(nil,"OVERLAY")
 		safe:SetTexture(DB.normTex)
-		safe:SetVertexColor(1, 0.1, 0, .6)
+		safe:SetVertexColor(1, 0, 0, .6)
 		safe:SetPoint("TOPRIGHT")
 		safe:SetPoint("BOTTOMRIGHT")
 		cb:SetFrameLevel(10)
 		cb.SafeZone = safe
 
-		local lag = B.CreateFS(cb, 10, "", false, "CENTER", -2, 17)
-		lag:SetJustifyH("RIGHT")
-		lag:Hide()
-		cb.Lag = lag
-		self:RegisterEvent("CURRENT_SPELL_CAST_CHANGED", cast.OnCastSent)
+		if NDuiDB["UFs"]["LagString"] then
+			local lag = B.CreateFS(cb, 10, "", false, "CENTER", -6, 17)
+			cb.Lag = lag
+			self:RegisterEvent("CURRENT_SPELL_CAST_CHANGED", cast.OnCastSent)
+		end
 	elseif self.mystyle == "nameplate" then
 		name:SetPoint("LEFT", cb, 0, -5)
 		timer:SetPoint("RIGHT", cb, 0, -5)
@@ -342,10 +337,12 @@ function UF:CreateCastBar(self)
 		shield:SetPoint("CENTER", 0, -5)
 		cb.Shield = shield
 
-		local iconSize = self.Health:GetHeight() + cb:GetHeight() + 5
+		local iconSize = self:GetHeight()*2 + 5
 		cb.Icon:SetSize(iconSize, iconSize)
 	end
 
+	cb.Time = timer
+	cb.Text = name
 	cb.OnUpdate = cast.OnCastbarUpdate
 	cb.PostCastStart = cast.PostCastStart
 	cb.PostChannelStart = cast.PostCastStart
@@ -359,27 +356,48 @@ function UF:CreateCastBar(self)
 	self.Castbar = cb
 end
 
+local function reskinTimerBar(bar)
+	bar:SetSize(280, 15)
+	B.StripTextures(bar, true)
+
+	local statusbar = _G[bar:GetName().."StatusBar"]
+	if statusbar then
+		statusbar:SetAllPoints()
+		statusbar:SetStatusBarTexture(DB.normTex)
+	else
+		bar:SetStatusBarTexture(DB.normTex)
+	end
+
+	local bg = B.CreateBG(bar)
+	B.CreateBD(bg)
+	B.CreateSD(bg)
+	B.CreateTex(bg)
+end
+
 function UF:ReskinMirrorBars()
 	local previous
 	for i = 1, 3 do
 		local bar = _G["MirrorTimer"..i]
-		B.StripTextures(bar, true)
-		bar:SetSize(280, 15)
-
-		local bg = B.CreateBG(bar, 1)
-		B.CreateBD(bg)
-		B.CreateSD(bg)
-		B.CreateTex(bg)
-
-		local statusbar = _G["MirrorTimer"..i.."StatusBar"]
-		statusbar:SetAllPoints()
-		statusbar:SetStatusBarTexture(DB.normTex)
+		reskinTimerBar(bar)
 
 		if previous then
 			bar:SetPoint("TOP", previous, "BOTTOM", 0, -5)
 		end
 		previous = bar
 	end
+end
+
+function UF:ReskinTimerTrakcer(self)
+	local function updateTimerTracker()
+		for _, timer in pairs(TimerTracker.timerList) do
+			if timer.bar and not timer.bar.styled then
+				reskinTimerBar(timer.bar)
+
+				timer.bar.styled = true
+			end
+		end
+	end
+	self:RegisterEvent("START_TIMER", updateTimerTracker)
 end
 
 -- Auras Relevant
@@ -460,14 +478,14 @@ local function customFilter(element, unit, button, name, _, _, _, _, _, caster, 
 		elseif C.RaidBuffs["ALL"][spellID] then
 			return true
 		end
-	elseif style == "nameplate" then
+	elseif style == "nameplate" or style == "boss" or style == "arena" then
 		if UnitIsUnit("player", unit) then
 			return false
-		elseif C.BlackList and C.BlackList[spellID] then
+		elseif NDuiADB["NameplateFilter"][2][spellID] or C.BlackList[spellID] then
 			return false
 		elseif element.showStealableBuffs and isStealable and not UnitIsPlayer(unit) then
 			return true
-		elseif C.WhiteList and C.WhiteList[spellID] then
+		elseif NDuiADB["NameplateFilter"][1][spellID] or C.WhiteList[spellID] then
 			return true
 		else
 			return nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
@@ -499,8 +517,7 @@ function UF:CreateAuras(self)
 		bu.iconsPerRow = 5
 	elseif self.mystyle == "focus" then
 		bu:SetPoint("TOPLEFT", self.Power, "BOTTOMLEFT", 0, -10)
-		bu.numBuffs = 0
-		bu.numDebuffs = 14
+		bu.numTotal = 20
 		bu.iconsPerRow = 7
 	elseif self.mystyle == "raid" then
 		bu:SetPoint("BOTTOMLEFT", self, 2, 0)
@@ -528,7 +545,7 @@ function UF:CreateAuras(self)
 	bu:SetWidth(width)
 	bu:SetHeight((bu.size + bu.spacing) * maxLines)
 
-	bu.showStealableBuffs = NDuiDB["UFs"]["StealableBuff"]
+	bu.showStealableBuffs = true
 	bu.CustomFilter = customFilter
 	bu.PostCreateIcon = postCreateIcon
 	bu.PostUpdateIcon = postUpdateIcon
@@ -569,15 +586,14 @@ function UF:CreateDebuffs(self)
 	bu["growth-y"] = "DOWN"
 	if self.mystyle == "player" then
 		bu:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -10)
-		bu.onlyShowPlayer = false
 		bu.num = 14
 		bu.iconsPerRow = 7
 		bu.showDebuffType = true
 	elseif self.mystyle == "boss" or self.mystyle == "arena" then
 		bu:SetPoint("TOPRIGHT", self, "TOPLEFT", -5, 0)
-		bu.onlyShowPlayer = true
 		bu.num = 10
 		bu.iconsPerRow = 5
+		bu.CustomFilter = customFilter
 	end
 
 	local width = self:GetWidth()
@@ -606,13 +622,28 @@ local function postUpdateClassPower(element, cur, max, diff, powerType)
 		if (powerType == "COMBO_POINTS" or powerType == "HOLY_POWER") and element.__owner.unit ~= "vehicle" and cur == max then
 			for i = 1, 6 do
 				if element[i]:IsShown() then
-					ActionButton_ShowOverlayGlow(element[i].glow)
+					B.ShowOverlayGlow(element[i].glow)
 				end
 			end
 		else
 			for i = 1, 6 do
-				ActionButton_HideOverlayGlow(element[i].glow)
+				B.HideOverlayGlow(element[i].glow)
 			end
+		end
+	end
+end
+
+local function onUpdateRunes(self, elapsed)
+	local duration = self.duration + elapsed
+	self.duration = duration
+	self:SetValue(duration)
+
+	if self.timer then
+		local remain = self.runeDuration - duration
+		if remain > 0 then
+			self.timer:SetText(B.FormatTime(remain))
+		else
+			self.timer:SetText(nil)
 		end
 	end
 end
@@ -620,11 +651,17 @@ end
 local function postUpdateRunes(element, runemap)
 	for index, runeID in next, runemap do
 		local rune = element[index]
-		local runeReady = select(3, GetRuneCooldown(runeID))
-		if rune:IsShown() and not runeReady then
-			rune:SetAlpha(.6)
-		else
-			rune:SetAlpha(1)
+		local start, duration, runeReady = GetRuneCooldown(runeID)
+		if rune:IsShown() then
+			if runeReady then
+				rune:SetAlpha(1)
+				rune:SetScript("OnUpdate", nil)
+				if rune.timer then rune.timer:SetText(nil) end
+			elseif start then
+				rune:SetAlpha(.6)
+				rune.runeDuration = duration
+				rune:SetScript("OnUpdate", onUpdateRunes)
+			end
 		end
 	end
 end
@@ -641,7 +678,7 @@ function UF:CreateClassPower(self)
 		bars[i]:SetHeight(height)
 		bars[i]:SetWidth((width - 5*margin) / 6)
 		bars[i]:SetStatusBarTexture(DB.normTex)
-		bars[i]:SetFrameLevel(self:GetFrameLevel() + 2)
+		bars[i]:SetFrameLevel(self:GetFrameLevel() + 5)
 		B.CreateSD(bars[i], 3, 3)
 		if i == 1 then
 			bars[i]:SetPoint(unpack(C.UFs.BarPoint))
@@ -654,6 +691,8 @@ function UF:CreateClassPower(self)
 			bars[i].bg:SetAllPoints()
 			bars[i].bg:SetTexture(DB.normTex)
 			bars[i].bg.multiplier = .2
+
+			bars[i].timer = B.CreateFS(bars[i], 13, "")
 		end
 
 		if NDuiDB["Nameplate"]["ShowPlayerPlate"] then
@@ -676,7 +715,7 @@ end
 
 local function postUpdateAltPower(element, _, cur, _, max)
 	if cur and max then
-		local perc = math.floor((cur/max)*100)
+		local perc = floor((cur/max)*100)
 		if perc < 35 then
 			element:SetStatusBarColor(0, 1, 0)
 		elseif perc < 70 then
@@ -844,6 +883,28 @@ function UF:CreateSwing(self)
 	self.Swing.Mainhand = main
 	self.Swing.Offhand = off
 	self.Swing.hideOoc = true
+end
+
+function UF:CreateQuakeTimer(self)
+	if not NDuiDB["UFs"]["Castbars"] then return end
+
+	local bar = CreateFrame("StatusBar", nil, self)
+	bar:SetSize(unpack(C.UFs.PlayercbSize))
+	B.CreateSB(bar, true, 0, 1, 0)
+	bar:Hide()
+
+	bar.SpellName = B.CreateFS(bar, 12, "", false, "LEFT", 2, 0)
+	bar.Text = B.CreateFS(bar, 12, "", false, "RIGHT", -2, 0)
+	createBarMover(bar, L["QuakeTimer"], "QuakeTimer", {"BOTTOM", UIParent, "BOTTOM", 0, 200})
+
+	local icon = bar:CreateTexture(nil, "ARTWORK")
+	icon:SetSize(bar:GetHeight(), bar:GetHeight())
+	icon:SetPoint("RIGHT", bar, "LEFT", -5, 0)
+	icon:SetTexCoord(unpack(DB.TexCoord))
+	B.CreateSD(icon, 3, 3)
+	bar.Icon = icon
+
+	self.QuakeTimer = bar
 end
 
 function UF:CreateFCT(self)

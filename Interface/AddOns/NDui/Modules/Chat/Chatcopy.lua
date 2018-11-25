@@ -3,6 +3,8 @@ local B, C, L, DB = unpack(ns)
 local module = B:GetModule("Chat")
 
 function module:ChatCopy()
+	local gsub, format, tconcat = string.gsub, string.format, table.concat
+
 	-- Custom ChatMenu
 	local menu = CreateFrame("Frame", nil, UIParent)
 	menu:SetSize(25, 100)
@@ -29,7 +31,7 @@ function module:ChatCopy()
 	frame:Hide()
 	frame:SetFrameStrata("DIALOG")
 	B.CreateMF(frame)
-	B.CreateBD(frame)
+	B.CreateBD(frame, .7)
 	B.CreateSD(frame)
 	B.CreateTex(frame)
 	frame.close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
@@ -44,11 +46,21 @@ function module:ChatCopy()
 	editBox:SetMaxLetters(99999)
 	editBox:EnableMouse(true)
 	editBox:SetAutoFocus(false)
-	editBox:SetFontObject(ChatFontNormal)
+	editBox:SetFont(DB.Font[1], 12)
 	editBox:SetWidth(scrollArea:GetWidth())
 	editBox:SetHeight(270)
-	editBox:SetScript("OnEscapePressed", function(f) f:GetParent():GetParent():Hide() f:SetText("") end)
+	editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
+	editBox:SetScript("OnTextChanged", function(_, userInput)
+		if userInput then return end
+		local _, max = ChatCopyScrollFrameScrollBar:GetMinMaxValues()
+		for i = 1, max do
+			ScrollFrameTemplate_OnMouseWheel(scrollArea, -1)
+		end
+	end)
 	scrollArea:SetScrollChild(editBox)
+	scrollArea:HookScript("OnVerticalScroll", function(self, offset)
+		editBox:SetHitRectInsets(0, 0, offset, (editBox:GetHeight() - offset - self:GetHeight()))
+	end)
 
 	local function colorReplace(msg, r, g, b)
 		local hexRGB = B.HexRGB(r, g, b)
@@ -80,7 +92,7 @@ function module:ChatCopy()
 				end
 
 				local lineCt = index - 1
-				local text = table.concat(lines, "\n", 1, lineCt)
+				local text = tconcat(lines, "\n", 1, lineCt)
 				FCF_SetChatWindowFontSize(chatframe, chatframe, fontSize)
 				editBox:SetText(text)
 

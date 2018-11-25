@@ -7,7 +7,7 @@ C.Auras = {
 	IconSize		= 32,												-- BUFF及相关职业助手图标大小
 	IconsPerRow		= 14,												-- BUFF每行个数
 	Spacing			= 5,												-- BUFF图标间距
-	BuffPos			= {"TOPRIGHT", Minimap, "TOPLEFT", -15, -5},		-- BUFF默认位置
+	BuffPos			= {"TOPRIGHT", Minimap, "TOPLEFT", -15, 0},			-- BUFF默认位置
 
 	TotemsPos		= {"CENTER", UIParent, "CENTER", 0, -190},			-- 图腾助手默认位置
 	StatuePos		= {"TOPRIGHT", UIParent, "BOTTOM", -460, 300},		-- 武僧雕像默认位置
@@ -17,21 +17,21 @@ C.Auras = {
 	TargetAuraPos 	= {"BOTTOMLEFT", UIParent, "BOTTOM", 200, 309},		-- 目标光环分组
 	SpecialPos		= {"BOTTOMRIGHT", UIParent, "BOTTOM", -200, 336},	-- 玩家重要光环分组
 	FocusPos		= {"BOTTOMLEFT", UIParent, "LEFT", 5, -130},		-- 焦点光环分组
-	CDPos			= {"BOTTOMRIGHT", UIParent, "BOTTOM", -425, 500},	-- 冷却计时分组
+	CDPos			= {"BOTTOMRIGHT", UIParent, "BOTTOM", -425, 125},	-- 冷却计时分组
 	EnchantPos		= {"BOTTOMRIGHT", UIParent, "BOTTOM", -200, 377},	-- 附魔及饰品分组
 	RaidBuffPos		= {"CENTER", UIParent, "CENTER", -220, 200},		-- 团队增益分组
 	RaidDebuffPos	= {"CENTER", UIParent, "CENTER", 220, 200},			-- 团队减益分组
 	WarningPos		= {"BOTTOMLEFT", UIParent, "BOTTOM", 200, 370},		-- 目标重要光环分组
-	InternalPos		= {"BOTTOMRIGHT", UIParent, "BOTTOM", -425, 125},	-- 法术内置冷却分组
+	InternalPos		= {"BOTTOMRIGHT", UIParent, "BOTTOM", -425, 500},	-- 法术内置冷却分组
 }
 
 -- 头像相关
 C.UFs = {
-	Playercb		= {"BOTTOM", UIParent, "BOTTOM", 16, 175},			-- 玩家施法条默认位置
+	Playercb		= {"BOTTOM", UIParent, "BOTTOM", 0, 175},			-- 玩家施法条默认位置
 	PlayercbSize	= {300, 20},										-- 玩家施法条尺寸
-	Targetcb		= {"BOTTOM", UIParent, "BOTTOM", 16, 335},			-- 目标施法条默认位置
+	Targetcb		= {"BOTTOM", UIParent, "BOTTOM", 0, 335},			-- 目标施法条默认位置
 	TargetcbSize	= {280, 20},										-- 目标施法条尺寸
-	Focuscb			= {"CENTER", UIParent, "CENTER", 10, 200},			-- 焦点施法条默认位置
+	Focuscb			= {"CENTER", UIParent, "CENTER", 0, 200},			-- 焦点施法条默认位置
 	FocuscbSize		= {320, 20},										-- 焦点施法条尺寸
 
 	PlayerPos		= {"TOPRIGHT", UIParent, "BOTTOM", -200, 300},		-- 玩家框体默认位置
@@ -87,4 +87,5 @@ C.Infobar = {
 	TimePos			= {"BOTTOMRIGHT", UIParent, -15, 6},				-- 时间信息位置
 
 	Fonts			= {STANDARD_TEXT_FONT, 13, "OUTLINE"},				-- 字体
+	AutoAnchor		= true,												-- 自动对齐
 }

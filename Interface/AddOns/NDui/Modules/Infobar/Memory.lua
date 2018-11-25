@@ -4,6 +4,8 @@ if not C.Infobar.Memory then return end
 
 local module = B:GetModule("Infobar")
 local info = module:RegisterInfobar(C.Infobar.MemoryPos)
+local format, min = string.format, math.min
+local sort, wipe = table.sort, table.wipe
 
 local function formatMemory(value)
 	if value > 1024 then
@@ -69,7 +71,7 @@ end
 info.onMouseUp = function(self, btn)
 	if btn == "LeftButton" then
 		local before = gcinfo()
-		collectgarbage()
+		collectgarbage("collect")
 		print(format("|cff66C6FF%s:|r %s", L["Collect Memory"], formatMemory(before - gcinfo())))
 		updateMemory()
 		self:GetScript("OnEnter")(self)
@@ -85,7 +87,7 @@ info.onEnter = function(self)
 	local maxAddOns = IsShiftKeyDown() and #memoryTable or min(C.Infobar.MaxAddOns, #memoryTable)
 	for i = 1, maxAddOns do
 		local usage = memoryTable[i][2]
-		GameTooltip:AddDoubleLine(memoryTable[i][1], formatMemory(usage), 1,1,1, memoryColor(usage))
+		GameTooltip:AddDoubleLine(memoryTable[i][1], formatMemory(usage), 1,1,1, memoryColor(usage, 5))
 	end
 
 	local hiddenMemory = 0
@@ -124,14 +126,3 @@ info.onEvent = function(self, event, arg1)
 		self:GetScript("OnEnter")(self)
 	end
 end
-
-local f = CreateFrame("Frame")
-f:RegisterAllEvents()
-f:SetScript("OnEvent", function(_, event)
-	if InCombatLockdown() then return end
-	f.events = (f.events or 0) + 1
-	if f.events > 6000 or event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_REGEN_ENABLED" then
-		collectgarbage()
-		f.events = 0
-	end
-end)

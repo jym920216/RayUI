@@ -3,6 +3,10 @@ local B, C, L, DB = unpack(ns)
 local module = B:GetModule("Misc")
 
 function module:GuildBest()
+	local CHALLENGE_MODE_POWER_LEVEL = CHALLENGE_MODE_POWER_LEVEL
+	local CHALLENGE_MODE_GUILD_BEST_LINE = CHALLENGE_MODE_GUILD_BEST_LINE
+	local CHALLENGE_MODE_GUILD_BEST_LINE_YOU = CHALLENGE_MODE_GUILD_BEST_LINE_YOU
+	local format = string.format
 	local frame
 
 	local function UpdateTooltip(self)
@@ -12,10 +16,10 @@ function module:GuildBest()
 		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 		local name = C_ChallengeMode.GetMapUIInfo(leaderInfo.mapChallengeModeID)
 		GameTooltip:SetText(name, 1, 1, 1)
-		GameTooltip:AddLine(CHALLENGE_MODE_POWER_LEVEL:format(leaderInfo.keystoneLevel))
+		GameTooltip:AddLine(format(CHALLENGE_MODE_POWER_LEVEL, leaderInfo.keystoneLevel))
 		for i = 1, #leaderInfo.members do
-			local classColorStr = RAID_CLASS_COLORS[leaderInfo.members[i].classFileName].colorStr
-			GameTooltip:AddLine(CHALLENGE_MODE_GUILD_BEST_LINE:format(classColorStr,leaderInfo.members[i].name));
+			local classColorStr = DB.ClassColors[leaderInfo.members[i].classFileName].colorStr
+			GameTooltip:AddLine(format(CHALLENGE_MODE_GUILD_BEST_LINE, classColorStr,leaderInfo.members[i].name));
 		end
 		GameTooltip:Show()
 	end
@@ -60,8 +64,8 @@ function module:GuildBest()
 			str = CHALLENGE_MODE_GUILD_BEST_LINE_YOU
 		end
 
-		local classColorStr = RAID_CLASS_COLORS[leaderInfo.classFileName].colorStr
-		self.CharacterName:SetText(str:format(classColorStr, leaderInfo.name))
+		local classColorStr = DB.ClassColors[leaderInfo.classFileName].colorStr
+		self.CharacterName:SetText(format(str, classColorStr, leaderInfo.name))
 		self.Level:SetText(leaderInfo.keystoneLevel)
 	end
 

@@ -5,6 +5,9 @@ local module = B:GetModule("Skins")
 function module:CreateRM()
 	if not NDuiDB["Skins"]["RM"] then return end
 
+	local tinsert, strsplit = table.insert, string.split
+	local next, pairs, mod = next, pairs, mod
+
 	local header = CreateFrame("Button", nil, UIParent)
 	header:SetSize(120, 28)
 	header:SetFrameLevel(2)
@@ -183,24 +186,32 @@ function module:CreateRM()
 
 	-- World marker
 	local marker = CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton
-	marker:ClearAllPoints()
-	marker:SetPoint("RIGHT", header, "LEFT", -2, 0)
-	marker:SetParent(header)
-	marker:SetSize(28, 28)
-	B.StripTextures(marker)
-	B.CreateBD(marker)
-	B.CreateSD(marker)
-	B.CreateTex(marker)
-	B.CreateBC(marker, .5)
-	marker:SetNormalTexture("Interface\\RaidFrame\\Raid-WorldPing")
-	marker:GetNormalTexture():SetVertexColor(DB.cc.r, DB.cc.g, DB.cc.b)
-	marker:HookScript("OnMouseUp", function(_, btn)
-		if (IsInGroup() and not IsInRaid()) or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") then
-			if btn == "RightButton" then ClearRaidMarker() end
-		else
-			UIErrorsFrame:AddMessage(DB.InfoColor..ERR_NOT_LEADER)
+	if not marker then
+		for _, addon in next, {"Blizzard_CUFProfiles", "Blizzard_CompactRaidFrames"} do
+			EnableAddOn(addon)
+			LoadAddOn(addon)
 		end
-	end)
+	end
+	if marker then
+		marker:ClearAllPoints()
+		marker:SetPoint("RIGHT", header, "LEFT", -2, 0)
+		marker:SetParent(header)
+		marker:SetSize(28, 28)
+		B.StripTextures(marker)
+		B.CreateBD(marker)
+		B.CreateSD(marker)
+		B.CreateTex(marker)
+		B.CreateBC(marker, .5)
+		marker:SetNormalTexture("Interface\\RaidFrame\\Raid-WorldPing")
+		marker:GetNormalTexture():SetVertexColor(DB.r, DB.g, DB.b)
+		marker:HookScript("OnMouseUp", function(_, btn)
+			if (IsInGroup() and not IsInRaid()) or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player") then
+				if btn == "RightButton" then ClearRaidMarker() end
+			else
+				UIErrorsFrame:AddMessage(DB.InfoColor..ERR_NOT_LEADER)
+			end
+		end)
+	end
 
 	-- Buff checker
 	local checker = CreateFrame("Button", nil, header)
@@ -267,7 +278,7 @@ function module:CreateRM()
 					end
 					if not HasBuff then
 						name = strsplit("-", name)	-- remove realm name
-						table.insert(NoBuff[j], name)
+						tinsert(NoBuff[j], name)
 					end
 				end
 			end
@@ -300,7 +311,7 @@ function module:CreateRM()
 		if btn == "RightButton" then
 			scanBuff()
 		elseif btn == "LeftButton" then
-			if InCombatLockdown() then return end
+			if InCombatLockdown() then UIErrorsFrame:AddMessage(DB.InfoColor..ERR_NOT_IN_COMBAT) return end
 			if IsInGroup() and (UnitIsGroupLeader("player") or (UnitIsGroupAssistant("player") and IsInRaid())) then
 				DoReadyCheck()
 			else
@@ -361,12 +372,12 @@ function module:CreateRM()
 		button1 = YES,
 		button2 = NO,
 		OnAccept = function()
-			if InCombatLockdown() then return end
+			if InCombatLockdown() then UIErrorsFrame:AddMessage(DB.InfoColor..ERR_NOT_IN_COMBAT) return end
 			if IsInRaid() then
 				SendChatMessage(L["Disband Process"], "RAID")
 				for i = 1, GetNumGroupMembers() do
 					local name, _, _, _, _, _, _, online = GetRaidRosterInfo(i)
-					if online and name ~= UnitName("player") then
+					if online and name ~= DB.MyName then
 						UninviteUnit(name)
 					end
 				end

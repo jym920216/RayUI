@@ -4,7 +4,7 @@ local module = B:RegisterModule("Skins")
 
 function module:OnLogin()
 	local cr, cg, cb = 0, 0, 0
-	if NDuiDB["Skins"]["ClassLine"] then cr, cg, cb = DB.cc.r, DB.cc.g, DB.cc.b end
+	if NDuiDB["Skins"]["ClassLine"] then cr, cg, cb = DB.r, DB.g, DB.b end
 
 	-- TOPLEFT
 	if NDuiDB["Skins"]["InfobarLine"] then
@@ -118,6 +118,28 @@ function module:OnLogin()
 	self:DBMSkin()
 	self:SkadaSkin()
 	self:BigWigsSkin()
+end
+
+function module:CreateToggle(frame)
+	local close = B.CreateButton(frame, 20, 80, ">", 18)
+	close:SetPoint("RIGHT", frame.bg, "LEFT", -2, 0)
+	B.CreateSD(close)
+	B.CreateTex(close)
+
+	local open = B.CreateButton(UIParent, 20, 80, "<", 18)
+	open:SetPoint("RIGHT", frame.bg, "RIGHT", 2, 0)
+	B.CreateSD(open)
+	B.CreateTex(open)
+	open:Hide()
+
+	open:SetScript("OnClick", function()
+		open:Hide()
+	end)
+	close:SetScript("OnClick", function()
+		open:Show()
+	end)
+
+	return open, close
 end
 
 function module:LoadWithAddOn(addonName, value, func)

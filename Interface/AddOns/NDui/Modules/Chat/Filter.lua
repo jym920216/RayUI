@@ -2,78 +2,25 @@ local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local module = B:GetModule("Chat")
 
--- Account-wide settings
-local function accountSettings(event)
-	if not NDuiADB["ChatFilter"] then NDuiADB["ChatFilter"] = "" end
-	if not NDuiADB["ChatAt"] then NDuiADB["ChatAt"] = "" end
-	if not NDuiADB["Timestamp"] then NDuiADB["Timestamp"] = false end
-
-	if event == "PLAYER_LOGIN" then
-		NDuiDB["Chat"]["FilterList"] = NDuiADB["ChatFilter"]
-		NDuiDB["Chat"]["AtList"] = NDuiADB["ChatAt"]
-		NDuiDB["Chat"]["Timestamp"] = NDuiADB["Timestamp"]
-	elseif event == "PLAYER_LOGOUT" then
-		NDuiADB["ChatFilter"] = NDuiDB["Chat"]["FilterList"]
-		NDuiADB["ChatAt"] = NDuiDB["Chat"]["AtList"]
-		NDuiADB["Timestamp"] = NDuiDB["Chat"]["Timestamp"]
-	end
-
-	-- Timestamp
-	local greyStamp = DB.GreyColor.."[%H:%M:%S]|r "
-	if NDuiDB["Chat"]["Timestamp"] then
-		SetCVar("showTimestamps", greyStamp)
-	else
-		if GetCVar("showTimestamps") == greyStamp then
-			SetCVar("showTimestamps", "none")
-		end
-	end
-end
-B:RegisterEvent("PLAYER_LOGIN", accountSettings)
-B:RegisterEvent("PLAYER_LOGOUT", accountSettings)
-
---[[
-	修改自NoGoldSeller，强迫症患者只能接受这个低占用的。
-]]
+local strmatch, strfind = string.match, string.find
+local format, gsub = string.format, string.gsub
+local pairs, ipairs = pairs, ipairs
 
 -- Filter Chat symbols
 local msgSymbols = {"`", "～", "＠", "＃", "^", "＊", "！", "？", "。", "|", " ", "—", "——", "￥", "’", "‘", "“", "”", "【", "】", "『", "』", "《", "》", "〈", "〉", "（", "）", "〔", "〕", "、", "，", "：", ",", "_", "/", "~", "%-", "%."}
 
 local FilterList = {}
-local function genFilterList()
-	FilterList = {string.split(" ", NDuiDB["Chat"]["FilterList"] or "")}
+function B:GenFilterList()
+	B.SplitList(FilterList, NDuiADB["ChatFilterList"], true)
 end
-B.genFilterList = genFilterList
 
-B.FriendsList = {}
-local function updateFriends()
-	wipe(B.FriendsList)
-
-	for i = 1, GetNumFriends() do
-		local name = GetFriendInfo(i)
-		if name then
-			B.FriendsList[Ambiguate(name, "none")] = true
-		end
-	end
-
-	for i = 1, select(2, BNGetNumFriends()) do
-		for j = 1, BNGetNumFriendGameAccounts(i) do
-			local _, characterName, client, realmName = BNGetFriendGameAccountInfo(i, j)
-			if client == BNET_CLIENT_WOW then
-				B.FriendsList[Ambiguate(characterName.."-"..realmName, "none")] = true
-			end
-		end
-	end
-end
-B:RegisterEvent("FRIENDLIST_UPDATE", updateFriends)
-B:RegisterEvent("BN_FRIEND_INFO_CHANGED", updateFriends)
-
-local function genChatFilter(_, event, msg, author, _, _, _, flag)
+local function genChatFilter(_, event, msg, author, _, _, _, flag, _, _, _, _, _, guid)
 	if not NDuiDB["Chat"]["EnableFilter"] then return end
 
 	local name = Ambiguate(author, "none")
 	if UnitIsUnit(name, "player") or (event == "CHAT_MSG_WHISPER" and flag == "GM") or flag == "DEV" then
 		return
-	elseif B.UnitInGuild(author) or UnitInRaid(name) or UnitInParty(name) or B.FriendsList[name] then
+	elseif guid and (IsGuildMember(guid) or BNGetGameAccountInfoByGUID(guid) or IsCharacterFriend(guid) or IsGUIDInGroup(guid)) then
 		return
 	end
 
@@ -82,7 +29,7 @@ local function genChatFilter(_, event, msg, author, _, _, _, flag)
 	end
 
 	local match = 0
-	for _, keyword in pairs(FilterList) do
+	for keyword in pairs(FilterList) do
 		if keyword ~= "" then
 			local _, count = gsub(msg, keyword, "")
 			if count > 0 then
@@ -98,39 +45,55 @@ end
 
 local addonBlockList = {
 	"任务进度提示%s?[:：]", "%[接受任务%]", "%(任务完成%)", "<大脚组队提示>", "<大脚团队提示>", "【爱不易】", "EUI:", "EUI_RaidCD", "打断:.+|Hspell", "PS 死亡: .+>", "%*%*.+%*%*",
-	"<iLvl>", ("%-"):rep(30), "<小队物品等级:.+>", "<LFG>", "wowcdk", "进度:", "属性通报", "wowcn%.vip"
+	"<iLvl>", ("%-"):rep(30), "<小队物品等级:.+>", "<LFG>", "进度:", "属性通报", "blizzard.+验证码", "汐寒"
 }
 
-local function genAddonBlock(_, _, msg, author)
+local function restoreCVar(cvar)
+	C_Timer.After(.01, function()
+		SetCVar(cvar, 1)
+	end)
+end
+
+local function toggleBubble(party)
+	local cvar = "chatBubbles"..(party and "Party" or "")
+	if not GetCVarBool(cvar) then return end
+	SetCVar(cvar, 0)
+	restoreCVar(cvar)
+end
+
+local function genAddonBlock(_, event, msg, author)
 	if not NDuiDB["Chat"]["BlockAddonAlert"] then return end
 
 	local name = Ambiguate(author, "none")
 	if UnitIsUnit(name, "player") then return end
 
 	for _, word in ipairs(addonBlockList) do
-		if msg:find(word) then
+		if strfind(msg, word) then
+			if event == "CHAT_MSG_SAY" or event == "CHAT_MSG_YELL" then
+				toggleBubble()
+			elseif event == "CHAT_MSG_PARTY" or event == "CHAT_MSG_PARTY_LEADER" then
+				toggleBubble(true)
+			end
 			return true
 		end
 	end
 end
 
-
 --[[
 	公会频道有人@时提示你
 ]]
 local chatAtList, at = {}, {}
-local function genChatAtList()
-	chatAtList = {string.split(" ", NDuiDB["Chat"]["AtList"] or "")}
-	local name = UnitName("player")
-	tinsert(chatAtList, name)
+function B:GenChatAtList()
+	B.SplitList(chatAtList, NDuiADB["ChatAtList"], true)
+
+	chatAtList[DB.MyName] = true
 end
-B.genChatAtList = genChatAtList
 
 local function chatAtMe(_, _, ...)
 	local msg, author, _, _, _, _, _, _, _, _, _, guid = ...
-	for _, word in pairs(chatAtList) do
+	for word in pairs(chatAtList) do
 		if word ~= "" then
-			if msg:lower():match("@"..word:lower()) then
+			if strmatch(msg:lower(), "@"..word:lower()) then
 				at.checker = true
 				at.author = author
 				at.class = select(2, GetPlayerInfoByGUID(guid))
@@ -163,8 +126,8 @@ local WQTUsers = {}
 local inviteString = _G.ERR_INVITED_TO_GROUP_SS:gsub(".+|h", "")
 
 local function blockInviteString(_, _, msg)
-	if msg:find(inviteString) then
-		local name = msg:match("%[(.+)%]")
+	if strfind(msg, inviteString) then
+		local name = strmatch(msg, "%[(.+)%]")
 		if WQTUsers[name] then
 			return true
 		end
@@ -173,7 +136,7 @@ end
 
 local function blockWhisperString(_, _, msg, author)
 	local name = Ambiguate(author, "none")
-	if msg:find("%[World Quest Tracker%]") or msg:find("一起做世界任务吧：") or msg:find("一起来做世界任务<") then
+	if strfind(msg, "%[World Quest Tracker%]") or strfind(msg, "一起做世界任务吧：") or strfind(msg, "一起来做世界任务<") then
 		if not WQTUsers[name] then
 			WQTUsers[name] = true
 		end
@@ -190,7 +153,7 @@ end
 -- 过滤海岛探险中艾泽里特的获取信息
 local azerite = ISLANDS_QUEUE_WEEKLY_QUEST_PROGRESS:gsub("%%d/%%d ", "")
 local function filterAzeriteGain(_, _, msg)
-	if msg:find(azerite) then
+	if strfind(msg, azerite) then
 		return true
 	end
 end
@@ -205,8 +168,8 @@ local function isPlayerOnIslands()
 end
 
 function module:ChatFilter()
-	genFilterList()
-	genChatAtList()
+	B:GenFilterList()
+	B:GenChatAtList()
 
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", genChatFilter)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", genChatFilter)
@@ -216,6 +179,7 @@ function module:ChatFilter()
 
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", genAddonBlock)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", genAddonBlock)
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", genAddonBlock)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", genAddonBlock)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY_LEADER", genAddonBlock)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", genAddonBlock)

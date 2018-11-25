@@ -35,6 +35,14 @@ tinsert(C.themes["AuroraClassic"], function()
 		end
 	end)
 
+	hooksecurefunc("LFGListSearchEntry_Update", function(self)
+		local cancelButton = self.CancelButton
+		if not cancelButton.styled then
+			F.Reskin(cancelButton)
+			cancelButton.styled = true
+		end
+	end)
+
 	-- [[ Nothing available ]]
 
 	local NothingAvailable = LFGListFrame.NothingAvailable
@@ -158,6 +166,15 @@ tinsert(C.themes["AuroraClassic"], function()
 
 	ApplicationViewer.RefreshButton:SetSize(24, 24)
 	ApplicationViewer.RefreshButton.Icon:SetPoint("CENTER")
+
+	hooksecurefunc("LFGListApplicationViewer_UpdateApplicant", function(button)
+		if not button.styled then
+			F.Reskin(button.DeclineButton)
+			F.Reskin(button.InviteButton)
+
+			button.styled = true
+		end
+	end)
 
 	-- [[ Entry creation ]]
 

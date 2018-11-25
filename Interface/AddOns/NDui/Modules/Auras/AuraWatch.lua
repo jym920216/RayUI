@@ -1,15 +1,18 @@
 ﻿local _, ns = ...
 local B, C, L, DB = unpack(ns)
-local AuraList, Aura, UnitIDTable, IntTable, IntCD, newTable = {}, {}, {}, {}, {}, {}
+
+local AuraList, Aura, UnitIDTable, IntTable, IntCD, statTable = {}, {}, {}, {}, {}, {}
 local MaxFrame = 12	-- Max Tracked Auras
+local pairs, tinsert, tremove = pairs, table.insert, table.remove
+local max, wipe, sort = math.max, table.wipe, table.sort
+local GetCombatRating = GetCombatRating
+local CR_HASTE_MELEE, CR_MASTERY, CR_VERSATILITY_DAMAGE_DONE = CR_HASTE_MELEE, CR_MASTERY, CR_VERSATILITY_DAMAGE_DONE
+local CR_CRIT_SPELL, CR_CRIT_RANGED, CR_CRIT_MELEE = CR_CRIT_SPELL, CR_CRIT_RANGED, CR_CRIT_MELEE
 
 -- Init
 local function ConvertTable()
-	if not NDuiDB["AuraWatchList"] then NDuiDB["AuraWatchList"] = {} end
-	if not NDuiDB["InternalCD"] then NDuiDB["InternalCD"] = {} end
-
 	local function DataAnalyze(v)
-		newTable = {}
+		local newTable = {}
 		if type(v[1]) == "number" then
 			newTable.IntID = v[1]
 			newTable.Duration = v[2]
@@ -17,18 +20,15 @@ local function ConvertTable()
 			newTable.UnitID = v[4]
 			newTable.ItemID = v[5]
 		else
-			if v[1] == "AuraID" then newTable.AuraID = v[2]
-			elseif v[1] == "SpellID" then newTable.SpellID = v[2]
-			elseif v[1] == "SlotID" then newTable.SlotID = v[2]
-			elseif v[1] == "TotemID" then newTable.TotemID = v[2]
-			end
+			newTable[v[1]] = v[2]
 			newTable.UnitID = v[3]
-			newTable.Caster = v[4] ~= nil and v[4] or false
-			newTable.Stack = v[5] ~= nil and v[5] or false
+			newTable.Caster = v[4]
+			newTable.Stack = v[5]
 			newTable.Value = v[6]
 			newTable.Timeless = v[7]
 			newTable.Combat = v[8]
 			newTable.Text = v[9]
+			newTable.Flash = v[10]
 		end
 
 		return newTable
@@ -57,6 +57,11 @@ local function ConvertTable()
 			wipe(target)
 		else
 			for _, v in pairs(myTable[index]) do
+				for _, list in pairs(target) do
+					if list.AuraID and v.AuraID and list.AuraID == v.AuraID then
+						wipe(list)
+					end
+				end
 				tinsert(target, v)
 			end
 		end
@@ -93,19 +98,6 @@ local function ConvertTable()
 	end
 end
 
-local function CheckAuraList()
-	for _, a in pairs(C.AuraWatchList) do
-		for _, b in pairs(a) do
-			for _, c in pairs(b.List) do
-				if c.AuraID then
-					local exists = GetSpellInfo(c.AuraID)
-					if not exists then print("|cffFF0000Invalid spellID:|r "..c.AuraID) end
-				end
-			end
-		end
-	end
-end
-
 local function BuildAuraList()
 	AuraList = C.AuraWatchList["ALL"] or {}
 	for class in pairs(C.AuraWatchList) do
@@ -130,35 +122,40 @@ local function BuildUnitIDTable()
 	end
 end
 
-local function MakeMoveHandle(Frame, Text, key, Pos)
-	local MoveHandle = CreateFrame("Frame", nil, UIParent)
-	MoveHandle:SetWidth(Frame:GetWidth())
-	MoveHandle:SetHeight(Frame:GetHeight())
-	MoveHandle:SetFrameStrata("HIGH")
-	B.CreateBD(MoveHandle)
-	B.CreateFS(MoveHandle, 12, Text)
-	if not NDuiDB["AuraWatchMover"] then NDuiDB["AuraWatchMover"] = {} end
-	if not NDuiDB["AuraWatchMover"][key] then 
-		MoveHandle:SetPoint(unpack(Pos))
-	else
-		MoveHandle:SetPoint(unpack(NDuiDB["AuraWatchMover"][key]))
-	end
-	MoveHandle:EnableMouse(true)
-	MoveHandle:SetMovable(true)
-	MoveHandle:RegisterForDrag("LeftButton")
-	MoveHandle:SetScript("OnDragStart", function() MoveHandle:StartMoving() end)
-	MoveHandle:SetScript("OnDragStop", function(self)
-		self:StopMovingOrSizing()
-		local AnchorF, _, AnchorT, X, Y = self:GetPoint()
-		NDuiDB["AuraWatchMover"][key] = {AnchorF, "UIParent", AnchorT, X, Y}
-	end)
-	MoveHandle:Hide()
-	Frame:SetPoint("CENTER", MoveHandle)
-	return MoveHandle
+local function MakeMoveHandle(frame, text, value, anchor)
+	local mover = B.Mover(frame, text, value, anchor, nil, nil, true)
+	frame:ClearAllPoints()
+	frame:SetPoint("CENTER", mover)
+
+	return mover
 end
 
 -----> STYLED CODE START
 -- BuildICON
+local function updateTooltip(self)
+	GameTooltip:ClearLines()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 0, 3)
+	if self.type == 1 then
+		GameTooltip:SetSpellByID(self.spellID)
+	elseif self.type == 2 then
+		GameTooltip:SetHyperlink(select(2, GetItemInfo(self.spellID)))
+	elseif self.type == 3 then
+		GameTooltip:SetInventoryItem("player", self.spellID)
+	elseif self.type == 4 then
+		GameTooltip:SetUnitAura(self.unitID, self.id, self.filter)
+	end
+	GameTooltip:Show()
+end
+
+local function enableTooltip(self)
+	self:EnableMouse(true)
+	self.HL = self:CreateTexture(nil, "HIGHLIGHT")
+	self.HL:SetColorTexture(1, 1, 1, .25)
+	self.HL:SetAllPoints(self.Icon)
+	self:SetScript("OnEnter", updateTooltip)
+	self:SetScript("OnLeave", GameTooltip_Hide)
+end
+
 local function BuildICON(iconSize)
 	iconSize = iconSize * NDuiDB["AuraWatch"]["IconScale"]
 
@@ -176,33 +173,13 @@ local function BuildICON(iconSize)
 
 	local parentFrame = CreateFrame("Frame", nil, Frame)
 	parentFrame:SetAllPoints()
-	parentFrame:SetFrameLevel(Frame:GetFrameLevel() + 3)
+	parentFrame:SetFrameLevel(Frame:GetFrameLevel() + 5)
 
-	Frame.Spellname = B.CreateFS(parentFrame, 13, "", false, "BOTTOM", 0, -3)
+	Frame.Spellname = B.CreateFS(parentFrame, 13, "", false, "TOP", 0, 5)
 	Frame.Count = B.CreateFS(parentFrame, iconSize*.55, "", false, "BOTTOMRIGHT", 6, -3)
-
-	if not NDuiDB["AuraWatch"]["ClickThrough"] then
-		Frame:EnableMouse(true)
-		Frame.HL = Frame:CreateTexture(nil, "HIGHLIGHT")
-		Frame.HL:SetColorTexture(1, 1, 1, .25)
-		Frame.HL:SetAllPoints(Frame.Icon)
-
-		Frame:SetScript("OnEnter", function(self)
-			GameTooltip:ClearLines()
-			GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 0, 3)
-			if self.type == 1 then
-				GameTooltip:SetSpellByID(self.spellID)
-			elseif self.type == 2 then
-				GameTooltip:SetHyperlink(select(2, GetItemInfo(self.spellID)))
-			elseif self.type == 3 then
-				GameTooltip:SetInventoryItem("player", self.spellID)
-			elseif self.type == 4 then
-				GameTooltip:SetUnitAura(self.unitID, self.id, self.filter)
-			end
-			GameTooltip:Show()
-		end)
-		Frame:SetScript("OnLeave", GameTooltip_Hide)
-	end
+	Frame.glowFrame = B.CreateBG(Frame, 4)
+	Frame.glowFrame:SetSize(iconSize+8, iconSize+8)
+	if not NDuiDB["AuraWatch"]["ClickThrough"] then enableTooltip(Frame) end
 
 	Frame.isAuraWatch = true
 	Frame:Hide()
@@ -231,29 +208,7 @@ local function BuildBAR(barWidth, iconSize)
 	Frame.Spellname = B.CreateFS(Frame.Statusbar, 14, "", false, "LEFT", 2, 8)
 	Frame.Spellname:SetWidth(Frame.Statusbar:GetWidth()*.6)
 	Frame.Spellname:SetJustifyH("LEFT")
-
-	if not NDuiDB["AuraWatch"]["ClickThrough"] then
-		Frame:EnableMouse(true)
-		Frame.HL = Frame:CreateTexture(nil, "HIGHLIGHT")
-		Frame.HL:SetColorTexture(1, 1, 1, .25)
-		Frame.HL:SetAllPoints(Frame.Icon)
-
-		Frame:SetScript("OnEnter", function(self)
-			GameTooltip:ClearLines()
-			GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 0, 3)
-			if self.type == 1 then
-				GameTooltip:SetSpellByID(self.spellID)
-			elseif self.type == 2 then
-				GameTooltip:SetHyperlink(select(2, GetItemInfo(self.spellID)))
-			elseif self.type == 3 then
-				GameTooltip:SetInventoryItem("player", self.spellID)
-			elseif self.type == 4 then
-				GameTooltip:SetUnitAura(self.unitID, self.id, self.filter)
-			end
-			GameTooltip:Show()
-		end)
-		Frame:SetScript("OnLeave", GameTooltip_Hide)
-	end
+	if not NDuiDB["AuraWatch"]["ClickThrough"] then enableTooltip(Frame) end
 
 	Frame.isAuraWatch = true
 	Frame:Hide()
@@ -308,11 +263,35 @@ end
 
 local function Init()
 	ConvertTable()
-	CheckAuraList()
 	BuildAuraList()
 	BuildUnitIDTable()
 	BuildAura()
 	Pos()
+end
+
+local function updateBarTimer(self)
+	if self.expires then
+		self.Timer = self.expires - GetTime()
+	else
+		self.Timer = self.start + self.duration - GetTime()
+	end
+
+	if self.Timer < 0 then
+		if self.Time then self.Time:SetText("N/A") end
+		self.Statusbar:SetMinMaxValues(0, 1)
+		self.Statusbar:SetValue(0)
+		self.Statusbar.Spark:Hide()
+	elseif self.Timer < 60 then
+		if self.Time then self.Time:SetFormattedText("%.1f", self.Timer) end
+		self.Statusbar:SetMinMaxValues(0, self.duration)
+		self.Statusbar:SetValue(self.Timer)
+		self.Statusbar.Spark:Show()
+	else
+		if self.Time then self.Time:SetFormattedText("%d:%.2d", self.Timer/60, self.Timer%60) end
+		self.Statusbar:SetMinMaxValues(0, self.duration)
+		self.Statusbar:SetValue(self.Timer)
+		self.Statusbar.Spark:Show()
+	end
 end
 
 -- UpdateCD
@@ -331,25 +310,7 @@ local function UpdateCDFrame(index, name, icon, start, duration, _, type, id, ch
 		Frame.duration = duration
 		Frame.start = start
 		Frame.Timer = 0
-		Frame:SetScript("OnUpdate", function(self)
-			self.Timer = self.start + self.duration - GetTime()
-			if self.Timer < 0 then
-				if self.Time then self.Time:SetText("N/A") end
-				self.Statusbar:SetMinMaxValues(0, 1)
-				self.Statusbar:SetValue(0)
-				self.Statusbar.Spark:Hide()
-			elseif self.Timer < 60 then
-				if self.Time then self.Time:SetFormattedText("%.1f", self.Timer) end
-				self.Statusbar:SetMinMaxValues(0, self.duration)
-				self.Statusbar:SetValue(self.Timer)
-				self.Statusbar.Spark:Show()
-			else
-				if self.Time then self.Time:SetFormattedText("%d:%.2d", self.Timer/60, self.Timer%60) end
-				self.Statusbar:SetMinMaxValues(0, self.duration)
-				self.Statusbar:SetValue(self.Timer)
-				self.Statusbar.Spark:Show()
-			end
-		end)
+		Frame:SetScript("OnUpdate", updateBarTimer)
 	end
 	Frame.type = type
 	Frame.spellID = id
@@ -400,7 +361,9 @@ local function UpdateCD()
 end
 
 -- UpdateAura
-local function UpdateAuraFrame(index, UnitID, name, icon, count, duration, expires, id, filter)
+local function UpdateAuraFrame(index, UnitID, name, icon, count, duration, expires, id, filter, flash)
+	if not index then return end
+
 	local Frame = Aura[index][Aura[index].Index]
 	if Frame then Frame:Show() end
 	if Frame.Icon then Frame.Icon:SetTexture(icon) end
@@ -414,25 +377,14 @@ local function UpdateAuraFrame(index, UnitID, name, icon, count, duration, expir
 		Frame.duration = duration
 		Frame.expires = expires
 		Frame.Timer = 0
-		Frame:SetScript("OnUpdate", function(self)
-			self.Timer = self.expires-GetTime()
-			if self.Timer < 0 then
-				if self.Time then self.Time:SetText("N/A") end
-				self.Statusbar:SetMinMaxValues(0, 1)
-				self.Statusbar:SetValue(0)
-				self.Statusbar.Spark:Hide()
-			elseif self.Timer < 60 then
-				if self.Time then self.Time:SetFormattedText("%.1f", self.Timer) end
-				self.Statusbar:SetMinMaxValues(0, self.duration)
-				self.Statusbar:SetValue(self.Timer)
-				self.Statusbar.Spark:Show()
-			else
-				if self.Time then self.Time:SetFormattedText("%d:%.2d", self.Timer/60, self.Timer%60) end
-				self.Statusbar:SetMinMaxValues(0, self.duration)
-				self.Statusbar:SetValue(self.Timer)
-				self.Statusbar.Spark:Show()
-			end
-		end)
+		Frame:SetScript("OnUpdate", updateBarTimer)
+	end
+	if Frame.glowFrame then
+		if flash then
+			B.ShowOverlayGlow(Frame.glowFrame)
+		else
+			B.HideOverlayGlow(Frame.glowFrame)
+		end
 	end
 	Frame.type = 4
 	Frame.unitID = UnitID
@@ -442,51 +394,46 @@ local function UpdateAuraFrame(index, UnitID, name, icon, count, duration, expir
 	Aura[index].Index = (Aura[index].Index + 1 > MaxFrame) and MaxFrame or Aura[index].Index + 1
 end
 
+local function sortStat(a, b)
+	return a.num > b.num
+end
+
+local function getMaxStat()
+	wipe(statTable)
+	tinsert(statTable, {num = max(GetCombatRating(CR_CRIT_SPELL), GetCombatRating(CR_CRIT_RANGED), GetCombatRating(CR_CRIT_MELEE)), text = L["Crit"]})
+	tinsert(statTable, {num = GetCombatRating(CR_HASTE_MELEE), text = L["Haste"]})
+	tinsert(statTable, {num = GetCombatRating(CR_MASTERY), text = L["Mastery"]})
+	tinsert(statTable, {num = GetCombatRating(CR_VERSATILITY_DAMAGE_DONE), text = L["Versa"]})
+	sort(statTable, sortStat)
+
+	return statTable[1].text
+end
+
 local function AuraFilter(spellID, UnitID, index, bool)
 	for KEY, VALUE in pairs(AuraList) do
 		for _, value in pairs(VALUE.List) do
 			if value.AuraID == spellID and value.UnitID == UnitID then
-				if bool then
-					local name, icon, count, _, duration, expires, caster, _, _, _, _, _, _, _, _, number = UnitBuff(value.UnitID, index)
-					if value.Combat and not InCombatLockdown() then return false end
-					if value.Caster and value.Caster:lower() ~= caster then return false end
-					if value.Stack and count and value.Stack > count then return false end
-					if value.Value and number then
-						if VALUE.Mode:lower() == "icon" then
-							name = B.Numb(number)
-						elseif VALUE.Mode:lower() == "bar" then
-							name = name..":"..B.Numb(number)
-						end
-					else
-						if VALUE.Mode:lower() == "icon" then
-							name = value.Text or nil
-						elseif VALUE.Mode:lower() == "bar" then
-							name = name
-						end
+				local filter = bool and "HELPFUL" or "HARMFUL"
+				local name, icon, count, _, duration, expires, caster, _, _, _, _, _, _, _, _, number = UnitAura(value.UnitID, index, filter)
+				if value.Combat and not InCombatLockdown() then return false end
+				if value.Caster and value.Caster:lower() ~= caster then return false end
+				if value.Stack and count and value.Stack > count then return false end
+				if value.Value and number then
+					if VALUE.Mode:lower() == "icon" then
+						name = B.Numb(number)
+					elseif VALUE.Mode:lower() == "bar" then
+						name = name..":"..B.Numb(number)
 					end
-					if value.Timeless then duration, expires = 0, 0 end
-					return KEY, value.UnitID, name, icon, count, duration, expires, index, "HELPFUL"
 				else
-					local name, icon, count, _, duration, expires, caster, _, _, _, _, _, _, _, _, number = UnitDebuff(value.UnitID, index)
-					if value.Combat and not InCombatLockdown() then return false end
-					if value.Caster and value.Caster:lower() ~= caster then return false end
-					if value.Stack and count and value.Stack > count then return false end
-					if value.Value and number then
-						if VALUE.Mode:lower() == "icon" then
-							name = B.Numb(number)
-						elseif VALUE.Mode:lower() == "bar" then
-							name = name..":"..B.Numb(number)
-						end
-					else
-						if VALUE.Mode:lower() == "icon" then
-							name = value.Text or nil
-						elseif VALUE.Mode:lower() == "bar" then
-							name = name
-						end
+					if VALUE.Mode:lower() == "icon" then
+						name = value.Text or nil
+					elseif VALUE.Mode:lower() == "bar" then
+						name = name
 					end
-					if value.Timeless then duration, expires = 0, 0 end
-					return KEY, value.UnitID, name, icon, count, duration, expires, index, "HARMFUL"
 				end
+				if value.Timeless then duration, expires = 0, 0 end
+				if spellID == 280573 then name = getMaxStat() end
+				return KEY, value.UnitID, name, icon, count, duration, expires, index, filter, value.Flash
 			end
 		end
 	end
@@ -498,14 +445,15 @@ local function UpdateAura(UnitID)
     while true do
 		local name, _, _, _, _, _, _, _, _, spellID = UnitBuff(UnitID, index)
 		if not name then break end
-		if AuraFilter(spellID, UnitID, index, true) then UpdateAuraFrame(AuraFilter(spellID, UnitID, index, true)) end
+		UpdateAuraFrame(AuraFilter(spellID, UnitID, index, true))
 		index = index + 1
 	end
+
 	local index = 1
     while true do
 		local name, _, _, _, _, _, _, _, _, spellID = UnitDebuff(UnitID, index)
 		if not name then break end
-		if AuraFilter(spellID, UnitID, index, false) then UpdateAuraFrame(AuraFilter(spellID, UnitID, index, false)) end
+		UpdateAuraFrame(AuraFilter(spellID, UnitID, index, false))
 		index = index + 1
 	end
 end
@@ -532,6 +480,25 @@ local function SortBars()
 	end
 end
 
+local function updateIntTimer(self, elapsed)
+	self.Timer = self.Timer + elapsed
+	local timer = self.duration - self.Timer
+	if timer < 0 then
+		self:SetScript("OnUpdate", nil)
+		self:Hide()
+		tremove(IntTable, self.ID)
+		SortBars()
+	elseif timer < 60 then
+		if self.Time then self.Time:SetFormattedText("%.1f", timer) end
+		self.Statusbar:SetValue(timer)
+		self.Statusbar.Spark:Show()
+	else
+		if self.Time then self.Time:SetFormattedText("%d:%.2d", timer/60, timer%60) end
+		self.Statusbar:SetValue(timer)
+		self.Statusbar.Spark:Show()
+	end
+end
+
 local function UpdateIntFrame(intID, itemID, duration, unitID, guid, sourceName)
 	if not UIParent:IsShown() then return end
 
@@ -552,7 +519,7 @@ local function UpdateIntFrame(intID, itemID, duration, unitID, guid, sourceName)
 		Frame.spellID = intID
 	end
 	if unitID:lower() == "all" then
-		class = select(2, GetPlayerInfoByGUID(guid)) or "PRIEST"
+		class = select(2, GetPlayerInfoByGUID(guid))
 		name = "*"..sourceName
 	else
 		class = DB.MyClass
@@ -568,24 +535,8 @@ local function UpdateIntFrame(intID, itemID, duration, unitID, guid, sourceName)
 		Frame.Statusbar:SetStatusBarColor(B.ClassColor(class))
 		Frame.Statusbar:SetMinMaxValues(0, duration)
 		Frame.Timer = 0
-		Frame:SetScript("OnUpdate", function(self, elapsed)
-			self.Timer = self.Timer + elapsed
-			local timer = duration - self.Timer
-			if timer < 0 then
-				self:SetScript("OnUpdate", nil)
-				self:Hide()
-				tremove(IntTable, self.ID)
-				SortBars()
-			elseif timer < 60 then
-				if self.Time then self.Time:SetFormattedText("%.1f", timer) end
-				self.Statusbar:SetValue(timer)
-				self.Statusbar.Spark:Show()
-			else
-				if self.Time then self.Time:SetFormattedText("%d:%.2d", timer/60, timer%60) end
-				self.Statusbar:SetValue(timer)
-				self.Statusbar.Spark:Show()
-			end
-		end)
+		Frame.duration = duration
+		Frame:SetScript("OnUpdate", updateIntTimer)
 	end
 end
 
@@ -600,16 +551,24 @@ local function checkPetFlags(sourceFlags, all)
 	end
 end
 
-local function isUnitWeNeed(value, sourceName, destName, sourceFlags)
+local function isUnitWeNeed(value, name, flags)
 	if not value.UnitID then value.UnitID = "Player" end
 	if value.UnitID:lower() == "all" then
-		if sourceName and (UnitInRaid(sourceName) or UnitInParty(sourceName) or checkPetFlags(sourceFlags, true)) then
+		if name and (UnitInRaid(name) or UnitInParty(name) or checkPetFlags(flags, true)) then
 			return true
 		end
 	elseif value.UnitID:lower() == "player" then
-		if sourceName and sourceName == UnitName("player") or destName == UnitName("player") or checkPetFlags(sourceFlags) then
+		if name and name == DB.MyName or checkPetFlags(flags) then
 			return true
 		end
+	end
+end
+
+local function isAuraTracking(value, eventType, sourceName, sourceFlags, destName, destFlags)
+	if value.OnSuccess and eventType == "SPELL_CAST_SUCCESS" and isUnitWeNeed(value, sourceName, sourceFlags) then
+		return true
+	elseif not value.OnSuccess and eventList[eventType] and isUnitWeNeed(value, destName, destFlags) then
+		return true
 	end
 end
 
@@ -618,10 +577,13 @@ local function UpdateInt(_, ...)
 	if not IntCD.List then return end
 	for _, value in pairs(IntCD.List) do
 		if value.IntID then
-			local timestamp, eventType, _, sourceGUID, sourceName, sourceFlags, _, _, destName, _, _, spellID = ...
-			if value.IntID == spellID and isUnitWeNeed(value, sourceName, destName, sourceFlags) and cache[timestamp] ~= spellID and
-				((value.OnSuccess and eventType == "SPELL_CAST_SUCCESS") or (not value.OnSuccess and eventList[eventType])) then
-				UpdateIntFrame(value.IntID, value.ItemID, value.Duration, value.UnitID, sourceGUID, sourceName)
+			local timestamp, eventType, _, sourceGUID, sourceName, sourceFlags, _, destGUID, destName, destFlags, _, spellID = ...
+			if value.IntID == spellID and cache[timestamp] ~= spellID and isAuraTracking(value, eventType, sourceName, sourceFlags, destName, destFlags) then
+
+				local guid, name = destGUID, destName
+				if value.OnSuccess then guid, name = sourceGUID, sourceName end
+				UpdateIntFrame(value.IntID, value.ItemID, value.Duration, value.UnitID, guid, name)
+
 				cache[timestamp] = spellID
 			end
 		end
@@ -699,6 +661,7 @@ SlashCmdList.AuraWatch = function(msg)
 				if value[i].Time then value[i].Time:SetText("59") end
 				if value[i].Statusbar then value[i].Statusbar:SetValue(1) end
 				if value[i].Spellname then value[i].Spellname:SetText("") end
+				if value[i].glowFrame then B.HideOverlayGlow(value[i].glowFrame) end
 			end
 			value[1].MoveHandle:Show()
 		end

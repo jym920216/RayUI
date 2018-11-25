@@ -4,8 +4,9 @@ if not C.Infobar.Guild then return end
 
 local module = B:GetModule("Infobar")
 local info = module:RegisterInfobar(C.Infobar.GuildPos)
+local wipe, sort, format = table.wipe, table.sort, format
 
-local r, g, b = DB.cc.r, DB.cc.g, DB.cc.b
+local r, g, b = DB.r, DB.g, DB.b
 local infoFrame = CreateFrame("Frame", "NDuiGuildInfobar", info)
 infoFrame:SetSize(335, 495)
 infoFrame:SetPoint("TOPLEFT", UIParent, 15, -30)
@@ -111,8 +112,6 @@ local function createRoster(i)
 end
 
 local function refreshData()
-	if not NDuiADB["GuildSortBy"] then NDuiADB["GuildSortBy"] = 1 end
-
 	wipe(guildTable)
 	GuildRoster()
 	local count = 0

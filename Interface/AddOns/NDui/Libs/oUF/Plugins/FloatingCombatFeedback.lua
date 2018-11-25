@@ -11,7 +11,18 @@ local _G = getfenv(0)
 local pairs = pairs
 local cos, sin, mmax = cos, sin, math.max
 local tremove, tinsert = table.remove, table.insert
+
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
+local ENTERING_COMBAT = _G.ENTERING_COMBAT
+local LEAVING_COMBAT = _G.LEAVING_COMBAT
+local SCHOOL_MASK_NONE = _G.SCHOOL_MASK_NONE or 0x00
+local SCHOOL_MASK_PHYSICAL = _G.SCHOOL_MASK_PHYSICAL or 0x01
+local SCHOOL_MASK_HOLY = _G.SCHOOL_MASK_HOLY or 0x02
+local SCHOOL_MASK_FIRE = _G.SCHOOL_MASK_FIRE or 0x04
+local SCHOOL_MASK_NATURE = _G.SCHOOL_MASK_NATURE or 0x08
+local SCHOOL_MASK_FROST = _G.SCHOOL_MASK_FROST or 0x10
+local SCHOOL_MASK_SHADOW = _G.SCHOOL_MASK_SHADOW or 0x20
+local SCHOOL_MASK_ARCANE = _G.SCHOOL_MASK_ARCANE or 0x40
 
 local colors = {
 	ABSORB		= {r = 1.00, g = 1.00, b = 1.00},
@@ -100,6 +111,7 @@ local eventFilter = {
 	["RANGE_DAMAGE"] = {suffix = "DAMAGE", index = 15, iconType = "range", autoAttack = true},
 	["SPELL_DAMAGE"] = {suffix = "DAMAGE", index = 15, iconType = "spell"},
 	["SPELL_PERIODIC_DAMAGE"] = {suffix = "DAMAGE", index = 15, iconType = "spell", isPeriod = true},
+	["SPELL_BUILDING_DAMAGE"] = {suffix = "DAMAGE", index = 15, iconType = "spell"},
 
 	["SPELL_HEAL"] = {suffix = "HEAL", index = 15, iconType = "spell"},
 	["SPELL_PERIODIC_HEAL"] = {suffix = "HEAL", index = 15, iconType = "spell", isPeriod = true},
@@ -150,14 +162,14 @@ local function formatNumber(self, amount)
 	end
 end
 
-local function Update(self, event)
+local function onEvent(self, event, ...)
 	local element = self.FloatingCombatFeedback
 	local multiplier = 1
 	local text, color, texture, critMark
 	local unit = self.unit
 
 	if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-		local _, eventType, _, sourceGUID, _, sourceFlags, _, destGUID, _, _, _, spellID, _, school = CombatLogGetCurrentEventInfo()
+		local _, eventType, _, sourceGUID, _, sourceFlags, _, destGUID, _, _, _, spellID, _, school = ...
 		local isPlayer = UnitGUID("player") == sourceGUID
 		local atTarget = UnitGUID("target") == destGUID
 		local atPlayer = UnitGUID("player") == destGUID
@@ -172,7 +184,7 @@ local function Update(self, event)
 				if value.autoAttack and not element.showAutoAttack then return end
 				if value.isPeriod and not element.showHots then return end
 
-				local amount, _, _, _, _, _, critical, _, crushing = select(value.index, CombatLogGetCurrentEventInfo())
+				local amount, _, _, _, _, _, critical, _, crushing = select(value.index, ...)
 				texture = getFloatingIconTexture(value.iconType, spellID, isPet)
 				text = "-"..formatNumber(self, amount)
 
@@ -183,7 +195,7 @@ local function Update(self, event)
 			elseif value.suffix == "HEAL" then
 				if value.isPeriod and not element.showHots then return end
 
-				local amount, overhealing, _, critical = select(value.index, CombatLogGetCurrentEventInfo())
+				local amount, overhealing, _, critical = select(value.index, ...)
 				texture = getFloatingIconTexture(value.iconType, spellID)
 				local overhealText = ""
 				if overhealing > 0 then
@@ -198,11 +210,11 @@ local function Update(self, event)
 					critMark = true
 				end
 			elseif value.suffix == "MISS" then
-				local missType = select(value.index, CombatLogGetCurrentEventInfo())
+				local missType = select(value.index, ...)
 				texture = getFloatingIconTexture(value.iconType, spellID, isPet)
 				text = _G["COMBAT_TEXT_"..missType]
 			elseif value.suffix == "ENVIRONMENT" then
-				local envType, amount = select(value.index, CombatLogGetCurrentEventInfo())
+				local envType, amount = select(value.index, ...)
 				texture = getFloatingIconTexture(value.iconType, envType)
 				text = "-"..formatNumber(self, amount)
 			end
@@ -211,14 +223,14 @@ local function Update(self, event)
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		texture = ""
-		text = _G.ENTERING_COMBAT
+		text = ENTERING_COMBAT
 		color = colors.WOUND
-		multiplier = 1.25
+		multiplier = 1.3
 	elseif event == "PLAYER_REGEN_ENABLED" then
 		texture = ""
-		text = _G.LEAVING_COMBAT
+		text = LEAVING_COMBAT
 		color = colors.HEAL
-		multiplier = 1.25
+		multiplier = 1.3
 	end
 
 	if text and texture then
@@ -247,6 +259,14 @@ local function Update(self, event)
 
 			element:SetScript("OnUpdate", onUpdate)
 		end
+	end
+end
+
+local function Update(self, event, ...)
+	if event == "COMBAT_LOG_EVENT_UNFILTERED" then
+		onEvent(self, event, CombatLogGetCurrentEventInfo())
+	else
+		onEvent(self, event, ...)
 	end
 end
 

@@ -2,6 +2,9 @@ local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local UF = B:GetModule("UnitFrames")
 
+local strmatch, format = string.match, string.format
+local pairs, ipairs, next, tonumber = pairs, ipairs, next, tonumber
+
 -- RaidFrame Elements
 function UF:CreateRaidIcons(self)
 	local parent = CreateFrame("Frame", nil, self)
@@ -71,19 +74,32 @@ function UF:CreateRaidDebuffs(self)
 	bu:SetSize(size, size)
 	bu:SetPoint("TOPRIGHT", -10, -2)
 	bu:SetFrameLevel(self:GetFrameLevel() + 3)
-	B.CreateSD(bu, 2, 2)
+	B.CreateSD(bu, 3, 3)
+	bu:Hide()
 
 	bu.icon = bu:CreateTexture(nil, "ARTWORK")
 	bu.icon:SetAllPoints()
 	bu.icon:SetTexCoord(unpack(DB.TexCoord))
 	bu.count = B.CreateFS(bu, 12, "", false, "BOTTOMRIGHT", 6, -3)
 	bu.time = B.CreateFS(bu, 12, "", false, "CENTER", 1, 0)
+	bu.glowFrame = B.CreateBG(bu, 6)
+	bu.glowFrame:SetSize(size+12, size+12)
+
+	if not NDuiDB["UFs"]["AurasClickThrough"] then
+		bu:SetScript("OnEnter", function(self)
+			if not self.index then return end
+			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+			GameTooltip:ClearLines()
+			GameTooltip:SetUnitAura(self.__owner.unit, self.index, self.filter)
+			GameTooltip:Show()
+		end)
+		bu:SetScript("OnLeave", GameTooltip_Hide)
+	end
 
 	bu.ShowDispellableDebuff = true
-	bu.EnableTooltip = not NDuiDB["UFs"]["AurasClickThrough"]
 	bu.ShowDebuffBorder = NDuiDB["UFs"]["DebuffBorder"]
 	bu.FilterDispellableDebuff = NDuiDB["UFs"]["Dispellable"]
-	if NDuiDB["UFs"]["InstanceAuras"] then bu.Debuffs = C.RaidDebuffs end
+	if NDuiDB["UFs"]["InstanceAuras"] then bu.Debuffs = NDuiADB["RaidDebuffs"] end
 	self.RaidDebuffs = bu
 end
 
@@ -170,8 +186,7 @@ local defaultSpellList = {
 }
 
 function UF:DefaultClickSets()
-	if not NDuiDB["RaidClickSets"] then
-		NDuiDB["RaidClickSets"] = {}
+	if not next(NDuiDB["RaidClickSets"]) then
 		for k, v in pairs(defaultSpellList[DB.MyClass]) do
 			local clickSet = keyList[k][2]..keyList[k][1]
 			NDuiDB["RaidClickSets"][clickSet] = {keyList[k][1], keyList[k][2], v}
@@ -182,8 +197,8 @@ end
 local function onMouseWheelCast(self)
 	local found
 	for _, data in pairs(NDuiDB["RaidClickSets"]) do
-		local key, modKey, value = unpack(data)
-		if key:match(L["Wheel"]) then
+		local key = unpack(data)
+		if strmatch(key, L["Wheel"]) then
 			found = true
 			break
 		end
@@ -230,7 +245,7 @@ local function setupClickSets(self)
 				elseif value == "follow" then
 					self:SetAttribute(format(v[3], "type"), "macro")
 					self:SetAttribute(format(v[3], "macrotext"), "/follow mouseover")
-				elseif value:match("/") then
+				elseif strmatch(value, "/") then
 					self:SetAttribute(format(v[3], "type"), "macro")
 					self:SetAttribute(format(v[3], "macrotext"), value)
 				end

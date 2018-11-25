@@ -1,10 +1,10 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local module = B:RegisterModule("Chat")
-
 -- Reskin Chat
 local maxLines = 1024
 local maxWidth, maxHeight = UIParent:GetWidth(), UIParent:GetHeight()
+local tostring, pairs, ipairs, strsub, strlower = tostring, pairs, ipairs, string.sub, string.lower
 
 local function skinChat(self)
 	if not self or (self and self.styled) then return end
@@ -135,34 +135,61 @@ hooksecurefunc("FloatingChatFrame_OnMouseScroll", function(self, dir)
 end)
 
 -- Autoinvite by whisper
+local whisperList = {}
+function B:GenWhisperList()
+	B.SplitList(whisperList, NDuiDB["Chat"]["Keyword"], true)
+end
+
 function module:WhipserInvite()
 	if not NDuiDB["Chat"]["Invite"] then return end
 
-	local whisperList = {string.split(" ", NDuiDB["Chat"]["Keyword"])}
+	local function isUnitInGuild(unitName)
+		if not unitName then return end
+		for i = 1, GetNumGuildMembers() do
+			local name = GetGuildRosterInfo(i)
+			if name and Ambiguate(name, "none") == Ambiguate(unitName, "none") then
+				return true
+			end
+		end
+
+		return false
+	end
 
 	local function onChatWhisper(event, ...)
-		local arg1, arg2, _, _, _, _, _, _, _, _, _, _, arg3 = ...
-		for _, word in pairs(whisperList) do
-			if (not IsInGroup() or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")) and strlower(arg1) == strlower(word) then
+		local msg, author, _, _, _, _, _, _, _, _, _, guid, presenceID = ...
+		for word in pairs(whisperList) do
+			if (not IsInGroup() or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")) and strlower(msg) == strlower(word) then
 				if event == "CHAT_MSG_BN_WHISPER" then
-					local gameID = select(6, BNGetFriendInfoByID(arg3))
+					local gameID = select(6, BNGetFriendInfoByID(presenceID))
 					if gameID then
 						local _, charName, _, realmName = BNGetGameAccountInfo(gameID)
-						if CanCooperateWithGameAccount(gameID) and (not NDuiDB["Chat"]["GuildInvite"] or B.UnitInGuild(charName.."-"..realmName)) then
+						if CanCooperateWithGameAccount(gameID) and (not NDuiDB["Chat"]["GuildInvite"] or isUnitInGuild(charName.."-"..realmName)) then
 							BNInviteFriend(gameID)
 						end
 					end
 				else
-					if not NDuiDB["Chat"]["GuildInvite"] or B.UnitInGuild(arg2) then
-						InviteToGroup(arg2)
+					if not NDuiDB["Chat"]["GuildInvite"] or IsGuildMember(guid) then
+						InviteToGroup(author)
 					end
 				end
 			end
 		end
 	end
+	B:GenWhisperList()
 	B:RegisterEvent("CHAT_MSG_WHISPER", onChatWhisper)
 	B:RegisterEvent("CHAT_MSG_BN_WHISPER", onChatWhisper)
 end
+
+local function updateTimestamp()
+	-- Timestamp
+	local greyStamp = DB.GreyColor.."[%H:%M:%S]|r "
+	if NDuiADB["Timestamp"] then
+		SetCVar("showTimestamps", greyStamp)
+	elseif GetCVar("showTimestamps") == greyStamp then
+		SetCVar("showTimestamps", "none")
+	end
+end
+B.UpdateTimestamp = updateTimestamp
 
 function module:OnLogin()
 	for i = 1, NUM_CHAT_WINDOWS do
@@ -231,6 +258,7 @@ function module:OnLogin()
 	self:ChatCopy()
 	self:UrlCopy()
 	self:WhipserInvite()
+	updateTimestamp()
 
 	-- ProfanityFilter
 	if not BNFeaturesEnabledAndConnected() then return end

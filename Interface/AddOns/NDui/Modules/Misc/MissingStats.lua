@@ -9,6 +9,8 @@ function module:MissingStats()
 	if not NDuiDB["Misc"]["MissingStats"] then return end
 	if IsAddOnLoaded("DejaCharacterStats") then return end
 
+	local format = string.format
+
 	local statPanel = CreateFrame("Frame", nil, CharacterFrameInsetRight)
 	statPanel:SetSize(200, 350)
 	statPanel:SetPoint("TOP", 0, -5)
@@ -85,5 +87,24 @@ function module:MissingStats()
 	PAPERDOLL_STATINFO["FOCUS_REGEN"].updateFunc = function(statFrame, unit)
 		statFrame.numericValue = 0
 		PaperDollFrame_SetFocusRegen(statFrame, unit)
+	end
+
+	function PaperDollFrame_SetAttackSpeed(statFrame, unit)
+		local meleeHaste = GetMeleeHaste()
+		local speed, offhandSpeed = UnitAttackSpeed(unit)
+		local displaySpeed = format("%.2f", speed)
+		if offhandSpeed then
+			offhandSpeed = format("%.2f", offhandSpeed)
+		end
+		if offhandSpeed then
+			displaySpeed = BreakUpLargeNumbers(displaySpeed).." / "..offhandSpeed
+		else
+			displaySpeed = BreakUpLargeNumbers(displaySpeed)
+		end
+		PaperDollFrame_SetLabelAndText(statFrame, WEAPON_SPEED, displaySpeed, false, speed)
+
+		statFrame.tooltip = HIGHLIGHT_FONT_COLOR_CODE..format(PAPERDOLLFRAME_TOOLTIP_FORMAT, ATTACK_SPEED).." "..displaySpeed..FONT_COLOR_CODE_CLOSE
+		statFrame.tooltip2 = format(STAT_ATTACK_SPEED_BASE_TOOLTIP, BreakUpLargeNumbers(meleeHaste))
+		statFrame:Show()
 	end
 end

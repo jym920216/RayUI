@@ -3,37 +3,43 @@ local B, C, L, DB = unpack(ns)
 
 -- Frame Mover
 local MoverList, BackupTable, f = {}, {}
-B.Mover = function(Frame, Text, key, Pos, w, h)
-	if not NDuiDB["Mover"] then NDuiDB["Mover"] = {} end
-	local Mover = CreateFrame("Frame", nil, UIParent)
-	Mover:SetWidth(w or Frame:GetWidth())
-	Mover:SetHeight(h or Frame:GetHeight())
-	B.CreateBD(Mover)
-	B.CreateSD(Mover)
-	B.CreateTex(Mover)
-	B.CreateFS(Mover, DB.Font[2], Text)
-	tinsert(MoverList, Mover)
 
-	if not NDuiDB["Mover"][key] then 
-		Mover:SetPoint(unpack(Pos))
-	else
-		Mover:SetPoint(unpack(NDuiDB["Mover"][key]))
+function B:Mover(text, value, anchor, width, height, isAuraWatch)
+	local key = "Mover"
+	if isAuraWatch then key = "AuraWatchMover" end
+	if not NDuiDB[key] then NDuiDB[key] = {} end
+
+	local mover = CreateFrame("Frame", nil, UIParent)
+	mover:SetWidth(width or self:GetWidth())
+	mover:SetHeight(height or self:GetHeight())
+	B.CreateBD(mover)
+	B.CreateSD(mover)
+	B.CreateTex(mover)
+	B.CreateFS(mover, DB.Font[2], text)
+	if not isAuraWatch then
+		tinsert(MoverList, mover)
 	end
-	Mover:EnableMouse(true)
-	Mover:SetMovable(true)
-	Mover:SetClampedToScreen(true)
-	Mover:SetFrameStrata("HIGH")
-	Mover:RegisterForDrag("LeftButton")
-	Mover:SetScript("OnDragStart", function(self) self:StartMoving() end)
-	Mover:SetScript("OnDragStop", function(self)
-		self:StopMovingOrSizing()
-		local orig, _, tar, x, y = self:GetPoint()
-		NDuiDB["Mover"][key] = {orig, "UIParent", tar, x, y}
-	end)
-	Mover:Hide()
-	Frame:SetPoint("TOPLEFT", Mover)
 
-	return Mover
+	if not NDuiDB[key][value] then 
+		mover:SetPoint(unpack(anchor))
+	else
+		mover:SetPoint(unpack(NDuiDB[key][value]))
+	end
+	mover:EnableMouse(true)
+	mover:SetMovable(true)
+	mover:SetClampedToScreen(true)
+	mover:SetFrameStrata("HIGH")
+	mover:RegisterForDrag("LeftButton")
+	mover:SetScript("OnDragStart", function() mover:StartMoving() end)
+	mover:SetScript("OnDragStop", function()
+		mover:StopMovingOrSizing()
+		local orig, _, tar, x, y = mover:GetPoint()
+		NDuiDB[key][value] = {orig, "UIParent", tar, x, y}
+	end)
+	mover:Hide()
+	self:SetPoint("TOPLEFT", mover)
+
+	return mover
 end
 
 local function UnlockElements()

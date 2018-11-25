@@ -2,11 +2,15 @@ local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local module = B:GetModule("Misc")
 
+local format, gsub, strsplit = string.format, string.gsub, string.split
+local pairs, tonumber = pairs, tonumber
+
 function module:AddAlerts()
 	self:SoloInfo()
 	self:RareAlert()
 	self:InterruptAlert()
 	self:VersionCheck()
+	self:ExplosiveAlert()
 end
 
 --[[
@@ -79,7 +83,7 @@ function module:RareAlert()
 
 			local atlasWidth = width/(txRight-txLeft)
 			local atlasHeight = height/(txBottom-txTop)
-			local tex = string.format("|T%s:%d:%d:0:0:%d:%d:%d:%d:%d:%d|t", filename, 0, 0, atlasWidth, atlasHeight, atlasWidth*txLeft, atlasWidth*txRight, atlasHeight*txTop, atlasHeight*txBottom)
+			local tex = format("|T%s:%d:%d:0:0:%d:%d:%d:%d:%d:%d|t", filename, 0, 0, atlasWidth, atlasHeight, atlasWidth*txLeft, atlasWidth*txRight, atlasHeight*txTop, atlasHeight*txBottom)
 			UIErrorsFrame:AddMessage(DB.InfoColor..L["Rare Found"]..tex..(info.name or ""))
 			if NDuiDB["Misc"]["AlertinChat"] then
 				print("  -> "..DB.InfoColor..L["Rare Found"]..tex..(info.name or ""))
@@ -116,6 +120,8 @@ function module:InterruptAlert()
 	local blackList = {
 		[99] = true,		-- 夺魂咆哮
 		[122] = true,		-- 冰霜新星
+		[1784] = true,		-- 潜行
+		[115191] = true,
 		[5246] = true,		-- 破胆怒吼
 		[8122] = true,		-- 心灵尖啸
 		[33395] = true,		-- 冰冻术
@@ -123,6 +129,14 @@ function module:InterruptAlert()
 		[197214] = true,	-- 裂地术
 		[157997] = true,	-- 寒冰新星
 		[102359] = true,	-- 群体缠绕
+		[226943] = true,	-- 心灵炸弹
+		[105421] = true,	-- 盲目之光
+		[207167] = true,	-- 致盲冰雨
+		[31661] = true,		-- 龙息术
+		[82691] = true,		-- 冰霜之环
+		[207685] = true,	-- 悲苦咒符
+		[64695] = true,		-- 陷地
+		[198121] = true,	-- 冰霜撕咬
 	}
 
 	local function msgChannel()
@@ -143,7 +157,7 @@ function module:InterruptAlert()
 					if auraType and auraType == AURA_TYPE_BUFF or blackList[spellID] then return end	-- need reviewed
 					SendChatMessage(format(infoText, sourceName..GetSpellLink(extraskillID), destName..GetSpellLink(spellID)), msgChannel())
 				else
-					if NDuiDB["Misc"]["OwnInterrupt"] and sourceName ~= UnitName("player") and not isAllyPet(sourceFlags) then return end
+					if NDuiDB["Misc"]["OwnInterrupt"] and sourceName ~= DB.MyName and not isAllyPet(sourceFlags) then return end
 					SendChatMessage(format(infoText, sourceName..GetSpellLink(spellID), destName..GetSpellLink(extraskillID)), msgChannel())
 				end
 			end
@@ -157,9 +171,7 @@ end
 	NDui版本过期提示
 ]]
 function module:VersionCheck()
-	if not NDuiDB["Settings"]["VersionCheck"] then return end
-	if not NDuiADB["DetectVersion"] then NDuiADB["DetectVersion"] = DB.Version end
-	if not IsInGuild() then return end
+	if not NDuiADB["VersionCheck"] then return end
 
 	local f = CreateFrame("Frame", nil, nil, "MicroButtonAlertTemplate")
 	f:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", 20, 70)
@@ -167,9 +179,9 @@ function module:VersionCheck()
 	f:Hide()
 
 	local function CompareVersion(new, old)
-		local new1, new2 = string.split(".", new)
+		local new1, new2 = strsplit(".", new)
 		new1, new2 = tonumber(new1), tonumber(new2)
-		local old1, old2 = string.split(".", old)
+		local old1, old2 = strsplit(".", old)
 		old1, old2 = tonumber(old1), tonumber(old2)
 		if new1 > old1 or new2 > old2 then
 			return "IsNew"
@@ -180,28 +192,94 @@ function module:VersionCheck()
 
 	local checked
 	local function UpdateVersionCheck(_, ...)
-		local prefix, msg, distType = ...
-		if distType ~= "GUILD" then return end
+		local prefix, msg, distType, author = ...
+		if prefix ~= "NDuiVersionCheck" then return end
+		if Ambiguate(author, "none") == DB.MyName then return end
 
-		if prefix == "NDuiVersionCheck" then
-			if CompareVersion(msg, NDuiADB["DetectVersion"]) == "IsNew" then
-				NDuiADB["DetectVersion"] = msg
-			end
+		local status = CompareVersion(msg, NDuiADB["DetectVersion"])
+		if status == "IsNew" then
+			NDuiADB["DetectVersion"] = msg
+		elseif status == "IsOld" then
+			C_ChatInfo.SendAddonMessage("NDuiVersionCheck", NDuiADB["DetectVersion"], distType)
+		end
 
-			if not checked then
-				local status = CompareVersion(NDuiADB["DetectVersion"], DB.Version)
-				if status == "IsNew" then
-					f.Text:SetText(format(L["Outdated NDui"], NDuiADB["DetectVersion"]))
-					f:Show()
-				elseif status == "IsOld" then
-					C_ChatInfo.SendAddonMessage("NDuiVersionCheck", DB.Version, "GUILD")
-				end
-				checked = true
+		if not checked then
+			if CompareVersion(NDuiADB["DetectVersion"], DB.Version) == "IsNew" then
+				local release = gsub(NDuiADB["DetectVersion"], "(%d)$", "0")
+				f.Text:SetText(format(L["Outdated NDui"], release))
+				f:Show()
 			end
+			checked = true
 		end
 	end
 
 	B:RegisterEvent("CHAT_MSG_ADDON", UpdateVersionCheck)
 	C_ChatInfo.RegisterAddonMessagePrefix("NDuiVersionCheck")
-	C_ChatInfo.SendAddonMessage("NDuiVersionCheck", DB.Version, "GUILD")
+	if IsInGuild() then
+		C_ChatInfo.SendAddonMessage("NDuiVersionCheck", DB.Version, "GUILD")
+	end
+end
+
+--[[
+	大米完成时，通报打球统计
+]]
+function module:ExplosiveAlert()
+	if not NDuiDB["Misc"]["ExplosiveCount"] then return end
+
+	local eventList = {
+		["SWING_DAMAGE"] = 13,
+		["RANGE_DAMAGE"] = 16,
+		["SPELL_DAMAGE"] = 16,
+		["SPELL_PERIODIC_DAMAGE"] = 16,
+		["SPELL_BUILDING_DAMAGE"] = 16,
+	}
+
+	local cache = NDuiDB["Misc"]["ExplosiveCache"]
+	local function updateCount(_, ...)
+		local _, eventType, _, _, sourceName, _, _, destGUID = ...
+		local index = eventList[eventType]
+		if index and B.GetNPCID(destGUID) == 120651 then
+			local overkill = select(index, ...)
+			if overkill and overkill > 0 then
+				local name = strsplit("-", sourceName or UNKNOWN)
+				if not cache[name] then cache[name] = 0 end
+				cache[name] = cache[name] + 1
+			end
+		end
+	end
+
+	local function startCount()
+		wipe(cache)
+		B:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", updateCount)
+	end
+
+	local function endCount()
+		local text
+		for name, count in pairs(cache) do
+			text = (text or L["ExplosiveCount"])..name.."("..count..") "
+		end
+		if text then SendChatMessage(text, "PARTY") end
+		B:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED", updateCount)
+	end
+
+	local function pauseCount()
+		local name, _, instID = GetInstanceInfo()
+		if name and instID == 8 then
+			B:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", updateCount)
+		else
+			B:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED", updateCount)
+		end
+	end
+
+	local function checkAffixes(event)
+		local affixes = C_MythicPlus.GetCurrentAffixes()
+		if not affixes then return end
+		if affixes[3] == 13 then
+			B:RegisterEvent("CHALLENGE_MODE_START", startCount)
+			B:RegisterEvent("CHALLENGE_MODE_COMPLETED", endCount)
+			B:RegisterEvent(event, pauseCount)
+		end
+		B:UnregisterEvent(event, checkAffixes)
+	end
+	B:RegisterEvent("PLAYER_ENTERING_WORLD", checkAffixes)
 end

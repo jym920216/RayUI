@@ -6,7 +6,7 @@ local module = B:GetModule("AurasTable")
 local list = {
 	["Player Aura"] = {		-- 玩家光环组
 		{AuraID = 586, UnitID = "player"},		-- 渐隐术
-		{AuraID = 124430, UnitID = "player"},	-- 暗影洞察
+		{AuraID = 45242, UnitID = "player"},	-- 专注意志
 		{AuraID = 121557, UnitID = "player"},	-- 天堂之羽
 		{AuraID = 194022, UnitID = "player"},	-- 意志坚定
 		{AuraID = 214121, UnitID = "player"},	-- 身心合一
@@ -62,15 +62,17 @@ local list = {
 		{AuraID = 253443, UnitID = "player"},	-- T21神圣4
 		{AuraID = 216135, UnitID = "player"},	-- 戒律法袍
 		{AuraID = 271466, UnitID = "player"},	-- 微光屏障
+		{AuraID = 124430, UnitID = "player"},	-- 暗影洞察
+		{AuraID = 197871, UnitID = "player"},	-- 黑暗天使长
 	},
 	["Focus Aura"] = {		-- 焦点光环组
 		{AuraID = 139, UnitID = "focus", Caster = "player"},	-- 恢复
 	},
 	["Spell Cooldown"] = {	-- 冷却计时组
-		{SlotID = 13, UnitID = "player"},		-- 饰品1
-		{SlotID = 14, UnitID = "player"},		-- 饰品2
-		{SpellID = 64843, UnitID = "player"},	-- 神圣赞美诗
-		{SpellID = 33206, UnitID = "player"},	-- 痛苦压制
+		{SlotID = 13},		-- 饰品1
+		{SlotID = 14},		-- 饰品2
+		{SpellID = 64843},	-- 神圣赞美诗
+		{SpellID = 33206},	-- 痛苦压制
 	},
 }
 

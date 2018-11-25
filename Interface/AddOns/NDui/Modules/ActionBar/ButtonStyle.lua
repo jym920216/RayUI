@@ -5,6 +5,7 @@ local B, C, L, DB = unpack(ns)
 ---------------------------
 local Bar = B:GetModule("Actionbar")
 local _G = getfenv(0)
+local pairs, gsub = pairs, string.gsub
 
 local function CallButtonFunctionByName(button, func, ...)
 	if button and func and button[func] then
@@ -122,7 +123,7 @@ local function SetupBackdrop(button)
 	B.CreateSD(bg)
 	B.CreateTex(bg)
 	if NDuiDB["Actionbar"]["Classcolor"] then
-		bg:SetBackdropColor(DB.cc.r, DB.cc.g, DB.cc.b, .25)
+		bg:SetBackdropColor(DB.r, DB.g, DB.b, .25)
 	else
 		bg:SetBackdropColor(.2, .2, .2, .25)
 	end

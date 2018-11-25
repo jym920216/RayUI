@@ -1,6 +1,7 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local module = B:RegisterModule("Infobar")
+local tinsert, pairs = table.insert, pairs
 
 function module:RegisterInfobar(point)
 	if not self.modules then self.modules = {} end
@@ -9,7 +10,11 @@ function module:RegisterInfobar(point)
 	info:SetHitRectInsets(0, 0, -10, -10)
 	info.text = info:CreateFontString(nil, "OVERLAY")
 	info.text:SetFont(unpack(C.Infobar.Fonts))
-	info.text:SetPoint(unpack(point))
+	if C.Infobar.AutoAnchor then
+		info.point = point
+	else
+		info.text:SetPoint(unpack(point))
+	end
 	info:SetAllPoints(info.text)
 	tinsert(self.modules, info)
 
@@ -41,5 +46,16 @@ function module:OnLogin()
 	if not self.modules then return end
 	for _, info in pairs(self.modules) do
 		self:LoadInfobar(info)
+	end
+
+	if not C.Infobar.AutoAnchor then return end
+	for index, info in pairs(self.modules) do
+		if index == 1 or index == 6 then
+			info.text:SetPoint(unpack(info.point))
+		elseif index < 6 then
+			info.text:SetPoint("LEFT", self.modules[index-1], "RIGHT", 20, 0)
+		else
+			info.text:SetPoint("RIGHT", self.modules[index-1], "LEFT", -30, 0)
+		end
 	end
 end

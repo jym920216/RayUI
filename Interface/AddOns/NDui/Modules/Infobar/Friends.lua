@@ -5,13 +5,11 @@ if not C.Infobar.Friends then return end
 local module = B:GetModule("Infobar")
 local info = module:RegisterInfobar(C.Infobar.FriendsPos)
 
+local strfind, format = string.find, string.format
+local sort, wipe = table.sort, table.wipe
 local friendTable, bnetTable, updateRequest = {}, {}
 local wowString, bnetString = L["WoW"], L["BN"]
 local activeZone, inactiveZone = {r=.3, g=1, b=.3}, {r=.7, g=.7, b=.7}
-local classList = {}
-for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	classList[v] = k
-end
 
 local function buildFriendTable(num)
 	wipe(friendTable)
@@ -26,7 +24,7 @@ local function buildFriendTable(num)
 			else
 				status = ""
 			end
-			class = classList[class]
+			class = DB.ClassList[class]
 
 			friendTable[i] = {name, level, class, area, connected, status}
 		end
@@ -49,7 +47,7 @@ local function buildBNetTable(num)
 			local _, _, _, realmName, _, _, _, class, _, zoneName, _, gameText, _, _, _, _, _, isGameAFK, isGameBusy = BNGetGameAccountInfo(gameID)
 
 			charName = BNet_GetValidatedCharacterName(charName, battleTag, client)
-			class = classList[class]
+			class = DB.ClassList[class]
 			accountName = isBattleTagPresence and battleTag or accountName
 
 			local status, infoText = ""
@@ -92,7 +90,7 @@ info.eventList = {
 
 info.onEvent = function(self, event, arg1)
 	if event == "CHAT_MSG_SYSTEM" then
-		if not string.find(arg1, ERR_FRIEND_ONLINE_SS) and not string.find(arg1, ERR_FRIEND_OFFLINE_S) then return end
+		if not strfind(arg1, ERR_FRIEND_ONLINE_SS) and not strfind(arg1, ERR_FRIEND_OFFLINE_S) then return end
 	elseif event == "MODIFIER_STATE_CHANGED" and arg1 == "LSHIFT" then
 		self:GetScript("OnEnter")(self)
 	end
@@ -132,7 +130,7 @@ info.onEnter = function(self)
 				if connected then
 					local zoneColor = GetRealZoneText() == area and activeZone or inactiveZone
 					local levelColor = B.HexRGB(GetQuestDifficultyColor(level))
-					local classColor = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class] or levelColor
+					local classColor = DB.ClassColors[class] or levelColor
 					GameTooltip:AddDoubleLine(levelColor..level.."|r "..name..status, area, classColor.r, classColor.g, classColor.b, zoneColor.r, zoneColor.g, zoneColor.b)
 				end
 			end
@@ -150,7 +148,7 @@ info.onEnter = function(self)
 
 					if client == BNET_CLIENT_WOW then
 						if CanCooperateWithGameAccount(gameID) then
-							local color = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class] or GetQuestDifficultyColor(1)
+							local color = DB.ClassColors[class] or GetQuestDifficultyColor(1)
 							name = B.HexRGB(color).." "..charName
 						end
 						zoneColor = GetRealZoneText() == infoText and activeZone or inactiveZone

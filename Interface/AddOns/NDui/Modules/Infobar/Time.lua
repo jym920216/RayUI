@@ -4,6 +4,8 @@ if not C.Infobar.Time then return end
 
 local module = B:GetModule("Infobar")
 local info = module:RegisterInfobar(C.Infobar.TimePos)
+local strfind, format, floor = string.find, string.format, math.floor
+local mod, tonumber, pairs = mod, tonumber, pairs
 
 info.onUpdate = function(self, elapsed)
 	self.timer = (self.timer or 0) + elapsed
@@ -33,17 +35,44 @@ local bonus = {
 	52835, 52839,	-- Honor
 	52837, 52840,	-- Resources
 }
-local bonusname = GetCurrencyInfo(1580)
+local bonusName = GetCurrencyInfo(1580)
 
-local keystone = GetItemInfo(138019)
+local isTimeWalker, walkerTexture
+local function checkTimeWalker(event)
+	local date = C_Calendar.GetDate()
+	C_Calendar.SetAbsMonth(date.month, date.year)
+	C_Calendar.OpenCalendar()
+
+	local today = date.monthDay
+	local numEvents = C_Calendar.GetNumDayEvents(0, today)
+	if numEvents <= 0 then return end
+
+	for i = 1, numEvents do
+		local info = C_Calendar.GetDayEvent(0, today, i)
+		if info and strfind(info.title, PLAYER_DIFFICULTY_TIMEWALKER) and info.sequenceType ~= "END" then
+			isTimeWalker = true
+			walkerTexture = info.iconTexture
+			break
+		end
+	end
+	B:UnregisterEvent(event, checkTimeWalker)
+end
+B:RegisterEvent("PLAYER_ENTERING_WORLD", checkTimeWalker)
+
+local function checkTexture(texture)
+	if not walkerTexture then return end
+	if walkerTexture == texture or walkerTexture == texture - 1 then
+		return true
+	end
+end
+
 local questlist = {
-	{name = keystone, id = 44554},
 	{name = L["Blingtron"], id = 34774},
 	{name = L["Mean One"], id = 6983},
-	{name = "TBC"..L["Timewarped"], id = 40168},
-	{name = "WLK"..L["Timewarped"], id = 40173},
-	{name = "CTM"..L["Timewarped"], id = 40786},
-	{name = "MOP"..L["Timewarped"], id = 45799},
+	{name = L["Timewarped"], id = 40168, texture = 1129674},	-- TBC
+	{name = L["Timewarped"], id = 40173, texture = 1129686},	-- WotLK
+	{name = L["Timewarped"], id = 40786, texture = 1304688},	-- Cata
+	{name = L["Timewarped"], id = 45799, texture = 1530590},	-- MoP
 }
 
 local invas = {
@@ -83,6 +112,15 @@ local function whereToGo(nextTime)
 	return C_Map.GetMapInfo(zoneNames[timeTable[round]]).name
 end
 
+local title
+local function addTitle(text)
+	if not title then
+		GameTooltip:AddLine(" ")
+		GameTooltip:AddLine(text..":", .6,.8,1)
+		title = true
+	end
+end
+
 info.onEnter = function(self)
 	RequestRaidInfo()
 
@@ -96,16 +134,9 @@ info.onEnter = function(self)
 	GameTooltip:AddDoubleLine(L["Local Time"], GameTime_GetLocalTime(true), .6,.8,1 ,1,1,1)
 	GameTooltip:AddDoubleLine(L["Realm Time"], GameTime_GetGameTime(true), .6,.8,1 ,1,1,1)
 
-	local title
-	local function addTitle(text)
-		if not title then
-			GameTooltip:AddLine(" ")
-			GameTooltip:AddLine(text..":", .6,.8,1)
-			title = true
-		end
-	end
 
 	-- World bosses
+	title = false
 	for i = 1, GetNumSavedWorldBosses() do
 		local name, id, reset = GetSavedWorldBossInfo(i)
 		if not (id == 11 or id == 12 or id == 13) then
@@ -150,7 +181,7 @@ info.onEnter = function(self)
 		addTitle(QUESTS_LABEL)
 		local r,g,b
 		if count == maxCoins then r,g,b = 1,0,0 else r,g,b = 0,1,0 end
-		GameTooltip:AddDoubleLine(bonusname, count.."/"..maxCoins, 1,1,1, r,g,b)
+		GameTooltip:AddDoubleLine(bonusName, count.."/"..maxCoins, 1,1,1, r,g,b)
 	end
 
 	local iwqID = C_IslandsQueue.GetIslandsWeeklyQuestID()
@@ -166,10 +197,12 @@ info.onEnter = function(self)
 		end
 	end
 
-	for _, index in pairs(questlist) do
-		if index.name and IsQuestFlaggedCompleted(index.id) then
-			addTitle(QUESTS_LABEL)
-			GameTooltip:AddDoubleLine(index.name, QUEST_COMPLETE, 1,1,1, 1,0,0)
+	for _, v in pairs(questlist) do
+		if v.name and IsQuestFlaggedCompleted(v.id) then
+			if v.name == L["Timewarped"] and isTimeWalker and checkTexture(v.texture) or v.name ~= L["Timewarped"] then
+				addTitle(QUESTS_LABEL)
+				GameTooltip:AddDoubleLine(v.name, QUEST_COMPLETE, 1,1,1, 1,0,0)
+			end
 		end
 	end
 

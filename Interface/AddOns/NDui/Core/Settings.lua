@@ -1,6 +1,7 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local module = B:RegisterModule("Settings")
+local pairs, tonumber, wipe = pairs, tonumber, table.wipe
 
 -- Addon Info
 print("|cff0080ff< NDui >|cff70C0F5----------------")
@@ -52,13 +53,13 @@ local function ForceUIScale()
 	B.HideOption(Advanced_UseUIScale)
 	B.HideOption(Advanced_UIScaleSlider)
 
-	local scale = NDuiDB["Settings"]["UIScale"]
-	if NDuiDB["Settings"]["LockUIScale"] then
+	local scale = NDuiADB["UIScale"]
+	if NDuiADB["LockUIScale"] then
 		scale = 768/DB.ScreenHeight * .8
 		local minScale = .64
 		if DB.ScreenHeight > 1080 then minScale = .5 end
 		if scale < minScale then scale = minScale end
-		NDuiDB["Settings"]["UIScale"] = scale
+		NDuiADB["UIScale"] = scale
 	end
 
 	SetCVar("useUiScale", 1)
@@ -95,10 +96,10 @@ StaticPopupDialogs["RELOAD_NDUI"] = {
 	end,
 }
 
--- DBM bars	
+-- DBM bars
 local function ForceDBMOptions()
 	if not IsAddOnLoaded("DBM-Core") then return end
-	if DBT_AllPersistentOptions then table.wipe(DBT_AllPersistentOptions) end
+	if DBT_AllPersistentOptions then wipe(DBT_AllPersistentOptions) end
 	DBT_AllPersistentOptions = {
 		["Default"] = {
 			["DBM"] = {
@@ -142,13 +143,13 @@ local function ForceDBMOptions()
 	DBM_AllSavedOptions["Default"]["WarningFontSize"] = 18
 	DBM_AllSavedOptions["Default"]["SpecialWarningFontSize2"] = 24
 
-	NDuiDB["Settings"]["DBMRequest"] = false
+	NDuiADB["DBMRequest"] = false
 end
 
 -- Skada
 local function ForceSkadaOptions()
 	if not IsAddOnLoaded("Skada") then return end
-	if SkadaDB then table.wipe(SkadaDB) end
+	if SkadaDB then wipe(SkadaDB) end
 	SkadaDB = {
 		["hasUpgraded"] = true,
 		["profiles"] = {
@@ -183,7 +184,7 @@ local function ForceSkadaOptions()
 							["g"] = 0,
 							["r"] = 0,
 						},
-						["barfontsize"] = 15,
+						["barfontsize"] = 14,
 						["background"] = {
 							["height"] = 180,
 							["texture"] = "None",
@@ -204,13 +205,13 @@ local function ForceSkadaOptions()
 			},
 		},
 	}
-	NDuiDB["Settings"]["SkadaRequest"] = false
+	NDuiADB["SkadaRequest"] = false
 end
 
 -- BigWigs
 local function ForceBigwigs()
 	if not IsAddOnLoaded("BigWigs") then return end
-	if BigWigs3DB then table.wipe(BigWigs3DB) end
+	if BigWigs3DB then wipe(BigWigs3DB) end
 	BigWigs3DB = {
 		["namespaces"] = {
 			["BigWigs_Plugins_Bars"] = {
@@ -287,13 +288,13 @@ local function ForceBigwigs()
 			},
 		},
 	}
-	NDuiDB["Settings"]["BWRequest"] = false
+	NDuiADB["BWRequest"] = false
 end
 
 local function ForceAddonSkins()
-	if NDuiDB["Settings"]["DBMRequest"] then ForceDBMOptions() end
-	if NDuiDB["Settings"]["SkadaRequest"] then ForceSkadaOptions() end
-	if NDuiDB["Settings"]["BWRequest"] then ForceBigwigs() end
+	if NDuiADB["DBMRequest"] then ForceDBMOptions() end
+	if NDuiADB["SkadaRequest"] then ForceSkadaOptions() end
+	if NDuiADB["BWRequest"] then ForceBigwigs() end
 end
 
 -- Tutorial
@@ -354,17 +355,17 @@ local function YesTutor()
 			ForceRaidFrame()
 			UIErrorsFrame:AddMessage(DB.InfoColor..L["Default Settings Check"])
 		elseif currentPage == 2 then
-			NDuiDB["Settings"]["LockUIScale"] = true
+			NDuiADB["LockUIScale"] = true
 			ForceUIScale()
-			NDuiDB["Settings"]["LockUIScale"] = false
+			NDuiADB["LockUIScale"] = false
 			UIErrorsFrame:AddMessage(DB.InfoColor..L["UIScale Check"])
 		elseif currentPage == 3 then
 			ForceChatSettings()
 			UIErrorsFrame:AddMessage(DB.InfoColor..L["Chat Settings Check"])
 		elseif currentPage == 4 then
-			NDuiDB["Settings"]["DBMRequest"] = true
-			NDuiDB["Settings"]["SkadaRequest"] = true
-			NDuiDB["Settings"]["BWRequest"] = true
+			NDuiADB["DBMRequest"] = true
+			NDuiADB["SkadaRequest"] = true
+			NDuiADB["BWRequest"] = true
 			ForceAddonSkins()
 			UIErrorsFrame:AddMessage(DB.InfoColor..L["Tutorial Complete"])
 			pass:Hide()
@@ -393,7 +394,7 @@ local function HelloWorld()
 	B.CreateSD(welcome)
 	B.CreateTex(welcome)
 	B.CreateFS(welcome, 30, "NDui", true, "TOPLEFT", 10, 25)
-	B.CreateFS(welcome, 14, DB.Version, true, "TOPLEFT", 90, 12)
+	B.CreateFS(welcome, 14, DB.Version, true, "TOPLEFT", 90, 13)
 	B.CreateFS(welcome, 16, L["Help Title"], true, "TOP", 0, -10)
 	local ll = CreateFrame("Frame", nil, welcome)
 	ll:SetPoint("TOP", -50, -35)

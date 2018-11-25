@@ -1,7 +1,9 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
+
 local oUF = ns.oUF or oUF
 local UF = B:GetModule("UnitFrames")
+local format, tostring = string.format, tostring
 
 -- Units
 local function CreatePlayerStyle(self)
@@ -19,13 +21,17 @@ local function CreatePlayerStyle(self)
 	UF:CreateIcons(self)
 	UF:CreatePrediction(self)
 	UF:CreateFCT(self)
-	UF:ReskinMirrorBars()
 	UF:CreateAddPower(self)
 
-	if not NDuiDB["Nameplate"]["ShowPlayerPlate"] then UF:CreateClassPower(self) end
+	if NDuiDB["UFs"]["Castbars"] then
+		UF:ReskinMirrorBars()
+		UF:ReskinTimerTrakcer(self)
+	end
+	if NDuiDB["UFs"]["ClassPower"] and not NDuiDB["Nameplate"]["ShowPlayerPlate"] then UF:CreateClassPower(self) end
 	if not NDuiDB["Misc"]["ExpRep"] then UF:CreateExpRepBar(self) end
 	if NDuiDB["UFs"]["PlayerDebuff"] then UF:CreateDebuffs(self) end
 	if NDuiDB["UFs"]["SwingBar"] then UF:CreateSwing(self) end
+	if NDuiDB["UFs"]["QuakeTimer"] then UF:CreateQuakeTimer(self) end
 end
 
 local function CreateTargetStyle(self)
@@ -159,6 +165,7 @@ function UF:OnLogin()
 		self:BlockAddons()
 		self:CreateUnitTable()
 		self:CreatePowerUnitTable()
+		self:CheckExplosives()
 
 		oUF:RegisterStyle("Nameplates", UF.CreatePlates)
 		oUF:SetActiveStyle("Nameplates")
@@ -239,10 +246,20 @@ function UF:OnLogin()
 	end
 
 	if NDuiDB["UFs"]["RaidFrame"] then
-		-- Disable Default RaidFrame
-		B.HideObject(CompactRaidFrameContainer)
-		B.HideObject(CompactRaidFrameManager)
-		RaidOptionsFrame_UpdatePartyFrames = B.Dummy	-- need reviewed
+		-- Hide Default RaidFrame
+		local function HideRaid()
+			if InCombatLockdown() then return end
+			B.HideObject(CompactRaidFrameManager)
+			local compact_raid = CompactRaidFrameManager_GetSetting("IsShown")
+			if compact_raid and compact_raid ~= "0" then
+				CompactRaidFrameManager_SetSetting("IsShown", "0")
+			end
+		end
+		CompactRaidFrameManager:HookScript("OnShow", HideRaid)
+		if CompactRaidFrameManager_UpdateShown then
+			hooksecurefunc("CompactRaidFrameManager_UpdateShown", HideRaid)
+		end
+		CompactRaidFrameContainer:UnregisterAllEvents()
 
 		-- Group Styles
 		oUF:RegisterStyle("Raid", CreateRaidStyle)

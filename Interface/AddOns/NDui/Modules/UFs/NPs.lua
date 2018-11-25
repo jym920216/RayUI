@@ -1,6 +1,7 @@
 local _, ns = ...
 local B, C, L, DB = unpack(ns)
 local UF = B:GetModule("UnitFrames")
+local strmatch, tonumber = string.match, tonumber
 
 -- Init
 function UF:SetupCVars()
@@ -31,11 +32,19 @@ function UF:SetupCVars()
 end
 
 function UF:BlockAddons()
-	if DBM and DBM.Nameplate then
-		function DBM.Nameplate:SupportedNPMod()
-			return true
+	if not DBM or not DBM.Nameplate then return end
+
+	function DBM.Nameplate:SupportedNPMod()
+		return true
+	end
+
+	local function showAurasForDBM(_, _, _, spellID)
+		if not tonumber(spellID) then return end
+		if not C.WhiteList[spellID] then
+			C.WhiteList[spellID] = true
 		end
 	end
+	hooksecurefunc(DBM.Nameplate, "Show", showAurasForDBM)
 end
 
 local function GetSectionInfo(id)
@@ -51,20 +60,16 @@ local CustomUnits = {
 	[GetSectionInfo(18104)] = true,	-- 散疫触须
 	[GetSectionInfo(18232)] = true,	-- 艾什凡炮手
 	[GetSectionInfo(18499)] = true,	-- 凝结之血
-	["Spawn of G'huun"] = true,
-	["戈霍恩之嗣"] = true,
-	["古翰幼體"] = true,
-	["Explosives"] = true,
-	["爆炸物"] = true,
-	["炸彈"] = true,
+	[GetSectionInfo(18078)] = true,	-- 蛛魔编织者
+	[GetSectionInfo(18007)] = true,	-- 瘟疫聚合体
+	[GetSectionInfo(18053)] = true,	-- 灵魂荆棘
+	[120651] = true, -- 爆炸物
+	[141851] = true, -- 戈霍恩之嗣
 }
 function UF:CreateUnitTable()
-	if not NDuiDB["Nameplate"]["CustomUnitColor"] then return end
+	if not NDuiDB["Nameplate"]["CustomUnitColor"] then CustomUnits = nil return end
 
-	local list = {string.split(" ", NDuiDB["Nameplate"]["UnitList"])}
-	for _, value in pairs(list) do
-		CustomUnits[value] = true
-	end
+	B.SplitList(CustomUnits, NDuiDB["Nameplate"]["UnitList"])
 end
 
 C.ShowPowerList = {
@@ -73,15 +78,13 @@ C.ShowPowerList = {
 	[GetSectionInfo(18540)] = true,	-- 纳兹曼尼鲜血妖术师
 }
 function UF:CreatePowerUnitTable()
-	local list = {string.split(" ", NDuiDB["Nameplate"]["ShowPowerList"])}
-	for _, value in pairs(list) do
-		C.ShowPowerList[value] = true
-	end
+	B.SplitList(C.ShowPowerList, NDuiDB["Nameplate"]["ShowPowerList"])
 end
 
 -- Elements
 local function UpdateColor(element, unit)
 	local name = GetUnitName(unit) or UNKNOWN
+	local npcID = B.GetNPCID(UnitGUID(unit))
 	local status = UnitThreatSituation("player", unit) or false		-- just in case
 	local reaction = UnitReaction(unit, "player")
 	local customColor = NDuiDB["Nameplate"]["CustomColor"]
@@ -94,7 +97,7 @@ local function UpdateColor(element, unit)
 	if not UnitIsConnected(unit) then
 		r, g, b = .7, .7, .7
 	else
-		if CustomUnits and CustomUnits[name] then
+		if CustomUnits and (CustomUnits[name] or CustomUnits[npcID]) then
 			r, g, b = customColor.r, customColor.g, customColor.b
 		elseif UnitIsPlayer(unit) and (reaction and reaction >= 5) then
 			if NDuiDB["Nameplate"]["FriendlyCC"] then
@@ -155,13 +158,15 @@ local function UpdateTargetMark(self)
 	local mark = self.tarMark
 
 	if UnitIsUnit(self.unit, "target") and not UnitIsUnit(self.unit, "player") then
-		if arrow then arrow:SetAlpha(1) end
-		if mark then mark:SetAlpha(1) end
+		if arrow then arrow:Show() end
+		if mark then mark:Show() end
 	else
-		if arrow then arrow:SetAlpha(0) end
-		if mark then mark:SetAlpha(0) end
+		if arrow then arrow:Hide() end
+		if mark then mark:Hide() end
 	end
 end
+
+local unitTip = CreateFrame("GameTooltip", "NDuiQuestUnitTip", nil, "GameTooltipTemplate")
 
 local function UpdateQuestUnit(self, unit)
 	if not NDuiDB["Nameplate"]["QuestIcon"] or unit == "player" then return end
@@ -169,12 +174,11 @@ local function UpdateQuestUnit(self, unit)
 	if name and (instType == "raid" or instID == 8) then self.questIcon:SetAlpha(0) return end
 
 	local isObjectiveQuest, isProgressQuest
-	local unitTip = _G["NDuiQuestUnitTip"] or CreateFrame("GameTooltip", "NDuiQuestUnitTip", nil, "GameTooltipTemplate")
 	unitTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 	unitTip:SetUnit(unit)
 
 	for i = 2, unitTip:NumLines() do
-		local textLine = _G["NDuiQuestUnitTipTextLeft"..i]
+		local textLine = _G[unitTip:GetName().."TextLeft"..i]
 		local text = textLine:GetText()
 		if textLine and text then
 			local r, g, b = textLine:GetTextColor()
@@ -182,7 +186,7 @@ local function UpdateQuestUnit(self, unit)
 				isProgressQuest = true
 			else
 				local unitName, progress = strmatch(text, "^ ([^ ]-) ?%-(.+)$")
-				if unitName and (unitName == "" or unitName == UnitName("player")) and progress then
+				if unitName and (unitName == "" or unitName == DB.MyName) and progress then
 					local current, goal = strmatch(progress, "(%d+)/(%d+)")
 					if current and goal and current ~= goal then
 						isObjectiveQuest = true
@@ -219,6 +223,59 @@ local function UpdateUnitClassify(self, unit)
 	end
 end
 
+local explosiveCount, hasExplosives = 0
+--local id = 126023 --test
+local id = 120651
+local function scalePlates()
+	for _, nameplate in next, C_NamePlate.GetNamePlates() do
+		local unitFrame = nameplate.unitFrame
+		local npcID = B.GetNPCID(UnitGUID(unitFrame.unit))
+		if explosiveCount > 0 and npcID == id or explosiveCount == 0 then
+			unitFrame:SetWidth(NDuiDB["Nameplate"]["Width"] * 1.4)
+		else
+			unitFrame:SetWidth(NDuiDB["Nameplate"]["Width"] * .9)
+		end
+	end
+end
+
+local function UpdateExplosives(self, event, unit)
+	if not hasExplosives or unit ~= self.unit then return end
+
+	local npcID = B.GetNPCID(UnitGUID(unit))
+	if event == "NAME_PLATE_UNIT_ADDED" and npcID == id then
+		explosiveCount = explosiveCount + 1
+	elseif event == "NAME_PLATE_UNIT_REMOVED" and npcID == id then
+		explosiveCount = explosiveCount - 1
+	end
+	scalePlates()
+end
+
+local function checkInstance()
+	local name, _, instID = GetInstanceInfo()
+	if name and instID == 8 then
+		hasExplosives = true
+	else
+		hasExplosives = false
+		explosiveCount = 0
+	end
+end
+
+function UF:CheckExplosives()
+	if not NDuiDB["Nameplate"]["ExplosivesScale"] then return end
+
+	local function checkAffixes(event)
+		local affixes = C_MythicPlus.GetCurrentAffixes()
+		if not affixes then return end
+		if affixes[3] == 13 then
+			checkInstance()
+			B:RegisterEvent(event, checkInstance)
+			B:RegisterEvent("CHALLENGE_MODE_START", checkInstance)
+		end
+		B:UnregisterEvent(event, checkAffixes)
+	end
+	B:RegisterEvent("PLAYER_ENTERING_WORLD", checkAffixes)
+end
+
 local function isMouseoverUnit(self)
 	if not self or not self.unit then return end
 
@@ -240,12 +297,12 @@ local function updateMouseoverShown(self)
 end
 
 local function AddMouseoverIndicator(self)
-	local glow = CreateFrame("Frame", nil, self)
-	glow:SetPoint("TOPLEFT", -6, 6)
-	glow:SetPoint("BOTTOMRIGHT", 6, -6)
+	local glow = CreateFrame("Frame", nil, UIParent)
+	glow:SetPoint("TOPLEFT", self, -6, 6)
+	glow:SetPoint("BOTTOMRIGHT", self, 6, -6)
 	glow:SetBackdrop({edgeFile = DB.glowTex, edgeSize = 4})
 	glow:SetBackdropBorderColor(1, 1, 1)
-	glow:SetFrameLevel(0)
+	glow:Hide()
 
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", updateMouseoverShown)
 	self:RegisterEvent("PLAYER_TARGET_CHANGED", updateMouseoverShown)
@@ -271,7 +328,7 @@ end
 -- Create Nameplates
 function UF:CreatePlates(unit)
 	self.mystyle = "nameplate"
-	if unit:match("nameplate") then
+	if strmatch(unit, "nameplate") then
 		self:SetSize(NDuiDB["Nameplate"]["Width"] * 1.4, NDuiDB["Nameplate"]["Height"])
 		self:SetPoint("CENTER", 0, -3)
 
@@ -299,7 +356,7 @@ function UF:CreatePlates(unit)
 			arrow:SetSize(50, 50)
 			arrow:SetTexture(DB.arrowTex)
 			arrow:SetPoint("BOTTOM", self, "TOP", 0, 14)
-			arrow:SetAlpha(0)
+			arrow:Hide()
 			self.arrowMark = arrow
 		end
 		local mark = self.Health:CreateTexture(nil, "BACKGROUND", nil, -1)
@@ -309,7 +366,7 @@ function UF:CreatePlates(unit)
 		mark:SetTexture("Interface\\GLUES\\Models\\UI_Draenei\\GenericGlow64")
 		mark:SetVertexColor(0, .6, 1)
 		mark:SetBlendMode("ADD")
-		mark:SetAlpha(0)
+		mark:Hide()
 		self.tarMark = mark
 		self:RegisterEvent("PLAYER_TARGET_CHANGED", UpdateTargetMark)
 
@@ -334,9 +391,7 @@ function UF:CreatePlates(unit)
 		self.ThreatIndicator = threatIndicator
 		self.ThreatIndicator.Override = UpdateThreatColor
 
-		if NDuiDB["Nameplate"]["HighlightIndicator"] then
-			AddMouseoverIndicator(self)
-		end
+		AddMouseoverIndicator(self)
 	end
 end
 
@@ -345,6 +400,7 @@ function UF:PostUpdatePlates(event, unit)
 	UpdateTargetMark(self)
 	UpdateQuestUnit(self, unit)
 	UpdateUnitClassify(self, unit)
+	UpdateExplosives(self, event, unit)
 end
 
 -- Player Nameplate

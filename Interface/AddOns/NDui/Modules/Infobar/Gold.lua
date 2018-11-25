@@ -4,9 +4,11 @@ if not C.Infobar.Gold then return end
 
 local module = B:GetModule("Infobar")
 local info = module:RegisterInfobar(C.Infobar.GoldPos)
+local format = string.format
+local pairs, wipe = pairs, table.wipe
 
 local profit, spent, oldMoney = 0, 0, 0
-local myName, myRealm = UnitName("player"), GetRealmName()
+local myName, myRealm = DB.MyName, GetRealmName()
 
 local function formatTextMoney(money)
 	return format("%.0f|cffffd700%s|r", money * .0001, GOLD_AMOUNT_SYMBOL)
@@ -30,7 +32,6 @@ info.eventList = {
 
 info.onEvent = function(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
-		if NDuiADB["AutoSell"] == nil then NDuiADB["AutoSell"] = true end
 		oldMoney = GetMoney()
 		self:UnregisterEvent(event)
 	end
@@ -44,7 +45,6 @@ info.onEvent = function(self, event)
 	end
 	self.text:SetText(formatTextMoney(newMoney))
 
-	if not NDuiADB["totalGold"] then NDuiADB["totalGold"] = {} end
 	if not NDuiADB["totalGold"][myRealm] then NDuiADB["totalGold"][myRealm] = {} end
 	NDuiADB["totalGold"][myRealm][myName] = {GetMoney(), DB.MyClass}
 

@@ -59,11 +59,11 @@ local list = {
 		{AuraID = 186265, UnitID = "player"},	-- 灵龟守护
 		{AuraID = 190515, UnitID = "player"},	-- 适者生存
 		{AuraID = 193534, UnitID = "player"},	-- 稳固集中
-		{AuraID = 194594, UnitID = "player"},	-- 荷枪实弹
+		{AuraID = 194594, UnitID = "player", Flash = true},	-- 荷枪实弹
 		{AuraID = 118455, UnitID = "pet"},		-- 野兽瞬劈斩
 		{AuraID = 207094, UnitID = "pet"},		-- 泰坦之雷
 		{AuraID = 217200, UnitID = "pet"},		-- 凶猛狂暴
-		{AuraID = 272790, UnitID = "pet"},		-- 狂暴
+		{AuraID = 272790, UnitID = "pet", Flash = true},	-- 狂暴
 		{AuraID = 193526, UnitID = "player"},	-- 百发百中
 		{AuraID = 193530, UnitID = "player"},	-- 野性守护
 		{AuraID = 185791, UnitID = "player"},	-- 荒野呼唤
@@ -102,10 +102,10 @@ local list = {
 		{AuraID = 199803, UnitID = "focus", Caster = "player"},	-- 精确瞄准
 	},
 	["Spell Cooldown"] = {	-- 冷却计时组
-		{SlotID = 13, UnitID = "player"},		-- 饰品1
-		{SlotID = 14, UnitID = "player"},		-- 饰品2
-		{SpellID = 186265, UnitID = "player"},	-- 灵龟守护
-		{SpellID = 147362, UnitID = "player"},	-- 反制射击
+		{SlotID = 13},		-- 饰品1
+		{SlotID = 14},		-- 饰品2
+		{SpellID = 186265},	-- 灵龟守护
+		{SpellID = 147362},	-- 反制射击
 	},
 }
 

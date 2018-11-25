@@ -2,31 +2,28 @@ local _, ns = ...
 local B, C, L, DB = unpack(ns)
 if DB.Client ~= "zhCN" then return end
 
+local strsplit, pairs = string.split, pairs
+
 local hx = {
-	"AuroraClassic更新至1.9.4；",
-	"更新技能及团本法术监控；",
-	"考古统计修正；",
-	"信息条印记统计支持新好运币；",
-	"更新自动交互的忽略列表；",
-	"优化打断驱散等的通报表现；",
-	"添加控场技能打破的通报；",
-	"取消聊天框中对AFK/DND等的信息调整；",
-	"调整大米公会记录对AngryKeystones的支持；",
-	"鼠标提示信息调整；",
-	"添加艾泽里特护甲特质信息的显示；",
-	"更新oUF核心；",
-	"调整竞技场准备阶段的目标框体；",
-	"聊天窗口的相关元素调整；",
-	"修正分辨率调整后聊天框体错位的问题；",
-	"BUFF检查添加对卷轴的监控；",
-	"团队框体快速施法现在支持鼠标上下滚轮；",
-	"法师/DH/术士职业助手调整；",
-	"拆解机现在也显示物品装等；",
-	"过滤海岛探险中的艾泽里特获取信息；",
+	"移除自动整理内存；",
+	"更新部分法术监控；",
+	"更新打破通报的黑名单过滤；",
+	"更新姓名板自定义目标过滤列表；",
+	"添加重组阵列的监控；",
+	"错误信息框调整，添加声音提示按钮；",
+	"团队工具调整；",
+	"震荡计时条调整；",
+	"背包调整；",
+	"背包和世界地图可以在移动后保存位置了；",
+	"姓名板高亮调整；",
+	"添加选项以缩放非易爆球的姓名板，默认关闭；",
+	"易爆球击杀统计调整；",
+	"添加选项以隐藏施法条延迟计时；",
+	"获得成就自动截图的功能优化；",
+	"DK的符文冷却添加计时；",
+	"头像部分框体的法术过滤调整；",
 	"控制台及本地文本更新；",
-	"控制台添加姓名板的颜色调整选项；",
-	"姓名板添加指向高亮；",
-	"部分反馈的问题修正。",
+	"部分反馈的问题调整。",
 }
 
 local f
@@ -65,10 +62,9 @@ end
 
 local function compareToShow(event)
 	if HelloWorld then return end
-	if not NDuiADB["Changelog"] then NDuiADB["Changelog"] = {} end
 
-	local old1, old2 = string.split(".", NDuiADB["Changelog"].Version or "")
-	local cur1, cur2 = string.split(".", DB.Version)
+	local old1, old2 = strsplit(".", NDuiADB["Changelog"].Version or "")
+	local cur1, cur2 = strsplit(".", DB.Version)
 	if old1 ~= cur1 or old2 ~= cur2 then
 		changelog()
 		NDuiADB["Changelog"].Version = DB.Version
